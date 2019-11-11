@@ -28,20 +28,20 @@ All accounts need to be one of 2 roles; Owner, Admin or have a whitelist other t
 
 ## Owners
 
-Owner accounts can add and remove other account addresses to both the list of Owners and Admins. Owners cannot remove themselves from being an Owner.  Accounts in the Owner list can also mint new tokens to other adresses.
+Owner accounts can add and remove other account addresses to both the list of Owners and Admins. Owners cannot remove themselves from being an Owner.  Accounts in the Owner list can also mint new tokens to other addresses.
 
-The Owner account specified at the time of deployment will be the only owner account by default.
+The Owner account specified at the time of deployment will be the only Owner account by default.
 
 ## Administrators
 
-Admins can add/remove accounts to/from any of the whitelists. They can also enable/disable transfers between whitelists.
+Admins can add or remove accounts from any of the whitelists. They can also enable or disable transfers between whitelists.
 
 ## Whitelists
 Before tokens can be transferred to a new address, it must be validated that the source is allowed to send to that destination address and that the destination address can receive funds. If the sending client does not check this in advance and sends an invalid transfer, the transfer functionality will fail and the transaction will revert.
 
-Owner and admin accounts will have the ability to transfer tokens to any valid address, regardless of the whitelist configuration state.
+Owner and Admin accounts will have the ability to transfer tokens to any valid address, regardless of the whitelist configuration state.
 
-Any address can only be a member of one whitelist at any point in time. If an admin adds any address to a new whitelist, it will no longer be a member of the previous whitelist it was on (if any). Adding an address to a whitelist of ID 0 will remove it from all whitelists, as whitelist ID 0 is invalid. Removing an address from the existing whitelist will set it to belong to whitelist 0. An address with whitelist 0 will be prevented from transferring or receiving tokens. Any tokens on a whitelist 0 account are frozen. All addresses belong to whitelist 0 by default.
+An address can only be a member of one whitelist at any point in time. If an admin adds any address to a new whitelist, it will no longer be a member of the previous whitelist it was on (if any). Adding an address to a whitelist of ID 0 will remove it from all whitelists, as whitelist ID 0 is invalid. Removing an address from the existing whitelist will set it to belong to whitelist 0. An address with whitelist 0 will be prevented from transferring or receiving tokens. Any tokens on a whitelist 0 account are frozen. All addresses belong to whitelist 0 by default.
 
 Any whitelist can be configured to have multiple Outbound Whitelists. When a transfer is initiated, the restriction logic will first determine the whitelist that both the source and destination belong to. Then it will determine if the source whitelist is configured to allow transactions to the destination whitelist. If either address is on whitelist 0 the transfer will be restricted. Also, the transfer will be restricted if the source whitelist is not configured to send to the destination whitelist.
 
@@ -75,10 +75,10 @@ At some point in the future, an Owner can turn off the transfer restriction func
 The owner may pause/unpause the contract at anytime when restrictions are enabled. When the contract is paused all transfers will be blocked. When deployed the contract is initially unpaused.
 
 ## Minting
-Owner accounts can mint tokens to Owner, Admin, or whitelisted account. Minting tokens increases the total supply of tokens and the balance of the account the tokens are minted to.
+Owner accounts can mint tokens to Owner, Admin, or any whitelisted account. Minting tokens increases the total supply of tokens and the balance of the account the tokens are minted to.
 
 ## Revoking
-Admin accounts can revoke tokens from any account. Revoking tokens as no effect on the total supply, it increases the balance of the admin revoking the tokens and decreases the balance of the account the tokens are revoked from.
+Admin accounts can revoke tokens from any account. Revoking tokens has no effect on the total supply, it increases the balance of the admin revoking the tokens and decreases the balance of the account the tokens are revoked from.
 
 # Testing
 You should be able to install dependencies and then run tests:
