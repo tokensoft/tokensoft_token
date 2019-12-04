@@ -6,8 +6,7 @@ import "./Whitelistable.sol";
 import "./Mintable.sol";
 import "./Revocable.sol";
 import "./Pausable.sol";
-import "./Restrictable.sol";
-contract ArcaToken is ERC1404, ERC20Detailed, Whitelistable, Mintable, Revocable, Pausable, Restrictable {
+contract ArcaToken is ERC1404, ERC20Detailed, Whitelistable, Mintable, Revocable, Pausable {
 
     // Token Details
     string constant TOKEN_NAME = "ARCA";
@@ -46,12 +45,6 @@ contract ArcaToken is ERC1404, ERC20Detailed, Whitelistable, Mintable, Revocable
         view
         returns (uint8)
     {
-        // If the restrictions have been disabled by the owner, then just return success
-        // Logic defined in Restrictable parent class
-        if(!isRestrictionEnabled()) {
-            return SUCCESS_CODE;
-        }
-
         // Confirm that that destination address is either an Owner, Admin, or whitelisted
         if(!isValidAddress(to)) {
             return FAILURE_NON_WHITELIST;
@@ -104,15 +97,6 @@ contract ArcaToken is ERC1404, ERC20Detailed, Whitelistable, Mintable, Revocable
     }
 
     /**
-    Public function that enables access to _disableRestrictions to update the enabled flag on restrictions to disabled.
-    Only the owner should be able to call the contract when it is not paused
-    This is a permanent change that cannot be undone
-     */
-    function disableRestrictions() public onlyOwner whenNotPaused {
-        _disableRestrictions();
-    }
-
-    /**
     Validate that address is one of Owner, Admin, or Whitelisted
      */
     function isValidAddress(address _address) public view returns (bool) {
@@ -123,7 +107,6 @@ contract ArcaToken is ERC1404, ERC20Detailed, Whitelistable, Mintable, Revocable
      * @dev Called by an Owner to pause, triggers stopped state.
      */
     function pause() public onlyOwner whenNotPaused {
-        require(isRestrictionEnabled(), "Transfer can only be paused when restrictions are enabled");
         Pausable._pause();
     }
 

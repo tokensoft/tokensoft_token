@@ -66,10 +66,6 @@ Administrators will have the ability modify a whitelist beyond the default confi
 
 If a transfer is restricted, the code will follow the ERC1404 spec and revert the transaction. Any wallets interacting with an ERC1404 token contract should first query the contract to determine if the transfer is allowed, and if not, show the appropriate error to the user (including the reason code/text from the contract).
 
-## Lifting Restrictions
-
-At some point in the future, an Owner can turn off the transfer restriction functionality. Only the Owner should have the ability to do this. This is a **one-time and permanent change** that cannot be undone. Once restrictions are disabled, all transfers to and from any address are allowed. The contract must be unpaused for restrictions to be disabled.
-
 ## Pausing
 
 The owner may pause/unpause the contract at anytime when restrictions are enabled. When the contract is paused all transfers will be blocked. When deployed the contract is initially unpaused.
