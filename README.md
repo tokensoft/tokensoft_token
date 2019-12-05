@@ -68,7 +68,7 @@ If a transfer is restricted, the code will follow the ERC1404 spec and revert th
 
 ## Pausing
 
-The owner may pause/unpause the contract at anytime when restrictions are enabled. When the contract is paused all transfers will be blocked. When deployed the contract is initially unpaused.
+The owner may pause/unpause the contract. When the contract is paused all transfers will be blocked. When deployed the contract is initially unpaused.
 
 ## Minting
 Owner accounts can mint tokens to Owner, Admin, or any whitelisted account. Minting tokens increases the total supply of tokens and the balance of the account the tokens are minted to.
