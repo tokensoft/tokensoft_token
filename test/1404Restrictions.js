@@ -9,29 +9,14 @@ const FAILURE_NON_WHITELIST_MESSAGE = 'The transfer was restricted due to white 
 const UNKNOWN_ERROR = 'Unknown Error Code'
 
 contract('1404 Restrictions', (accounts) => {
-  let tokenInstance, tokenDeploy, proxyInstance
+  let tokenInstance, tokenDeploy, proxyInstance, ProxyToken
   beforeEach(async () => {
     tokenDeploy = await ArcaToken.new()
-    console.log('tokenDeploy: ', tokenDeploy.address)
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    const logicAddress = await proxyInstance.getLogicAddress.call()
-    console.log('proxyInstance: ', proxyInstance.address, logicAddress, ArcaToken.abi)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)//new web3.eth.Contract(ArcaToken.abi, proxyInstance.address)
 
-    tokenInstance = new web3.eth.Contract(ArcaToken.abi, proxyInstance.address)
-    console.log('tokenInstance ', tokenInstance.options.address, Object.keys(tokenInstance))
-    try {
-      const puuid = await tokenInstance.methods.proxiableUUID().call()
-      console.log('tokenInstance puuid: ', puuid)
-    } catch (e) {
-      console.log('getting puuid messed up ', e.message)
-    }
+    await tokenInstance.initialize(accounts[0], {from: accounts[0]});
 
-    try {
-      await tokenInstance.methods.initialize(accounts[0]);
-      console.log('token instance initialized')
-    } catch (e) {
-      console.log('error initializing ', e.message)
-    }
   })
 
   it('should deploy', async () => {
@@ -42,10 +27,10 @@ contract('1404 Restrictions', (accounts) => {
   it('should fail with non whitelisted accounts', async () => {
 
     // Set account 1 as an admin
-    await tokenInstance.methods.addAdmin(accounts[1])
+    await tokenInstance.addAdmin(accounts[1])
 
     // Both not on white list - should fail
-    let failureCode = await tokenInstance.methods.detectTransferRestriction(accounts[5], accounts[6], 100).call()
+    let failureCode = await tokenInstance.detectTransferRestriction.call(accounts[5], accounts[6], 100)
     console.log('failure code is ', failureCode)
     let failureMessage = await tokenInstance.messageForTransferRestriction(failureCode)
     assert.equal(failureCode, FAILURE_NON_WHITELIST, 'Both Non-whitelisted should get failure code')
