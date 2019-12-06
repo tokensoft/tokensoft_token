@@ -1,5 +1,6 @@
 /* global artifacts contract it assert */
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 const SUCCESS_CODE = 0
 const FAILURE_NON_WHITELIST = 1
@@ -8,19 +9,44 @@ const FAILURE_NON_WHITELIST_MESSAGE = 'The transfer was restricted due to white 
 const UNKNOWN_ERROR = 'Unknown Error Code'
 
 contract('1404 Restrictions', (accounts) => {
+  let tokenInstance, tokenDeploy, proxyInstance
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    console.log('tokenDeploy: ', tokenDeploy.address)
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    const logicAddress = await proxyInstance.getLogicAddress.call()
+    console.log('proxyInstance: ', proxyInstance.address, logicAddress, ArcaToken.abi)
+
+    tokenInstance = new web3.eth.Contract(ArcaToken.abi, proxyInstance.address)
+    console.log('tokenInstance ', tokenInstance.options.address, Object.keys(tokenInstance))
+    try {
+      const puuid = await tokenInstance.methods.proxiableUUID().call()
+      console.log('tokenInstance puuid: ', puuid)
+    } catch (e) {
+      console.log('getting puuid messed up ', e.message)
+    }
+
+    try {
+      await tokenInstance.methods.initialize(accounts[0]);
+      console.log('token instance initialized')
+    } catch (e) {
+      console.log('error initializing ', e.message)
+    }
+  })
+
   it('should deploy', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
+
     assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
   })
 
   it('should fail with non whitelisted accounts', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // Set account 1 as an admin
-    await tokenInstance.addAdmin(accounts[1])
+    await tokenInstance.methods.addAdmin(accounts[1])
 
     // Both not on white list - should fail
-    let failureCode = await tokenInstance.detectTransferRestriction.call(accounts[5], accounts[6], 100)
+    let failureCode = await tokenInstance.methods.detectTransferRestriction(accounts[5], accounts[6], 100).call()
+    console.log('failure code is ', failureCode)
     let failureMessage = await tokenInstance.messageForTransferRestriction(failureCode)
     assert.equal(failureCode, FAILURE_NON_WHITELIST, 'Both Non-whitelisted should get failure code')
     assert.equal(failureMessage, FAILURE_NON_WHITELIST_MESSAGE, 'Failure message should be valid for restriction')
@@ -95,7 +121,6 @@ contract('1404 Restrictions', (accounts) => {
   })
 
   it('should allow whitelists to be removed', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // Set account 1 as an admin
     await tokenInstance.addAdmin(accounts[1])
@@ -108,7 +133,6 @@ contract('1404 Restrictions', (accounts) => {
   })
 
   it('should handle unknown error codes', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     const failureMessage = await tokenInstance.messageForTransferRestriction(1001)
     assert.equal(failureMessage, UNKNOWN_ERROR, 'Should be unknown error code for restriction')

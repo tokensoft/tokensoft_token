@@ -2,171 +2,23 @@
   "contractName": "ERC1404",
   "abi": [
     {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "spender",
-          "type": "address"
-        },
-        {
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "approve",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "totalSupply",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "sender",
-          "type": "address"
-        },
-        {
-          "name": "recipient",
-          "type": "address"
-        },
-        {
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "transferFrom",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "account",
-          "type": "address"
-        }
-      ],
-      "name": "balanceOf",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "recipient",
-          "type": "address"
-        },
-        {
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "transfer",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "name": "spender",
-          "type": "address"
-        }
-      ],
-      "name": "allowance",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "anonymous": false,
       "inputs": [
         {
           "indexed": true,
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "Transfer",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
+          "internalType": "address",
           "name": "owner",
           "type": "address"
         },
         {
           "indexed": true,
+          "internalType": "address",
           "name": "spender",
           "type": "address"
         },
         {
           "indexed": false,
+          "internalType": "uint256",
           "name": "value",
           "type": "uint256"
         }
@@ -175,17 +27,190 @@
       "type": "event"
     },
     {
-      "constant": true,
+      "anonymous": false,
       "inputs": [
         {
+          "indexed": true,
+          "internalType": "address",
           "name": "from",
           "type": "address"
         },
         {
+          "indexed": true,
+          "internalType": "address",
           "name": "to",
           "type": "address"
         },
         {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
           "name": "value",
           "type": "uint256"
         }
@@ -193,6 +218,7 @@
       "name": "detectTransferRestriction",
       "outputs": [
         {
+          "internalType": "uint8",
           "name": "",
           "type": "uint8"
         }
@@ -205,6 +231,7 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "uint8",
           "name": "restrictionCode",
           "type": "uint8"
         }
@@ -212,6 +239,7 @@
       "name": "messageForTransferRestriction",
       "outputs": [
         {
+          "internalType": "string",
           "name": "",
           "type": "string"
         }
@@ -221,41 +249,40 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"restrictionCode\",\"type\":\"uint8\"}],\"name\":\"messageForTransferRestriction\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"detectTransferRestriction\",\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"allowance(address,address)\":{\"details\":\"Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner` through {transferFrom}. This is zero by default.     * This value changes when {approve} or {transferFrom} are called.\"},\"approve(address,uint256)\":{\"details\":\"Sets `amount` as the allowance of `spender` over the caller's tokens.     * Returns a boolean value indicating whether the operation succeeded.     * IMPORTANT: Beware that changing an allowance with this method brings the risk that someone may use both the old and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729     * Emits an {Approval} event.\"},\"balanceOf(address)\":{\"details\":\"Returns the amount of tokens owned by `account`.\"},\"detectTransferRestriction(address,address,uint256)\":{\"details\":\"Overwrite with your custom transfer restriction logic\",\"params\":{\"from\":\"Sending address\",\"to\":\"Receiving address\",\"value\":\"Amount of tokens being transferred\"},\"return\":\"Code by which to reference message for rejection reasoning\"},\"messageForTransferRestriction(uint8)\":{\"details\":\"Overwrite with your custom message and restrictionCode handling\",\"params\":{\"restrictionCode\":\"Identifier for looking up a message\"},\"return\":\"Text showing the restriction's reasoning\"},\"totalSupply()\":{\"details\":\"Returns the amount of tokens in existence.\"},\"transfer(address,uint256)\":{\"details\":\"Moves `amount` tokens from the caller's account to `recipient`.     * Returns a boolean value indicating whether the operation succeeded.     * Emits a {Transfer} event.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Moves `amount` tokens from `sender` to `recipient` using the allowance mechanism. `amount` is then deducted from the caller's allowance.     * Returns a boolean value indicating whether the operation succeeded.     * Emits a {Transfer} event.\"}}},\"userdoc\":{\"methods\":{\"detectTransferRestriction(address,address,uint256)\":{\"notice\":\"Detects if a transfer will be reverted and if so returns an appropriate reference code\"},\"messageForTransferRestriction(uint8)\":{\"notice\":\"Returns a human-readable message for a given restriction code\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/steve/codes/arca_token/contracts/ERC1404.sol\":\"ERC1404\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/steve/codes/arca_token/contracts/ERC1404.sol\":{\"keccak256\":\"0x2dd0ef0af04c22ff8555c799176ee89195ce5388e95ba0b33fd204386cf04564\",\"urls\":[\"bzzr://645714aad2e17a5ca2b5622ed458a1b434294984f2d503d3238060f041dc2978\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzzr://cf2d583b8dce38d0617fdcd65f2fd9f126fe17b7f683b5a515ea9d2762d8b062\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.5.8;\n\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\ncontract ERC1404 is IERC20 {\n    /// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code\n    /// @param from Sending address\n    /// @param to Receiving address\n    /// @param value Amount of tokens being transferred\n    /// @return Code by which to reference message for rejection reasoning\n    /// @dev Overwrite with your custom transfer restriction logic\n    function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);\n\n    /// @notice Returns a human-readable message for a given restriction code\n    /// @param restrictionCode Identifier for looking up a message\n    /// @return Text showing the restriction's reasoning\n    /// @dev Overwrite with your custom message and restrictionCode handling\n    function messageForTransferRestriction (uint8 restrictionCode) public view returns (string memory);\n}",
+  "source": "pragma solidity 0.5.12;\n\nimport \"@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol\";\n\ncontract ERC1404 is IERC20 {\n    /// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code\n    /// @param from Sending address\n    /// @param to Receiving address\n    /// @param value Amount of tokens being transferred\n    /// @return Code by which to reference message for rejection reasoning\n    /// @dev Overwrite with your custom transfer restriction logic\n    function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);\n\n    /// @notice Returns a human-readable message for a given restriction code\n    /// @param restrictionCode Identifier for looking up a message\n    /// @return Text showing the restriction's reasoning\n    /// @dev Overwrite with your custom message and restrictionCode handling\n    function messageForTransferRestriction (uint8 restrictionCode) public view returns (string memory);\n}",
   "sourcePath": "/Users/steve/codes/arca_token/contracts/ERC1404.sol",
   "ast": {
     "absolutePath": "/Users/steve/codes/arca_token/contracts/ERC1404.sol",
     "exportedSymbols": {
       "ERC1404": [
-        403
+        511
       ]
     },
-    "id": 404,
+    "id": 512,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 381,
+        "id": 489,
         "literals": [
           "solidity",
           "0.5",
-          ".8"
+          ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:2"
+        "src": "0:23:2"
       },
       {
-        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "id": 382,
+        "absolutePath": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+        "id": 490,
         "nodeType": "ImportDirective",
-        "scope": 404,
-        "sourceUnit": 1774,
-        "src": "24:56:2",
+        "scope": 512,
+        "sourceUnit": 2409,
+        "src": "25:83:2",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -265,31 +292,31 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 383,
+              "id": 491,
               "name": "IERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1773,
-              "src": "102:6:2",
+              "referencedDeclaration": 2408,
+              "src": "130:6:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC20_$1773",
+                "typeIdentifier": "t_contract$_IERC20_$2408",
                 "typeString": "contract IERC20"
               }
             },
-            "id": 384,
+            "id": 492,
             "nodeType": "InheritanceSpecifier",
-            "src": "102:6:2"
+            "src": "130:6:2"
           }
         ],
         "contractDependencies": [
-          1773
+          2408
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 403,
+        "id": 511,
         "linearizedBaseContracts": [
-          403,
-          1773
+          511,
+          2408
         ],
         "name": "ERC1404",
         "nodeType": "ContractDefinition",
@@ -297,23 +324,23 @@
           {
             "body": null,
             "documentation": "@notice Detects if a transfer will be reverted and if so returns an appropriate reference code\n @param from Sending address\n @param to Receiving address\n @param value Amount of tokens being transferred\n @return Code by which to reference message for rejection reasoning\n @dev Overwrite with your custom transfer restriction logic",
-            "id": 395,
+            "id": 503,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "detectTransferRestriction",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 391,
+              "id": 499,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 386,
+                  "id": 494,
                   "name": "from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "524:12:2",
+                  "scope": 503,
+                  "src": "552:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -321,10 +348,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 385,
+                    "id": 493,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "524:7:2",
+                    "src": "552:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -336,11 +363,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 388,
+                  "id": 496,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "538:10:2",
+                  "scope": 503,
+                  "src": "566:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -348,10 +375,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 387,
+                    "id": 495,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "538:7:2",
+                    "src": "566:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -363,11 +390,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 390,
+                  "id": 498,
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "550:13:2",
+                  "scope": 503,
+                  "src": "578:13:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -375,10 +402,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 389,
+                    "id": 497,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "550:7:2",
+                    "src": "578:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -388,19 +415,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "523:41:2"
+              "src": "551:41:2"
             },
             "returnParameters": {
-              "id": 394,
+              "id": 502,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 393,
+                  "id": 501,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "586:5:2",
+                  "scope": 503,
+                  "src": "614:5:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -408,10 +435,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 392,
+                    "id": 500,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "586:5:2",
+                    "src": "614:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -421,10 +448,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "585:7:2"
+              "src": "613:7:2"
             },
-            "scope": 403,
-            "src": "488:105:2",
+            "scope": 511,
+            "src": "516:105:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -432,23 +459,23 @@
           {
             "body": null,
             "documentation": "@notice Returns a human-readable message for a given restriction code\n @param restrictionCode Identifier for looking up a message\n @return Text showing the restriction's reasoning\n @dev Overwrite with your custom message and restrictionCode handling",
-            "id": 402,
+            "id": 510,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "messageForTransferRestriction",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 398,
+              "id": 506,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 397,
+                  "id": 505,
                   "name": "restrictionCode",
                   "nodeType": "VariableDeclaration",
-                  "scope": 402,
-                  "src": "918:21:2",
+                  "scope": 510,
+                  "src": "946:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -456,10 +483,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 396,
+                    "id": 504,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "918:5:2",
+                    "src": "946:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -469,19 +496,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "917:23:2"
+              "src": "945:23:2"
             },
             "returnParameters": {
-              "id": 401,
+              "id": 509,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 400,
+                  "id": 508,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 402,
-                  "src": "962:13:2",
+                  "scope": 510,
+                  "src": "990:13:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -489,10 +516,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 399,
+                    "id": 507,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "962:6:2",
+                    "src": "990:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -502,49 +529,49 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "961:15:2"
+              "src": "989:15:2"
             },
-            "scope": 403,
-            "src": "878:99:2",
+            "scope": 511,
+            "src": "906:99:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 404,
-        "src": "82:897:2"
+        "scope": 512,
+        "src": "110:897:2"
       }
     ],
-    "src": "0:979:2"
+    "src": "0:1007:2"
   },
   "legacyAST": {
     "absolutePath": "/Users/steve/codes/arca_token/contracts/ERC1404.sol",
     "exportedSymbols": {
       "ERC1404": [
-        403
+        511
       ]
     },
-    "id": 404,
+    "id": 512,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 381,
+        "id": 489,
         "literals": [
           "solidity",
           "0.5",
-          ".8"
+          ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:2"
+        "src": "0:23:2"
       },
       {
-        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "id": 382,
+        "absolutePath": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+        "id": 490,
         "nodeType": "ImportDirective",
-        "scope": 404,
-        "sourceUnit": 1774,
-        "src": "24:56:2",
+        "scope": 512,
+        "sourceUnit": 2409,
+        "src": "25:83:2",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -554,31 +581,31 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 383,
+              "id": 491,
               "name": "IERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1773,
-              "src": "102:6:2",
+              "referencedDeclaration": 2408,
+              "src": "130:6:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC20_$1773",
+                "typeIdentifier": "t_contract$_IERC20_$2408",
                 "typeString": "contract IERC20"
               }
             },
-            "id": 384,
+            "id": 492,
             "nodeType": "InheritanceSpecifier",
-            "src": "102:6:2"
+            "src": "130:6:2"
           }
         ],
         "contractDependencies": [
-          1773
+          2408
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 403,
+        "id": 511,
         "linearizedBaseContracts": [
-          403,
-          1773
+          511,
+          2408
         ],
         "name": "ERC1404",
         "nodeType": "ContractDefinition",
@@ -586,23 +613,23 @@
           {
             "body": null,
             "documentation": "@notice Detects if a transfer will be reverted and if so returns an appropriate reference code\n @param from Sending address\n @param to Receiving address\n @param value Amount of tokens being transferred\n @return Code by which to reference message for rejection reasoning\n @dev Overwrite with your custom transfer restriction logic",
-            "id": 395,
+            "id": 503,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "detectTransferRestriction",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 391,
+              "id": 499,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 386,
+                  "id": 494,
                   "name": "from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "524:12:2",
+                  "scope": 503,
+                  "src": "552:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -610,10 +637,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 385,
+                    "id": 493,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "524:7:2",
+                    "src": "552:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -625,11 +652,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 388,
+                  "id": 496,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "538:10:2",
+                  "scope": 503,
+                  "src": "566:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -637,10 +664,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 387,
+                    "id": 495,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "538:7:2",
+                    "src": "566:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -652,11 +679,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 390,
+                  "id": 498,
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "550:13:2",
+                  "scope": 503,
+                  "src": "578:13:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -664,10 +691,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 389,
+                    "id": 497,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "550:7:2",
+                    "src": "578:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -677,19 +704,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "523:41:2"
+              "src": "551:41:2"
             },
             "returnParameters": {
-              "id": 394,
+              "id": 502,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 393,
+                  "id": 501,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 395,
-                  "src": "586:5:2",
+                  "scope": 503,
+                  "src": "614:5:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -697,10 +724,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 392,
+                    "id": 500,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "586:5:2",
+                    "src": "614:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -710,10 +737,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "585:7:2"
+              "src": "613:7:2"
             },
-            "scope": 403,
-            "src": "488:105:2",
+            "scope": 511,
+            "src": "516:105:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
@@ -721,23 +748,23 @@
           {
             "body": null,
             "documentation": "@notice Returns a human-readable message for a given restriction code\n @param restrictionCode Identifier for looking up a message\n @return Text showing the restriction's reasoning\n @dev Overwrite with your custom message and restrictionCode handling",
-            "id": 402,
+            "id": 510,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "messageForTransferRestriction",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 398,
+              "id": 506,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 397,
+                  "id": 505,
                   "name": "restrictionCode",
                   "nodeType": "VariableDeclaration",
-                  "scope": 402,
-                  "src": "918:21:2",
+                  "scope": 510,
+                  "src": "946:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -745,10 +772,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 396,
+                    "id": 504,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "918:5:2",
+                    "src": "946:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -758,19 +785,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "917:23:2"
+              "src": "945:23:2"
             },
             "returnParameters": {
-              "id": 401,
+              "id": 509,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 400,
+                  "id": 508,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 402,
-                  "src": "962:13:2",
+                  "scope": 510,
+                  "src": "990:13:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -778,10 +805,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 399,
+                    "id": 507,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "962:6:2",
+                    "src": "990:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -791,28 +818,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "961:15:2"
+              "src": "989:15:2"
             },
-            "scope": 403,
-            "src": "878:99:2",
+            "scope": 511,
+            "src": "906:99:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 404,
-        "src": "82:897:2"
+        "scope": 512,
+        "src": "110:897:2"
       }
     ],
-    "src": "0:979:2"
+    "src": "0:1007:2"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+    "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.17",
-  "updatedAt": "2019-11-08T21:43:01.967Z",
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-12-05T19:50:39.560Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
