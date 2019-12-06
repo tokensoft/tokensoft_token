@@ -9,19 +9,12 @@ const FAILURE_NON_WHITELIST_MESSAGE = 'The transfer was restricted due to white 
 const UNKNOWN_ERROR = 'Unknown Error Code'
 
 contract('1404 Restrictions', (accounts) => {
-  let tokenInstance, tokenDeploy, proxyInstance, ProxyToken
+  let tokenInstance, tokenDeploy, proxyInstance
   beforeEach(async () => {
     tokenDeploy = await ArcaToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await ArcaToken.at(proxyInstance.address)//new web3.eth.Contract(ArcaToken.abi, proxyInstance.address)
-
-    await tokenInstance.initialize(accounts[0], {from: accounts[0]});
-
-  })
-
-  it('should deploy', async () => {
-
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
   })
 
   it('should fail with non whitelisted accounts', async () => {
@@ -31,7 +24,6 @@ contract('1404 Restrictions', (accounts) => {
 
     // Both not on white list - should fail
     let failureCode = await tokenInstance.detectTransferRestriction.call(accounts[5], accounts[6], 100)
-    console.log('failure code is ', failureCode)
     let failureMessage = await tokenInstance.messageForTransferRestriction(failureCode)
     assert.equal(failureCode, FAILURE_NON_WHITELIST, 'Both Non-whitelisted should get failure code')
     assert.equal(failureMessage, FAILURE_NON_WHITELIST_MESSAGE, 'Failure message should be valid for restriction')

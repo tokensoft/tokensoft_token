@@ -1,24 +1,22 @@
 /* global artifacts contract it assert */
 const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
  */
 contract('OwnerRole', (accounts) => {
-  it('should deploy', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
+  let tokenInstance, tokenDeploy, proxyInstance
 
-    // Should have been updated
-    const isOwner = await tokenInstance.isOwner(accounts[0])
-    assert.equal(isOwner, true, 'Account 0 should be an owner')
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
   })
 
   it('should allow an owner to add/remove owners', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     // Should have been updated
     await tokenInstance.addOwner(accounts[1], { from: accounts[0] })
     let isOwner1 = await tokenInstance.isOwner(accounts[1])
@@ -30,16 +28,10 @@ contract('OwnerRole', (accounts) => {
   })
 
   it('should not allow an owner to remove itself', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     await shouldFail.reverting(tokenInstance.removeOwner(accounts[0], { from: accounts[0] }))
   })
 
   it('should not allow a non owner to add/remove owners', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     const adminAccount = accounts[1]
     const whitelistedAccount = accounts[2]
     const nonWhitelistedAccount = accounts[3]
@@ -57,15 +49,11 @@ contract('OwnerRole', (accounts) => {
   })
 
   it('should emit events for adding owners', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     const { logs } = await tokenInstance.addOwner(accounts[3], { from: accounts[0] })
     expectEvent.inLogs(logs, 'OwnerAdded', { addedOwner: accounts[3], addedBy: accounts[0] })
   })
 
   it('should emit events for removing owners', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     await tokenInstance.addOwner(accounts[3], { from: accounts[0] })
     const { logs } = await tokenInstance.removeOwner(accounts[3], { from: accounts[0] })
 

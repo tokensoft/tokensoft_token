@@ -1,18 +1,21 @@
 /* global artifacts contract it assert */
 const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 const NO_WHITELIST = 0
 
 contract('Whitelistable', (accounts) => {
-  it('should deploy', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
+  let tokenInstance, tokenDeploy, proxyInstance
+
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
   })
 
   it('should allow adding and removing an address to a whitelist', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     // First allow acct 1 be an administrator
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 
@@ -43,8 +46,6 @@ contract('Whitelistable', (accounts) => {
   })
 
   it('should only allow admins adding or removing on whitelists', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     // Non admin should fail adding to white list
     await shouldFail.reverting(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
 
@@ -68,8 +69,6 @@ contract('Whitelistable', (accounts) => {
   })
 
   it('should validate if addresses are not on a whitelist', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     // First allow acct 1 be an administrator
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 
@@ -125,8 +124,6 @@ contract('Whitelistable', (accounts) => {
   })
 
   it('should trigger events', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     // First allow acct 1 to be an administrator
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 
@@ -145,8 +142,6 @@ contract('Whitelistable', (accounts) => {
   })
 
   it('should validate outbound whitelist enabled flag', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     // Allow acct 1 to be an admin
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 
@@ -192,8 +187,6 @@ contract('Whitelistable', (accounts) => {
   })
 
   it('should trigger events for whitelist enable/disable', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 
     // Verify logs for enabling outbound
@@ -210,8 +203,6 @@ contract('Whitelistable', (accounts) => {
   })
 
   it('should not allow adding an address to invalid whitelist ID (0)', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     // First allow acct 1 be an administrator
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 

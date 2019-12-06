@@ -1,6 +1,8 @@
 /* global artifacts contract it assert */
 const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
+
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -12,11 +14,16 @@ contract('Revocable', (accounts) => {
   const whitelistedAccount = accounts[2]
   const nonWhitelistedAccount = accounts[3]
   const revokeeAccount = accounts[4]
+  let tokenInstance, tokenDeploy, proxyInstance
+
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
+  })
 
   it('Admin should be able to revoke tokens from any account', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     // set up the amounts to test
     const transferAmount = 100
     const revokeAmount = 25
@@ -46,9 +53,6 @@ contract('Revocable', (accounts) => {
   })
 
   it('Non admins should not be able to revoke tokens', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     // set up the amounts to test
     const transferAmount = 100
     const revokeAmount = 25
@@ -67,9 +71,6 @@ contract('Revocable', (accounts) => {
   })
 
   it('should emit event when tokens are revoked', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     // set up the amounts to test
     const transferAmount = 100
     const revokeAmount = '25'

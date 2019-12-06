@@ -1,15 +1,19 @@
 /* global artifacts contract it assert */
 const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 contract('AdminRole', (accounts) => {
-  it('should deploy', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
+  let tokenInstance, tokenDeploy, proxyInstance
+
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
   })
 
   it('should allow adding and removing for owner', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // Validate acct 1 is not an admin by default
     let isAdmin = await tokenInstance.isAdmin(accounts[1])
@@ -27,7 +31,6 @@ contract('AdminRole', (accounts) => {
   })
 
   it('should preventing adding and removing for non-owner', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // Validate acct 2 is not an admin by default
     const isAdmin = await tokenInstance.isAdmin(accounts[2])
@@ -46,14 +49,12 @@ contract('AdminRole', (accounts) => {
   })
 
   it('should emit events for adding admins', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     const { logs } = await tokenInstance.addAdmin(accounts[3], { from: accounts[0] })
     expectEvent.inLogs(logs, 'AdminAdded', { addedAdmin: accounts[3], addedBy: accounts[0] })
   })
 
   it('should emit events for removing admins', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     await tokenInstance.addAdmin(accounts[3], { from: accounts[0] })
     const { logs } = await tokenInstance.removeAdmin(accounts[3], { from: accounts[0] })
@@ -62,7 +63,6 @@ contract('AdminRole', (accounts) => {
   })
 
   it('should preventing adding an admin when already an admin', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // The first add should succeed
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
@@ -72,7 +72,6 @@ contract('AdminRole', (accounts) => {
   })
 
   it('should preventing removing an admin when it is not an admin', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // Add an accct to the admin list
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })

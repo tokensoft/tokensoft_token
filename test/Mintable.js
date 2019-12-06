@@ -1,6 +1,7 @@
 /* global artifacts contract it assert */
 const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -12,11 +13,16 @@ contract('Mintable', (accounts) => {
   const whitelistedAccount = accounts[2]
   const nonWhitelistedAccount = accounts[3]
   const minteeAccount = accounts[4]
+  let tokenInstance, tokenDeploy, proxyInstance
+
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
+  })
 
   it('Owner should be able to mint tokens to any account', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     // set up the amounts to test
     const mintAmount = '100'
 
@@ -41,8 +47,6 @@ contract('Mintable', (accounts) => {
   })
 
   it('Owners should not be able to mint tokens to non whitelisted accounts', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
 
     // set up the amounts to test
     const mintAmount = '100'
@@ -53,7 +57,6 @@ contract('Mintable', (accounts) => {
   })
 
   it('Non owners should not be able to mint tokens to any account', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
     assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
 
     // set up the amounts to test
@@ -69,9 +72,6 @@ contract('Mintable', (accounts) => {
   })
 
   it('should emit event when tokens are minted', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
-
     // set up the amounts to test
     const mintAmount = '100'
 
