@@ -3,7 +3,6 @@ const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
 const ArcaToken = artifacts.require('ArcaToken')
 const Proxy = artifacts.require('Proxy')
 
-
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
  */
