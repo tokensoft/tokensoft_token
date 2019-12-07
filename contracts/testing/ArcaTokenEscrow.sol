@@ -1,11 +1,11 @@
 pragma solidity 0.5.12;
 
-import "./capabilities/Proxiable.sol";
+import "../capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
-import "./roles/OwnerRole.sol";
-import "./capabilities/Mintable.sol";
-import "./capabilities/Revocable.sol";
-import "./capabilities/Escrowable.sol";
+import "../roles/OwnerRole.sol";
+import "../capabilities/Mintable.sol";
+import "../capabilities/Revocable.sol";
+import "./Escrowable.sol";
 
 contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Mintable, Revocable, Escrowable {
 
