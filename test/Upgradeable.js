@@ -37,6 +37,14 @@ contract('Upgradeable', (accounts) => {
     await shouldFail.reverting(tokenInstance.updateCodeAddress(tokenEscrowNotProxiableDeploy.address))
   })
 
+  it('Upgrading contract fires event', async () => {
+    // update the code address to the escrow logic
+    const receipt = await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
+    expectEvent(receipt, 'TransferProposalUpdated', {
+      newAddress: tokenEscrowDeploy.address
+    })
+  })
+
   it('Transfer rules can be upgraded', async () => {
     // set up the amounts to test
     const transferAmount = 100
