@@ -1,19 +1,22 @@
 /* global artifacts contract it assert */
 const { shouldFail } = require('openzeppelin-test-helpers')
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 contract('Transfers', (accounts) => {
   const ownerAccount = accounts[0]
   const adminAccount = accounts[1]
   const whitelistedAccount = accounts[2]
-  it('should deploy', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
+  let tokenInstance, tokenDeploy, proxyInstance
+
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
   })
 
   it('All users should be blocked from sending to non whitelisted non role-assigned accounts', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-
     await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
@@ -24,8 +27,6 @@ contract('Transfers', (accounts) => {
   })
 
   it('Initial transfers should fail but succeed after white listing', async () => {
-    const tokenInstance = await ArcaToken.new(ownerAccount)
-
     // Set account 1 as an admin
     await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
 

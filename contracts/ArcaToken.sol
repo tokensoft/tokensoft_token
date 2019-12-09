@@ -1,12 +1,14 @@
-pragma solidity 0.5.8;
+pragma solidity 0.5.12;
 
+import "./capabilities/Proxiable.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "./ERC1404.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
-import "./Whitelistable.sol";
-import "./Mintable.sol";
-import "./Revocable.sol";
-import "./Pausable.sol";
-contract ArcaToken is ERC1404, ERC20Detailed, Whitelistable, Mintable, Revocable, Pausable {
+import "./capabilities/Whitelistable.sol";
+import "./capabilities/Mintable.sol";
+import "./capabilities/Revocable.sol";
+import "./capabilities/Pausable.sol";
+
+contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable, Revocable, Pausable {
 
     // Token Details
     string constant TOKEN_NAME = "ARCA";
@@ -29,11 +31,20 @@ contract ArcaToken is ERC1404, ERC20Detailed, Whitelistable, Mintable, Revocable
     Constructor for the token to set readable details and mint all tokens
     to the specified owner.
      */
-    constructor(address owner) public
-        ERC20Detailed(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS)
+    function initialize (address owner)
+        public
+        initializer
     {
-        _mint(owner, TOKEN_SUPPLY);
+        ERC20Detailed.initialize(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS);
+        Mintable.mint(msg.sender, owner, TOKEN_SUPPLY);
         _addOwner(owner);
+    }
+
+    /**
+    Public function to update the address of the code contract, retricted to owner
+     */
+    function updateCodeAddress (address newAddress) public onlyOwner {
+        Proxiable._updateCodeAddress(newAddress);
     }
 
     /**

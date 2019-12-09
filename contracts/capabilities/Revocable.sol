@@ -1,7 +1,7 @@
-pragma solidity 0.5.8;
+pragma solidity 0.5.12;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "./AdminRole.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
+import "../roles/AdminRole.sol";
 
 contract Revocable is ERC20, AdminRole {
 

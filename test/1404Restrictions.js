@@ -1,5 +1,6 @@
 /* global artifacts contract it assert */
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 const SUCCESS_CODE = 0
 const FAILURE_NON_WHITELIST = 1
@@ -8,13 +9,15 @@ const FAILURE_NON_WHITELIST_MESSAGE = 'The transfer was restricted due to white 
 const UNKNOWN_ERROR = 'Unknown Error Code'
 
 contract('1404 Restrictions', (accounts) => {
-  it('should deploy', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-    assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
+  let tokenInstance, tokenDeploy, proxyInstance
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
   })
 
   it('should fail with non whitelisted accounts', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // Set account 1 as an admin
     await tokenInstance.addAdmin(accounts[1])
@@ -95,7 +98,6 @@ contract('1404 Restrictions', (accounts) => {
   })
 
   it('should allow whitelists to be removed', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     // Set account 1 as an admin
     await tokenInstance.addAdmin(accounts[1])
@@ -108,7 +110,6 @@ contract('1404 Restrictions', (accounts) => {
   })
 
   it('should handle unknown error codes', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
 
     const failureMessage = await tokenInstance.messageForTransferRestriction(1001)
     assert.equal(failureMessage, UNKNOWN_ERROR, 'Should be unknown error code for restriction')

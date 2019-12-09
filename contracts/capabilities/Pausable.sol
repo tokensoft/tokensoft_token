@@ -1,6 +1,6 @@
-pragma solidity 0.5.8;
+pragma solidity 0.5.12;
 
-import "./OwnerRole.sol";
+import "../roles/OwnerRole.sol";
 
 /**
  * @dev Contract module which allows children to implement an emergency stop
@@ -23,14 +23,6 @@ contract Pausable is OwnerRole {
     event Unpaused(address account);
 
     bool private _paused;
-
-    /**
-     * @dev Initializes the contract in unpaused state. Assigns the Pauser role
-     * to the deployer.
-     */
-    constructor () internal {
-        _paused = false;
-    }
 
     /**
      * @dev Returns true if the contract is paused, and false otherwise.

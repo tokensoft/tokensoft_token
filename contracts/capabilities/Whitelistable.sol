@@ -1,6 +1,6 @@
-pragma solidity 0.5.8;
+pragma solidity 0.5.12;
 
-import "./AdminRole.sol";
+import "../roles/AdminRole.sol";
 
 /**
 Keeps track of whitelists and can check if sender and reciever are configured to allow a transfer.

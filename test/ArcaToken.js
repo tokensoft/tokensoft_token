@@ -2,24 +2,28 @@
 const BigNumber = require('bignumber.js')
 
 const ArcaToken = artifacts.require('ArcaToken')
+const Proxy = artifacts.require('Proxy')
 
 contract('ArcaToken', (accounts) => {
+  let tokenInstance, tokenDeploy, proxyInstance
+
+  beforeEach(async () => {
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[0]);
+  })
   it('should deploy', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
     assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
   })
 
   it('should have correct details set', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     assert.equal(await tokenInstance.name.call(), 'ARCA', 'Name should be set correctly')
     assert.equal(await tokenInstance.symbol.call(), 'ARCA', 'Symbol should be set correctly')
     assert.equal(await tokenInstance.decimals.call(), 18, 'Decimals should be set correctly')
   })
 
   it('should mint tokens to owner', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[0])
-
     // Expected amount is decimals of (10^18) time supply of 50 billion
     const expectedSupply = new BigNumber(10).pow(18).multipliedBy(50).multipliedBy(1000000000)
     const creatorBalance = new BigNumber(await tokenInstance.balanceOf(accounts[0]))
@@ -37,8 +41,10 @@ contract('ArcaToken', (accounts) => {
   })
 
   it('should mint tokens to different owner', async () => {
-    const tokenInstance = await ArcaToken.new(accounts[1])
-
+    tokenDeploy = await ArcaToken.new()
+    proxyInstance = await Proxy.new(tokenDeploy.address)
+    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    await tokenInstance.initialize(accounts[1]);
     // Expected amount is decimals of (10^18) time supply of 50 billion
     const expectedSupply = new BigNumber(10).pow(18).multipliedBy(50).multipliedBy(1000000000)
     const creatorBalance = new BigNumber(await tokenInstance.balanceOf(accounts[1]))
