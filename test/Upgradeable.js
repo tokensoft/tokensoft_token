@@ -39,8 +39,8 @@ contract('Upgradeable', (accounts) => {
 
   it('Upgrading contract fires event', async () => {
     // update the code address to the escrow logic
-    const receipt = await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
-    expectEvent(receipt, 'TransferProposalUpdated', {
+    const { logs } = await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
+    expectEvent.inLogs(logs, 'CodeAddressUpdated', {
       newAddress: tokenEscrowDeploy.address
     })
   })

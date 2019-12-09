@@ -1,7 +1,5 @@
 pragma solidity 0.5.12;
 
-import "../roles/OwnerRole.sol";
-
 /**
  * @dev Contract module which allows children to implement an emergency stop
  * mechanism that can be triggered by an authorized account.
@@ -11,7 +9,7 @@ import "../roles/OwnerRole.sol";
  * the functions of your contract. Note that they will not be pausable by
  * simply including this module, only once the modifiers are put in place.
  */
-contract Pausable is OwnerRole {
+contract Pausable {
     /**
      * @dev Emitted when the pause is triggered by a pauser (`account`).
      */

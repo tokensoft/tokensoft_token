@@ -22,8 +22,10 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
     // ERC1404 Error codes and messages
     uint8 public constant SUCCESS_CODE = 0;
     uint8 public constant FAILURE_NON_WHITELIST = 1;
+    uint8 public constant FAILURE_PAUSED = 2;
     string public constant SUCCESS_MESSAGE = "SUCCESS";
     string public constant FAILURE_NON_WHITELIST_MESSAGE = "The transfer was restricted due to white list configuration.";
+    string public constant FAILURE_PAUSED_MESSAGE = "The transfer was restricted due to the contract being paused.";
     string public constant UNKNOWN_ERROR = "Unknown Error Code";
 
 
@@ -56,6 +58,11 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
         view
         returns (uint8)
     {
+        // Check the paused status of the contract
+        if (Pausable.paused()) {
+            return FAILURE_PAUSED;
+        }
+
         // Confirm that that destination address is either an Owner, Admin, or whitelisted
         if(!isValidAddress(to)) {
             return FAILURE_NON_WHITELIST;
@@ -92,6 +99,10 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
 
         if (restrictionCode == FAILURE_NON_WHITELIST) {
             return FAILURE_NON_WHITELIST_MESSAGE;
+        }
+
+        if (restrictionCode == FAILURE_PAUSED) {
+            return FAILURE_PAUSED_MESSAGE;
         }
 
         // An unknown error code was passed in.
@@ -142,7 +153,6 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
      */
     function transfer (address to, uint256 value)
         public
-        whenNotPaused
         notRestricted(msg.sender, to, value)
         returns (bool success)
     {
@@ -154,7 +164,6 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
      */
     function transferFrom (address from, address to, uint256 value)
         public
-        whenNotPaused
         notRestricted(from, to, value)
         returns (bool success)
     {
