@@ -8,7 +8,7 @@ const Proxy = artifacts.require('Proxy')
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
  */
-contract('Upgrdeable', (accounts) => {
+contract('Upgradeable', (accounts) => {
   // set up account roles
   const ownerAccount = accounts[0]
   const adminAccount = accounts[1]
@@ -28,6 +28,8 @@ contract('Upgrdeable', (accounts) => {
   it('Can upgrade to proxiable contract', async () => {
     // update the code address to the escrow logic
     await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
+    const logicAddress = await tokenEscrowInstance.getLogicAddress()
+    assert.equal(logicAddress, tokenEscrowDeploy.address, 'Logic contract address should be changed after update')
   })
 
   it('Cannot upgrade to non proxiable contract', async () => {

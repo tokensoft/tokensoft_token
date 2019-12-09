@@ -7,6 +7,7 @@ import "./capabilities/Whitelistable.sol";
 import "./capabilities/Mintable.sol";
 import "./capabilities/Revocable.sol";
 import "./capabilities/Pausable.sol";
+
 contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable, Revocable, Pausable {
 
     // Token Details
