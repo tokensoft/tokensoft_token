@@ -45,6 +45,13 @@ contract('Upgradeable', (accounts) => {
     })
   })
 
+  it('Contract cannot be upgraded by non owner', async () => {
+    // update the code address to the escrow logic
+    await shouldFail.reverting(
+      tokenInstance.updateCodeAddress(tokenEscrowDeploy.address, {from: accounts[1]})
+    )
+  })
+
   it('Transfer rules can be upgraded', async () => {
     // set up the amounts to test
     const transferAmount = 100
