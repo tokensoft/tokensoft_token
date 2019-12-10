@@ -3,12 +3,14 @@ pragma solidity 0.5.12;
 import "./capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "./ERC1404.sol";
+import "./roles/OwnerRole.sol";
+import "./roles/AdminRole.sol";
 import "./capabilities/Whitelistable.sol";
 import "./capabilities/Mintable.sol";
 import "./capabilities/Revocable.sol";
 import "./capabilities/Pausable.sol";
 
-contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable, Revocable, Pausable {
+contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable {
 
     // Token Details
     string constant TOKEN_NAME = "ARCA";
@@ -22,8 +24,10 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
     // ERC1404 Error codes and messages
     uint8 public constant SUCCESS_CODE = 0;
     uint8 public constant FAILURE_NON_WHITELIST = 1;
+    uint8 public constant FAILURE_PAUSED = 2;
     string public constant SUCCESS_MESSAGE = "SUCCESS";
     string public constant FAILURE_NON_WHITELIST_MESSAGE = "The transfer was restricted due to white list configuration.";
+    string public constant FAILURE_PAUSED_MESSAGE = "The transfer was restricted due to the contract being paused.";
     string public constant UNKNOWN_ERROR = "Unknown Error Code";
 
 
@@ -36,7 +40,7 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
         initializer
     {
         ERC20Detailed.initialize(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS);
-        Mintable.mint(msg.sender, owner, TOKEN_SUPPLY);
+        Mintable._mint(msg.sender, owner, TOKEN_SUPPLY);
         _addOwner(owner);
     }
 
@@ -56,6 +60,11 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
         view
         returns (uint8)
     {
+        // Check the paused status of the contract
+        if (Pausable.paused()) {
+            return FAILURE_PAUSED;
+        }
+
         // Confirm that that destination address is either an Owner, Admin, or whitelisted
         if(!isValidAddress(to)) {
             return FAILURE_NON_WHITELIST;
@@ -94,6 +103,10 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
             return FAILURE_NON_WHITELIST_MESSAGE;
         }
 
+        if (restrictionCode == FAILURE_PAUSED) {
+            return FAILURE_PAUSED_MESSAGE;
+        }
+
         // An unknown error code was passed in.
         return UNKNOWN_ERROR;
     }
@@ -130,11 +143,39 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
 
     /**
     Allow Owners to mint tokens to valid addresses
-     */
+    */
     function mint(address account, uint256 amount) public onlyOwner returns (bool) {
         require(isValidAddress(account), "Can only mint to a valid address");
-        Mintable.mint(msg.sender, account, amount);
-        return true;
+        return Mintable._mint(msg.sender, account, amount);
+    }
+
+
+    /**
+    Allow Admins to revoke tokens from any address
+     */
+    function revoke(address from, uint256 amount) public onlyAdmin returns (bool) {
+        return Revocable._revoke(from, amount);
+    }
+
+    /**
+    Public function that allows admins to remove an address from a whitelist
+     */
+    function addToWhitelist(address addressToAdd, uint8 whitelist) public onlyAdmin {
+        Whitelistable._addToWhitelist(addressToAdd, whitelist);
+    }
+
+    /**
+    Public function that allows admins to remove an address from a whitelist
+     */
+    function removeFromWhitelist(address addressToRemove) public onlyAdmin {
+        Whitelistable._removeFromWhitelist(addressToRemove);
+    }
+
+    /**
+    Public function that allows admins to update outbound whitelists
+     */
+    function updateOutboundWhitelistEnabled(uint8 sourceWhitelist, uint8 destinationWhitelist, bool newEnabledValue) public onlyAdmin {
+        Whitelistable._updateOutboundWhitelistEnabled(sourceWhitelist, destinationWhitelist, newEnabledValue);
     }
 
     /**
@@ -142,7 +183,6 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
      */
     function transfer (address to, uint256 value)
         public
-        whenNotPaused
         notRestricted(msg.sender, to, value)
         returns (bool success)
     {
@@ -154,7 +194,6 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
      */
     function transferFrom (address from, address to, uint256 value)
         public
-        whenNotPaused
         notRestricted(from, to, value)
         returns (bool success)
     {

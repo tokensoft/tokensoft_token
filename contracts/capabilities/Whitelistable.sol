@@ -1,13 +1,11 @@
 pragma solidity 0.5.12;
 
-import "../roles/AdminRole.sol";
-
 /**
 Keeps track of whitelists and can check if sender and reciever are configured to allow a transfer.
 Only administrators can update the whitelists.
 Any address can only be a member of one whitelist at a time.
  */
-contract Whitelistable is AdminRole {
+contract Whitelistable {
     // Zero is reserved for indicating it is not on a whitelist
     uint8 constant NO_WHITELIST = 0;
 
@@ -29,7 +27,7 @@ contract Whitelistable is AdminRole {
     Sets an address's white list ID.  Only administrators should be allowed to update this.
     If an address is on an existing whitelist, it will just get updated to the new value (removed from previous).
      */
-    function addToWhitelist(address addressToAdd, uint8 whitelist) public onlyAdmin {
+    function _addToWhitelist(address addressToAdd, uint8 whitelist) internal {
         // Verify the whitelist is valid
         require(whitelist != NO_WHITELIST, "Invalid whitelist ID supplied");
 
@@ -52,7 +50,7 @@ contract Whitelistable is AdminRole {
     /**
     Clears out an address's white list ID.  Only administrators should be allowed to update this.
      */
-    function removeFromWhitelist(address addressToRemove) public onlyAdmin {
+    function _removeFromWhitelist(address addressToRemove) internal {
         // Save off the previous white list
         uint8 previousWhitelist = addressWhitelists[addressToRemove];
 
@@ -67,7 +65,7 @@ contract Whitelistable is AdminRole {
     Sets the flag to indicate whether source whitelist is allowed to send to destination whitelist.
     Only administrators should be allowed to update this.
      */
-    function updateOutboundWhitelistEnabled(uint8 sourceWhitelist, uint8 destinationWhitelist, bool newEnabledValue) public onlyAdmin {
+    function _updateOutboundWhitelistEnabled(uint8 sourceWhitelist, uint8 destinationWhitelist, bool newEnabledValue) internal {
         // Get the old enabled flag
         bool oldEnabledValue = outboundWhitelistsEnabled[sourceWhitelist][destinationWhitelist];
 

@@ -3,11 +3,14 @@ pragma solidity 0.5.12;
 import "../capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "../roles/OwnerRole.sol";
+import "../roles/AdminRole.sol";
+import "../capabilities/Whitelistable.sol";
 import "../capabilities/Mintable.sol";
 import "../capabilities/Revocable.sol";
+import "../capabilities/Pausable.sol";
 import "./Escrowable.sol";
 
-contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Mintable, Revocable, Escrowable {
+contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable, Escrowable {
 
     // Token Details
     string constant TOKEN_NAME = "ARCA";
@@ -21,8 +24,10 @@ contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Mintable, Revoc
     // ERC1404 Error codes and messages
     uint8 public constant SUCCESS_CODE = 0;
     uint8 public constant FAILURE_NON_WHITELIST = 1;
+    uint8 public constant FAILURE_PAUSED = 2;
     string public constant SUCCESS_MESSAGE = "SUCCESS";
     string public constant FAILURE_NON_WHITELIST_MESSAGE = "The transfer was restricted due to white list configuration.";
+    string public constant FAILURE_PAUSED_MESSAGE = "The transfer was restricted due to the contract being paused.";
     string public constant UNKNOWN_ERROR = "Unknown Error Code";
 
     /**
@@ -34,7 +39,7 @@ contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Mintable, Revoc
         initializer
     {
         ERC20Detailed.initialize(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS);
-        _mint(owner, TOKEN_SUPPLY);
+        Mintable._mint(msg.sender, owner, TOKEN_SUPPLY);
         _addOwner(owner);
     }
 
@@ -47,9 +52,9 @@ contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Mintable, Revoc
 
     /**
     Allow Owners to mint tokens to valid addresses
-     */
+    */
     function mint(address account, uint256 amount) public onlyOwner returns (bool) {
-        Mintable.mint(msg.sender, account, amount);
+        Mintable._mint(msg.sender, account, amount);
         return true;
     }
 

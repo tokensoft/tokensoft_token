@@ -23,7 +23,7 @@ contract('Escrowable', (accounts) => {
     tokenInstance = await ArcaTokenEscrow.at(proxyInstance.address)
     await tokenInstance.initialize(accounts[0]);
   })
-  it('should create allow simple proposal flow', async () => {
+  it('should create allow simple transferFrom proposal flow', async () => {
     await tokenInstance.addAdmin(accounts[0])
     // Grab the starting token balance
     const beforeBalance = await tokenInstance.balanceOf(accounts[0])
@@ -50,7 +50,7 @@ contract('Escrowable', (accounts) => {
     assert.equal(targetBalance.toString(), '100000', 'Balance should update')
   })
 
-  it('should allow simple proposal rejection', async () => {
+  it('should allow simple proposal transferFrom rejection', async () => {
     await tokenInstance.addAdmin(accounts[0])
 
     // Grab the starting token balance
@@ -70,7 +70,7 @@ contract('Escrowable', (accounts) => {
     assert.equal(afterRejection.toString(), beforeBalance.toString(), 'Balance should not change')
   })
 
-  it('should allow simple proposal cancel', async () => {
+  it('should allow simple transferFrom proposal cancel', async () => {
     // Grab the starting token balance
     const beforeBalance = await tokenInstance.balanceOf(accounts[0])
 
@@ -129,7 +129,7 @@ contract('Escrowable', (accounts) => {
     await expectRevert(tokenInstance.transferFrom(accounts[2], accounts[6], 11, { from: accounts[5] }), FAILURE_BALANCE_INVALID_MESSAGE)
   })
 
-  it('should validate accepting a proposal', async () => {
+  it('should validate accepting a tranferFrom proposal', async () => {
     await tokenInstance.addAdmin(accounts[0])
     await tokenInstance.addAdmin(accounts[1])
     // Invalid ID should fail
@@ -292,7 +292,7 @@ contract('Escrowable', (accounts) => {
     })
   })
 
-  it('should allow simple proposal flow', async () => {
+  it('should allow simple transfer proposal flow', async () => {
     await tokenInstance.addAdmin(accounts[0])
 
     // Grab the starting token balance
@@ -317,7 +317,7 @@ contract('Escrowable', (accounts) => {
     assert.equal(targetBalance.toString(), '100000', 'Target balance should get updated')
   })
 
-  it('should allow simple proposal rejection', async () => {
+  it('should allow simple transfer proposal rejection', async () => {
     await tokenInstance.addAdmin(accounts[0])
 
     // Grab the starting token balance
@@ -334,7 +334,7 @@ contract('Escrowable', (accounts) => {
     assert.equal(afterRejection.toString(), beforeBalance.toString(), 'Balance should not change')
   })
 
-  it('should allow simple proposal cancel', async () => {
+  it('should allow simple transfer proposal cancel', async () => {
     await tokenInstance.addAdmin(accounts[0])
 
     // Grab the starting token balance

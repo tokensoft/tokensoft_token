@@ -37,6 +37,21 @@ contract('Upgradeable', (accounts) => {
     await shouldFail.reverting(tokenInstance.updateCodeAddress(tokenEscrowNotProxiableDeploy.address))
   })
 
+  it('Upgrading contract fires event', async () => {
+    // update the code address to the escrow logic
+    const { logs } = await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
+    expectEvent.inLogs(logs, 'CodeAddressUpdated', {
+      newAddress: tokenEscrowDeploy.address
+    })
+  })
+
+  it('Contract cannot be upgraded by non owner', async () => {
+    // update the code address to the escrow logic
+    await shouldFail.reverting(
+      tokenInstance.updateCodeAddress(tokenEscrowDeploy.address, {from: accounts[1]})
+    )
+  })
+
   it('Transfer rules can be upgraded', async () => {
     // set up the amounts to test
     const transferAmount = 100
@@ -81,7 +96,8 @@ contract('Upgradeable', (accounts) => {
     assert.equal(whitelistedBalance, transferAmount, 'User balance should intially be equal to the transfer amount')
     
     // update the code address to the escrow logic
-    await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address) 
+    await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
+    tokenEscrowInstance = await ArcaTokenEscrow.at(proxyInstance.address) 
 
     const whitelistedBalanceAfterUpdate = await tokenEscrowInstance.balanceOf(whitelistedAccount)
     // confirm balances are unchanged

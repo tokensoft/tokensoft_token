@@ -4,8 +4,10 @@ const Proxy = artifacts.require('Proxy')
 
 const SUCCESS_CODE = 0
 const FAILURE_NON_WHITELIST = 1
+const FAILURE_PAUSED = 2
 const SUCCESS_MESSAGE = 'SUCCESS'
 const FAILURE_NON_WHITELIST_MESSAGE = 'The transfer was restricted due to white list configuration.'
+const FAILURE_PAUSED_MESSAGE = "The transfer was restricted due to the contract being paused."
 const UNKNOWN_ERROR = 'Unknown Error Code'
 
 contract('1404 Restrictions', (accounts) => {
@@ -95,6 +97,16 @@ contract('1404 Restrictions', (accounts) => {
     failureMessage = await tokenInstance.messageForTransferRestriction(failureCode)
     assert.equal(failureCode, FAILURE_NON_WHITELIST, 'Both in different whitelist should get failure code')
     assert.equal(failureMessage, FAILURE_NON_WHITELIST_MESSAGE, 'Failure message should be valid for restriction')
+  })
+
+  it('Should fail when paused', async () => {
+    // pause the contract
+    await tokenInstance.pause()
+   
+    const failureCode = await tokenInstance.detectTransferRestriction.call(accounts[7], accounts[8], 100)
+    const failureMessage = await tokenInstance.messageForTransferRestriction(failureCode)
+    assert.equal(failureCode, FAILURE_PAUSED, 'Contract paused should get failure code')
+    assert.equal(failureMessage, FAILURE_PAUSED_MESSAGE, 'Failure message should be valid for restriction')
   })
 
   it('should allow whitelists to be removed', async () => {
