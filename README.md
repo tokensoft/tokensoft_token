@@ -80,7 +80,7 @@ Admin accounts can revoke tokens from any account. Revoking tokens has no effect
 
 The contract is upgradeable and allows for Owners to update the contract logic while maintaining contract state. Contracts can be upgraded to have more or less restrictive transfer logic or new transfer paradigms including escrow. Upgrading can be a **potentially destructive** operation if the new contract is incompatible with the existing contract due to broken upgrade methods or memory layout issues.
 
-To update the contract logic:\
+To update the contract logic:
 >**1:** Deploy the new contract to the ethereum mainnet, this contract must impliment the Proxiable contract as defined https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md
 
 >**2:** An Owner  must then call the updateCodeAddress method on the existing token contract with the address of the contract deployed in step 1
