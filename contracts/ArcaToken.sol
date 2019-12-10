@@ -3,12 +3,14 @@ pragma solidity 0.5.12;
 import "./capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "./ERC1404.sol";
+import "./roles/OwnerRole.sol";
+import "./roles/AdminRole.sol";
 import "./capabilities/Whitelistable.sol";
 import "./capabilities/Mintable.sol";
 import "./capabilities/Revocable.sol";
 import "./capabilities/Pausable.sol";
 
-contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable, Revocable, Pausable {
+contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable {
 
     // Token Details
     string constant TOKEN_NAME = "ARCA";
@@ -38,7 +40,7 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
         initializer
     {
         ERC20Detailed.initialize(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS);
-        Mintable.mint(msg.sender, owner, TOKEN_SUPPLY);
+        Mintable._mint(msg.sender, owner, TOKEN_SUPPLY);
         _addOwner(owner);
     }
 
@@ -141,11 +143,39 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
 
     /**
     Allow Owners to mint tokens to valid addresses
-     */
+    */
     function mint(address account, uint256 amount) public onlyOwner returns (bool) {
         require(isValidAddress(account), "Can only mint to a valid address");
-        Mintable.mint(msg.sender, account, amount);
-        return true;
+        return Mintable._mint(msg.sender, account, amount);
+    }
+
+
+    /**
+    Allow Admins to revoke tokens from any address
+     */
+    function revoke(address from, uint256 amount) public onlyAdmin returns (bool) {
+        return Revocable._revoke(from, amount);
+    }
+
+    /**
+    Public function that allows admins to remove an address from a whitelist
+     */
+    function addToWhitelist(address addressToAdd, uint8 whitelist) public onlyAdmin {
+        Whitelistable._addToWhitelist(addressToAdd, whitelist);
+    }
+
+    /**
+    Public function that allows admins to remove an address from a whitelist
+     */
+    function removeFromWhitelist(address addressToRemove) public onlyAdmin {
+        Whitelistable._removeFromWhitelist(addressToRemove);
+    }
+
+    /**
+    Public function that allows admins to update outbound whitelists
+     */
+    function updateOutboundWhitelistEnabled(uint8 sourceWhitelist, uint8 destinationWhitelist, bool newEnabledValue) public onlyAdmin {
+        Whitelistable._updateOutboundWhitelistEnabled(sourceWhitelist, destinationWhitelist, newEnabledValue);
     }
 
     /**
@@ -154,9 +184,10 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, Whitelistable, Mintable
     function transfer (address to, uint256 value)
         public
         notRestricted(msg.sender, to, value)
-        returns (bool success)
+        returns (bool)
     {
-        success = ERC20.transfer(to, value);
+        ERC20._transfer(msg.sender, to, value);
+        return true;
     }
 
     /**

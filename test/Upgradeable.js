@@ -89,7 +89,8 @@ contract('Upgradeable', (accounts) => {
     assert.equal(whitelistedBalance, transferAmount, 'User balance should intially be equal to the transfer amount')
     
     // update the code address to the escrow logic
-    await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address) 
+    await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
+    tokenEscrowInstance = await ArcaTokenEscrow.at(proxyInstance.address) 
 
     const whitelistedBalanceAfterUpdate = await tokenEscrowInstance.balanceOf(whitelistedAccount)
     // confirm balances are unchanged
