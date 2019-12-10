@@ -184,10 +184,9 @@ contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRole, W
     function transfer (address to, uint256 value)
         public
         notRestricted(msg.sender, to, value)
-        returns (bool)
+        returns (bool success)
     {
-        ERC20._transfer(msg.sender, to, value);
-        return true;
+        success = ERC20.transfer(to, value);
     }
 
     /**

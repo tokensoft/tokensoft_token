@@ -4,11 +4,13 @@ import "../capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "../roles/OwnerRole.sol";
 import "../roles/AdminRole.sol";
+import "../capabilities/Whitelistable.sol";
 import "../capabilities/Mintable.sol";
 import "../capabilities/Revocable.sol";
+import "../capabilities/Pausable.sol";
 import "./Escrowable.sol";
 
-contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole, Mintable, Revocable, Escrowable {
+contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable, Escrowable {
 
     // Token Details
     string constant TOKEN_NAME = "ARCA";
