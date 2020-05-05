@@ -1,15 +1,15 @@
 /* global artifacts contract it assert */
 const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
-const ArcaToken = artifacts.require('ArcaToken')
+const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
 contract('AdminRole', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
 
   beforeEach(async () => {
-    tokenDeploy = await ArcaToken.new()
+    tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    tokenInstance = await TokenSoftToken.at(proxyInstance.address)
     await tokenInstance.initialize(accounts[0]);
   })
 

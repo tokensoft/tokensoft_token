@@ -1,8 +1,8 @@
-# ARCA Token
+# TokenSoft Token
 ERC20 Token with 1404 Restrictions
 
 ## Use Case
-The ARCA token is an ERC20 compatible token with transfer restrictions added that follow the ERC1404 standard. The 1404 Restrictions will use whitelists to segregate groups of accounts so they are only allowed to transfer to designated destination addresses.
+The TokenSoft token is an ERC20 compatible token with transfer restrictions added that follow the ERC1404 standard. The 1404 Restrictions will use whitelists to segregate groups of accounts so they are only allowed to transfer to designated destination addresses.
 
 ## Token
 The following features will be determined at deploy time, locking them in place.

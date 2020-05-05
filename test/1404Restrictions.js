@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const ArcaToken = artifacts.require('ArcaToken')
+const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
 const SUCCESS_CODE = 0
@@ -13,9 +13,9 @@ const UNKNOWN_ERROR = 'Unknown Error Code'
 contract('1404 Restrictions', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
   beforeEach(async () => {
-    tokenDeploy = await ArcaToken.new()
+    tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    tokenInstance = await TokenSoftToken.at(proxyInstance.address)
     await tokenInstance.initialize(accounts[0]);
   })
 

@@ -10,11 +10,11 @@ import "./capabilities/Mintable.sol";
 import "./capabilities/Revocable.sol";
 import "./capabilities/Pausable.sol";
 
-contract ArcaToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable {
+contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable {
 
     // Token Details
-    string constant TOKEN_NAME = "ARCA";
-    string constant TOKEN_SYMBOL = "ARCA";
+    string constant TOKEN_NAME = "TokenSoft Token";
+    string constant TOKEN_SYMBOL = "SOFT";
     uint8 constant TOKEN_DECIMALS = 18;
 
     // Token supply - 50 Billion Tokens, with 18 decimal precision

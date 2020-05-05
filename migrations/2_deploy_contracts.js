@@ -1,11 +1,11 @@
 /* global artifacts */
-const ArcaToken = artifacts.require('ArcaToken')
-const ArcaTokenEscrow = artifacts.require('ArcaTokenEscrow')
+const TokenSoftToken = artifacts.require('TokenSoftToken')
+const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
 const Proxy = artifacts.require("Proxy");
 
 module.exports = async function (deployer, network, accounts) {
-  await deployer.deploy(ArcaToken)
-  await deployer.deploy(ArcaTokenEscrow)
-  await deployer.deploy(Proxy, ArcaToken.address);
-  await ArcaToken.at(Proxy.address)
+  await deployer.deploy(TokenSoftToken)
+  await deployer.deploy(TokenSoftTokenEscrow)
+  await deployer.deploy(Proxy, TokenSoftToken.address);
+  await TokenSoftToken.at(Proxy.address)
 }

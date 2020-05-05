@@ -19,31 +19,31 @@
       "type": "fallback"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b506040516100f73803806100f78339818101604052602081101561003357600080fd5b8101908080519060200190929190505050807fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf755506081806100766000396000f3fe60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a7231582001bdb9de5f5dca99df8340b624279226056069ac23319b16f0347bf7e631df6e64736f6c634300050c0032",
-  "deployedBytecode": "0x60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a7231582001bdb9de5f5dca99df8340b624279226056069ac23319b16f0347bf7e631df6e64736f6c634300050c0032",
-  "sourceMap": "25:1086:3:-;;;254:236;8:9:-1;5:2;;;30:1;27;20:12;5:2;254:236:3;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;254:236:3;;;;;;;;;;;;;;;;460:13;392:66;385:89;348:136;25:1086;;;;;;",
-  "deployedSourceMap": "25:1086:3:-;;;607:66;601:73;704:4;698:11;745:12;740:3;735;722:36;841:1;838;824:12;819:3;804:13;799:3;786:57;869:14;919:5;916:1;911:3;896:29;945:7;970:1;965:57;;;;1073:5;1068:3;1061:18;965:57;1002:5;997:3;990:18",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516100f73803806100f78339818101604052602081101561003357600080fd5b8101908080519060200190929190505050807fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf755506081806100766000396000f3fe60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a723158209ec49c4dae39e7fa1ff0d7397debd2c8015aca1acc4e793becf7c6618ea991be64736f6c634300050c0032",
+  "deployedBytecode": "0x60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a723158209ec49c4dae39e7fa1ff0d7397debd2c8015aca1acc4e793becf7c6618ea991be64736f6c634300050c0032",
+  "sourceMap": "25:1086:2:-;;;254:236;8:9:-1;5:2;;;30:1;27;20:12;5:2;254:236:2;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;254:236:2;;;;;;;;;;;;;;;;460:13;392:66;385:89;348:136;25:1086;;;;;;",
+  "deployedSourceMap": "25:1086:2:-;;;607:66;601:73;704:4;698:11;745:12;740:3;735;722:36;841:1;838;824:12;819:3;804:13;799:3;786:57;869:14;919:5;916:1;911:3;896:29;945:7;970:1;965:57;;;;1073:5;1068:3;1061:18;965:57;1002:5;997:3;990:18",
   "source": "pragma solidity 0.5.12;\n\ncontract Proxy {\n    // Code position in storage is keccak256(\"PROXIABLE\") = \"0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7\"\n    // constructor(bytes memory constructData, address contractLogic) public {\n    constructor(address contractLogic) public {\n        // save the code address\n        assembly { // solium-disable-line\n            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n        }\n    }\n\n    function() external payable {\n        assembly { // solium-disable-line\n            let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n            let ptr := mload(0x40)\n            calldatacopy(ptr, 0x0, calldatasize)\n            let success := delegatecall(gas, contractLogic, ptr, calldatasize, 0, 0)\n            let retSz := returndatasize\n            returndatacopy(ptr, 0, retSz)\n            switch success\n            case 0 {\n                revert(ptr, retSz)\n            }\n            default {\n                return(ptr, retSz)\n            }\n        }\n    }\n}",
-  "sourcePath": "/Users/steve/codes/arca_token/contracts/Proxy.sol",
+  "sourcePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol",
   "ast": {
-    "absolutePath": "/Users/steve/codes/arca_token/contracts/Proxy.sol",
+    "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        426
+        95
       ]
     },
-    "id": 427,
+    "id": 96,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 413,
+        "id": 82,
         "literals": [
           "solidity",
           "0.5",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:3"
+        "src": "0:23:2"
       },
       {
         "baseContracts": [],
@@ -51,56 +51,56 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 426,
+        "id": 95,
         "linearizedBaseContracts": [
-          426
+          95
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 419,
+              "id": 88,
               "nodeType": "Block",
-              "src": "296:194:3",
+              "src": "296:194:2",
               "statements": [
                 {
                   "externalReferences": [
                     {
                       "contractLogic": {
-                        "declaration": 415,
+                        "declaration": 84,
                         "isOffset": false,
                         "isSlot": false,
-                        "src": "460:13:3",
+                        "src": "460:13:2",
                         "valueSize": 1
                       }
                     }
                   ],
-                  "id": 418,
+                  "id": 87,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n}",
-                  "src": "339:145:3"
+                  "src": "339:145:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 420,
+            "id": 89,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 416,
+              "id": 85,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 415,
+                  "id": 84,
                   "name": "contractLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 420,
-                  "src": "266:21:3",
+                  "scope": 89,
+                  "src": "266:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -108,10 +108,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 414,
+                    "id": 83,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "266:7:3",
+                    "src": "266:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -122,86 +122,86 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "265:23:3"
+              "src": "265:23:2"
             },
             "returnParameters": {
-              "id": 417,
+              "id": 86,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "296:0:3"
+              "src": "296:0:2"
             },
-            "scope": 426,
-            "src": "254:236:3",
+            "scope": 95,
+            "src": "254:236:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 424,
+              "id": 93,
               "nodeType": "Block",
-              "src": "524:585:3",
+              "src": "524:585:2",
               "statements": [
                 {
                   "externalReferences": [],
-                  "id": 423,
+                  "id": 92,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n    let ptr := mload(0x40)\n    calldatacopy(ptr, 0x0, calldatasize())\n    let success := delegatecall(gas(), contractLogic, ptr, calldatasize(), 0, 0)\n    let retSz := returndatasize()\n    returndatacopy(ptr, 0, retSz)\n    switch success\n    case 0 { revert(ptr, retSz) }\n    default { return(ptr, retSz) }\n}",
-                  "src": "534:569:3"
+                  "src": "534:569:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 425,
+            "id": 94,
             "implemented": true,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 421,
+              "id": 90,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "504:2:3"
+              "src": "504:2:2"
             },
             "returnParameters": {
-              "id": 422,
+              "id": 91,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:0:3"
+              "src": "524:0:2"
             },
-            "scope": 426,
-            "src": "496:613:3",
+            "scope": 95,
+            "src": "496:613:2",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 427,
-        "src": "25:1086:3"
+        "scope": 96,
+        "src": "25:1086:2"
       }
     ],
-    "src": "0:1111:3"
+    "src": "0:1111:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/steve/codes/arca_token/contracts/Proxy.sol",
+    "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        426
+        95
       ]
     },
-    "id": 427,
+    "id": 96,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 413,
+        "id": 82,
         "literals": [
           "solidity",
           "0.5",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:3"
+        "src": "0:23:2"
       },
       {
         "baseContracts": [],
@@ -209,56 +209,56 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 426,
+        "id": 95,
         "linearizedBaseContracts": [
-          426
+          95
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 419,
+              "id": 88,
               "nodeType": "Block",
-              "src": "296:194:3",
+              "src": "296:194:2",
               "statements": [
                 {
                   "externalReferences": [
                     {
                       "contractLogic": {
-                        "declaration": 415,
+                        "declaration": 84,
                         "isOffset": false,
                         "isSlot": false,
-                        "src": "460:13:3",
+                        "src": "460:13:2",
                         "valueSize": 1
                       }
                     }
                   ],
-                  "id": 418,
+                  "id": 87,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n}",
-                  "src": "339:145:3"
+                  "src": "339:145:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 420,
+            "id": 89,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 416,
+              "id": 85,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 415,
+                  "id": 84,
                   "name": "contractLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 420,
-                  "src": "266:21:3",
+                  "scope": 89,
+                  "src": "266:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -266,10 +266,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 414,
+                    "id": 83,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "266:7:3",
+                    "src": "266:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -280,66 +280,66 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "265:23:3"
+              "src": "265:23:2"
             },
             "returnParameters": {
-              "id": 417,
+              "id": 86,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "296:0:3"
+              "src": "296:0:2"
             },
-            "scope": 426,
-            "src": "254:236:3",
+            "scope": 95,
+            "src": "254:236:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 424,
+              "id": 93,
               "nodeType": "Block",
-              "src": "524:585:3",
+              "src": "524:585:2",
               "statements": [
                 {
                   "externalReferences": [],
-                  "id": 423,
+                  "id": 92,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n    let ptr := mload(0x40)\n    calldatacopy(ptr, 0x0, calldatasize())\n    let success := delegatecall(gas(), contractLogic, ptr, calldatasize(), 0, 0)\n    let retSz := returndatasize()\n    returndatacopy(ptr, 0, retSz)\n    switch success\n    case 0 { revert(ptr, retSz) }\n    default { return(ptr, retSz) }\n}",
-                  "src": "534:569:3"
+                  "src": "534:569:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 425,
+            "id": 94,
             "implemented": true,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 421,
+              "id": 90,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "504:2:3"
+              "src": "504:2:2"
             },
             "returnParameters": {
-              "id": 422,
+              "id": 91,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:0:3"
+              "src": "524:0:2"
             },
-            "scope": 426,
-            "src": "496:613:3",
+            "scope": 95,
+            "src": "496:613:2",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 427,
-        "src": "25:1086:3"
+        "scope": 96,
+        "src": "25:1086:2"
       }
     ],
-    "src": "0:1111:3"
+    "src": "0:1111:2"
   },
   "compiler": {
     "name": "solc",
@@ -347,7 +347,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-12-09T19:42:06.460Z",
+  "updatedAt": "2020-05-05T22:43:24.334Z",
   "devdoc": {
     "methods": {}
   },

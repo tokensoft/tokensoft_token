@@ -1,8 +1,8 @@
 /* global artifacts contract it assert */
 const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
-const ArcaToken = artifacts.require('ArcaToken')
-const ArcaTokenEscrow = artifacts.require('ArcaTokenEscrow')
-const ArcaTokenEscrowNotProxiable = artifacts.require('ArcaTokenEscrowNotProxiable')
+const TokenSoftToken = artifacts.require('TokenSoftToken')
+const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
+const TokenSoftTokenEscrowNotProxiable = artifacts.require('TokenSoftTokenEscrowNotProxiable')
 const Proxy = artifacts.require('Proxy')
 
 /**
@@ -16,12 +16,12 @@ contract('Upgradeable', (accounts) => {
   let tokenInstance, tokenEscrowInstance, tokenDeploy, tokenEscrowDeploy, tokenEscrowNotProxiableDeploy, proxyInstance
 
   beforeEach(async () => {
-    tokenDeploy = await ArcaToken.new()
-    tokenEscrowDeploy = await ArcaTokenEscrow.new()
-    tokenEscrowNotProxiableDeploy = await ArcaTokenEscrowNotProxiable.new()
+    tokenDeploy = await TokenSoftToken.new()
+    tokenEscrowDeploy = await TokenSoftTokenEscrow.new()
+    tokenEscrowNotProxiableDeploy = await TokenSoftTokenEscrowNotProxiable.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await ArcaToken.at(proxyInstance.address)
-    tokenEscrowInstance = await ArcaTokenEscrow.at(proxyInstance.address)
+    tokenInstance = await TokenSoftToken.at(proxyInstance.address)
+    tokenEscrowInstance = await TokenSoftTokenEscrow.at(proxyInstance.address)
     await tokenInstance.initialize(accounts[0]);
   })
 
@@ -97,7 +97,7 @@ contract('Upgradeable', (accounts) => {
     
     // update the code address to the escrow logic
     await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
-    tokenEscrowInstance = await ArcaTokenEscrow.at(proxyInstance.address) 
+    tokenEscrowInstance = await TokenSoftTokenEscrow.at(proxyInstance.address) 
 
     const whitelistedBalanceAfterUpdate = await tokenEscrowInstance.balanceOf(whitelistedAccount)
     // confirm balances are unchanged

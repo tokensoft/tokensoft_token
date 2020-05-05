@@ -1,16 +1,16 @@
 /* global artifacts contract it assert */
 const BigNumber = require('bignumber.js')
 
-const ArcaToken = artifacts.require('ArcaToken')
+const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
-contract('ArcaToken', (accounts) => {
+contract('TokenSoftToken', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
 
   beforeEach(async () => {
-    tokenDeploy = await ArcaToken.new()
+    tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    tokenInstance = await TokenSoftToken.at(proxyInstance.address)
     await tokenInstance.initialize(accounts[0]);
   })
   it('should deploy', async () => {
@@ -18,8 +18,8 @@ contract('ArcaToken', (accounts) => {
   })
 
   it('should have correct details set', async () => {
-    assert.equal(await tokenInstance.name.call(), 'ARCA', 'Name should be set correctly')
-    assert.equal(await tokenInstance.symbol.call(), 'ARCA', 'Symbol should be set correctly')
+    assert.equal(await tokenInstance.name.call(), 'TokenSoft Token', 'Name should be set correctly')
+    assert.equal(await tokenInstance.symbol.call(), 'SOFT', 'Symbol should be set correctly')
     assert.equal(await tokenInstance.decimals.call(), 18, 'Decimals should be set correctly')
   })
 
@@ -41,9 +41,9 @@ contract('ArcaToken', (accounts) => {
   })
 
   it('should mint tokens to different owner', async () => {
-    tokenDeploy = await ArcaToken.new()
+    tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await ArcaToken.at(proxyInstance.address)
+    tokenInstance = await TokenSoftToken.at(proxyInstance.address)
     await tokenInstance.initialize(accounts[1]);
     // Expected amount is decimals of (10^18) time supply of 50 billion
     const expectedSupply = new BigNumber(10).pow(18).multipliedBy(50).multipliedBy(1000000000)

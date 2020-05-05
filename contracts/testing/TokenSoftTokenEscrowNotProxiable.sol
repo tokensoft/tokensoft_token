@@ -1,20 +1,17 @@
 pragma solidity 0.5.12;
 
-import "../capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "../roles/OwnerRole.sol";
 import "../roles/AdminRole.sol";
-import "../capabilities/Whitelistable.sol";
 import "../capabilities/Mintable.sol";
 import "../capabilities/Revocable.sol";
-import "../capabilities/Pausable.sol";
 import "./Escrowable.sol";
 
-contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable, Escrowable {
+contract TokenSoftTokenEscrowNotProxiable is ERC20Detailed, OwnerRole, AdminRole, Mintable, Revocable, Escrowable {
 
     // Token Details
-    string constant TOKEN_NAME = "ARCA";
-    string constant TOKEN_SYMBOL = "ARCA";
+    string constant TOKEN_NAME = "TokenSoft Token";
+    string constant TOKEN_SYMBOL = "SOFT";
     uint8 constant TOKEN_DECIMALS = 18;
 
     // Token supply - 50 Billion Tokens, with 18 decimal precision
@@ -41,13 +38,6 @@ contract ArcaTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole, Whit
         ERC20Detailed.initialize(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS);
         Mintable._mint(msg.sender, owner, TOKEN_SUPPLY);
         _addOwner(owner);
-    }
-
-    /**
-    Public function to update the address of the code contract, retricted to owner
-     */
-    function updateCodeAddress (address newAddress) public onlyOwner {
-        Proxiable._updateCodeAddress(newAddress);
     }
 
     /**

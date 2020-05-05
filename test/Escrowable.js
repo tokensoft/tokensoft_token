@@ -1,6 +1,6 @@
 /* global artifacts contract it assert */
 const BN = require('bn.js')
-const ArcaTokenEscrow = artifacts.require('ArcaTokenEscrow')
+const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
 const Proxy = artifacts.require('Proxy')
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 
@@ -18,9 +18,9 @@ contract('Escrowable', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
 
   beforeEach(async () => {
-    tokenDeploy = await ArcaTokenEscrow.new()
+    tokenDeploy = await TokenSoftTokenEscrow.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await ArcaTokenEscrow.at(proxyInstance.address)
+    tokenInstance = await TokenSoftTokenEscrow.at(proxyInstance.address)
     await tokenInstance.initialize(accounts[0]);
   })
   it('should create allow simple transferFrom proposal flow', async () => {
