@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail } = require('openzeppelin-test-helpers')
+const { expectRevert } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
@@ -21,9 +21,9 @@ contract('Transfers', (accounts) => {
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // Sending to non whitelisted account should fail regardless of sender
-    await shouldFail.reverting(tokenInstance.transfer(accounts[7], 100, { from: ownerAccount }))
-    await shouldFail.reverting(tokenInstance.transfer(accounts[7], 100, { from: adminAccount }))
-    await shouldFail.reverting(tokenInstance.transfer(accounts[7], 100, { from: whitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: ownerAccount }))
+    await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: adminAccount }))
+    await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: whitelistedAccount }))
   })
 
   it('Initial transfers should fail but succeed after white listing', async () => {
@@ -35,22 +35,22 @@ contract('Transfers', (accounts) => {
     await tokenInstance.transfer(accounts[5], 10000, { from: ownerAccount })
 
     // Try to send to account 2
-    await shouldFail.reverting(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
+    await expectRevert.unspecified(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
 
     // Approve a transfer from account 5 and then try to spend it from account 2
     await tokenInstance.approve(accounts[2], 100, { from: accounts[5] })
-    await shouldFail.reverting(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
+    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
 
     // Try to send to account 2 should still fail
-    await shouldFail.reverting(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
-    await shouldFail.reverting(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
+    await expectRevert.unspecified(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
+    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
 
     // Move address 2 to whitelist
     await tokenInstance.addToWhitelist(accounts[2], 20, { from: accounts[1] })
 
     // Try to send to account 2 should still fail
-    await shouldFail.reverting(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
-    await shouldFail.reverting(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
+    await expectRevert.unspecified(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
+    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
 
     // Now allow whitelist 20 to send to itself
     await tokenInstance.updateOutboundWhitelistEnabled(20, 20, true, { from: accounts[1] })
@@ -67,10 +67,10 @@ contract('Transfers', (accounts) => {
     await tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[1] })
 
     // Should fail trying to send back to account 5 from 2
-    await shouldFail.reverting(tokenInstance.transfer(accounts[5], 100, { from: accounts[2] }))
+    await expectRevert.unspecified(tokenInstance.transfer(accounts[5], 100, { from: accounts[2] }))
 
     // Should fail with approved transfer from going back to account 5 from 2 using approval
     await tokenInstance.approve(accounts[5], 100, { from: accounts[2] })
-    await shouldFail.reverting(tokenInstance.transferFrom(accounts[2], accounts[5], 100, { from: accounts[5] }))
+    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[2], accounts[5], 100, { from: accounts[5] }))
   })
 })

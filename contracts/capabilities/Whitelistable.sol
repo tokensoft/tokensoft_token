@@ -1,4 +1,4 @@
-pragma solidity 0.5.12;
+pragma solidity 0.5.16;
 
 /**
 Keeps track of whitelists and can check if sender and reciever are configured to allow a transfer.

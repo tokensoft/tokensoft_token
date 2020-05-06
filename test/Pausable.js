@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
+const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
@@ -41,9 +41,9 @@ contract('Pauseable', (accounts) => {
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // pause the contract
-    await shouldFail.reverting(tokenInstance.pause({ from: adminAccount }))
-    await shouldFail.reverting(tokenInstance.pause({ from: whitelistedAccount }))
-    await shouldFail.reverting(tokenInstance.pause({ from: nonWhitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.pause({ from: adminAccount }))
+    await expectRevert.unspecified(tokenInstance.pause({ from: whitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.pause({ from: nonWhitelistedAccount }))
 
   })
 
@@ -67,8 +67,8 @@ contract('Pauseable', (accounts) => {
     await tokenInstance.pause({ from: ownerAccount })
 
     // transfers while paused should fail
-    await shouldFail.reverting(tokenInstance.transfer(whitelistedAccount2, transferAmount/2, { from: whitelistedAccount }))
-    await shouldFail.reverting(tokenInstance.transfer(whitelistedAccount, transferAmount, { from: ownerAccount }))
+    await expectRevert.unspecified(tokenInstance.transfer(whitelistedAccount2, transferAmount/2, { from: whitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.transfer(whitelistedAccount, transferAmount, { from: ownerAccount }))
     
   })
 

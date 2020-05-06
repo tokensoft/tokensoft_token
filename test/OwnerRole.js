@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
+const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
@@ -28,7 +28,7 @@ contract('OwnerRole', (accounts) => {
   })
 
   it('should not allow an owner to remove itself', async () => {
-    await shouldFail.reverting(tokenInstance.removeOwner(accounts[0], { from: accounts[0] }))
+    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[0], { from: accounts[0] }))
   })
 
   it('should not allow a non owner to add/remove owners', async () => {
@@ -39,13 +39,13 @@ contract('OwnerRole', (accounts) => {
     await tokenInstance.addAdmin(adminAccount, { from: accounts[0] })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: accounts[1] })
 
-    await shouldFail.reverting(tokenInstance.addOwner(accounts[4], { from: adminAccount }))
-    await shouldFail.reverting(tokenInstance.addOwner(accounts[4], { from: whitelistedAccount }))
-    await shouldFail.reverting(tokenInstance.addOwner(accounts[4], { from: nonWhitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.addOwner(accounts[4], { from: adminAccount }))
+    await expectRevert.unspecified(tokenInstance.addOwner(accounts[4], { from: whitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.addOwner(accounts[4], { from: nonWhitelistedAccount }))
     await tokenInstance.addOwner(accounts[4], { from: accounts[0] })
-    await shouldFail.reverting(tokenInstance.removeOwner(accounts[4], { from: adminAccount }))
-    await shouldFail.reverting(tokenInstance.removeOwner(accounts[4], { from: whitelistedAccount }))
-    await shouldFail.reverting(tokenInstance.removeOwner(accounts[4], { from: nonWhitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[4], { from: adminAccount }))
+    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[4], { from: whitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[4], { from: nonWhitelistedAccount }))
   })
 
   it('should emit events for adding owners', async () => {

@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
+const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
@@ -64,9 +64,9 @@ contract('Revocable', (accounts) => {
     await tokenInstance.transfer(revokeeAccount, transferAmount, { from: ownerAccount })
 
     // attempt to revoke tokens from owner, whitelisted, and non whitelisted accounts; should all fail
-    await shouldFail.reverting(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: ownerAccount }))
-    await shouldFail.reverting(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: whitelistedAccount }))
-    await shouldFail.reverting(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: nonWhitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: ownerAccount }))
+    await expectRevert.unspecified(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: whitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: nonWhitelistedAccount }))
   })
 
   it('should emit event when tokens are revoked', async () => {

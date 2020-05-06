@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
+const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
@@ -52,7 +52,7 @@ contract('Mintable', (accounts) => {
     const mintAmount = '100'
 
     // attempt to mint tokens to non whitelisted accounts should fail
-    await shouldFail.reverting(tokenInstance.mint(minteeAccount, mintAmount, { from: ownerAccount }))
+    await expectRevert.unspecified(tokenInstance.mint(minteeAccount, mintAmount, { from: ownerAccount }))
 
   })
 
@@ -66,9 +66,9 @@ contract('Mintable', (accounts) => {
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // attempt to mint tokens from admin, whitelisted, and non whitelisted accounts; should all fail
-    await shouldFail.reverting(tokenInstance.mint(minteeAccount, mintAmount, { from: adminAccount }))
-    await shouldFail.reverting(tokenInstance.mint(minteeAccount, mintAmount, { from: whitelistedAccount }))
-    await shouldFail.reverting(tokenInstance.mint(minteeAccount, mintAmount, { from: nonWhitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.mint(minteeAccount, mintAmount, { from: adminAccount }))
+    await expectRevert.unspecified(tokenInstance.mint(minteeAccount, mintAmount, { from: whitelistedAccount }))
+    await expectRevert.unspecified(tokenInstance.mint(minteeAccount, mintAmount, { from: nonWhitelistedAccount }))
   })
 
   it('should emit event when tokens are minted', async () => {

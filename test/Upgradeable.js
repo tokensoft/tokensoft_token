@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
+const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
 const TokenSoftTokenEscrowNotProxiable = artifacts.require('TokenSoftTokenEscrowNotProxiable')
@@ -34,7 +34,7 @@ contract('Upgradeable', (accounts) => {
 
   it('Cannot upgrade to non proxiable contract', async () => {
     // update the code address to the escrow logic
-    await shouldFail.reverting(tokenInstance.updateCodeAddress(tokenEscrowNotProxiableDeploy.address))
+    await expectRevert.unspecified(tokenInstance.updateCodeAddress(tokenEscrowNotProxiableDeploy.address))
   })
 
   it('Upgrading contract fires event', async () => {
@@ -47,7 +47,7 @@ contract('Upgradeable', (accounts) => {
 
   it('Contract cannot be upgraded by non owner', async () => {
     // update the code address to the escrow logic
-    await shouldFail.reverting(
+    await expectRevert.unspecified(
       tokenInstance.updateCodeAddress(tokenEscrowDeploy.address, {from: accounts[1]})
     )
   })

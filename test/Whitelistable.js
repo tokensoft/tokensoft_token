@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
+const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
@@ -47,7 +47,7 @@ contract('Whitelistable', (accounts) => {
 
   it('should only allow admins adding or removing on whitelists', async () => {
     // Non admin should fail adding to white list
-    await shouldFail.reverting(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
+    await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
 
     // Now allow acct 4 be an administrator
     await tokenInstance.addAdmin(accounts[4], { from: accounts[0] })
@@ -56,7 +56,7 @@ contract('Whitelistable', (accounts) => {
     await tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] })
 
     // Removing as non-admin should fail
-    await shouldFail.reverting(tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[8] }))
+    await expectRevert.unspecified(tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[8] }))
 
     // Removing as admin should work
     await tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[4] })
@@ -65,7 +65,7 @@ contract('Whitelistable', (accounts) => {
     await tokenInstance.removeAdmin(accounts[4], { from: accounts[0] })
 
     // It should fail again now that acct 4 is non-admin
-    await shouldFail.reverting(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
+    await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
   })
 
   it('should validate if addresses are not on a whitelist', async () => {
@@ -207,6 +207,6 @@ contract('Whitelistable', (accounts) => {
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 
     // Adding acct 2 to whitelist 0 should get rejected
-    await shouldFail.reverting(tokenInstance.addToWhitelist(accounts[2], NO_WHITELIST, { from: accounts[1] }))
+    await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], NO_WHITELIST, { from: accounts[1] }))
   })
 })

@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const { shouldFail, expectEvent } = require('openzeppelin-test-helpers')
+const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
@@ -37,15 +37,15 @@ contract('AdminRole', (accounts) => {
     assert.equal(isAdmin, false, 'Account should not be admin by default')
 
     // Adding an address to the list should fail for non-owner (address[1])
-    await shouldFail.reverting(tokenInstance.addAdmin(accounts[2], { from: accounts[1] }))
+    await expectRevert.unspecified(tokenInstance.addAdmin(accounts[2], { from: accounts[1] }))
 
     // Adding the address to admin list should not impact this - only owner can add other admins
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
-    await shouldFail.reverting(tokenInstance.addAdmin(accounts[2], { from: accounts[1] }))
+    await expectRevert.unspecified(tokenInstance.addAdmin(accounts[2], { from: accounts[1] }))
 
     // Verify a non-owner can't remove an admin (including itself)
-    await shouldFail.reverting(tokenInstance.removeAdmin(accounts[1], { from: accounts[1] }))
-    await shouldFail.reverting(tokenInstance.removeAdmin(accounts[1], { from: accounts[2] }))
+    await expectRevert.unspecified(tokenInstance.removeAdmin(accounts[1], { from: accounts[1] }))
+    await expectRevert.unspecified(tokenInstance.removeAdmin(accounts[1], { from: accounts[2] }))
   })
 
   it('should emit events for adding admins', async () => {
@@ -68,7 +68,7 @@ contract('AdminRole', (accounts) => {
     await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
 
     // The second add should fail
-    await shouldFail.reverting(tokenInstance.addAdmin(accounts[1], { from: accounts[0] }))
+    await expectRevert.unspecified(tokenInstance.addAdmin(accounts[1], { from: accounts[0] }))
   })
 
   it('should preventing removing an admin when it is not an admin', async () => {
@@ -80,6 +80,6 @@ contract('AdminRole', (accounts) => {
     await tokenInstance.removeAdmin(accounts[1], { from: accounts[0] })
 
     // The second removal should fail
-    await shouldFail.reverting(tokenInstance.removeAdmin(accounts[1], { from: accounts[0] }))
+    await expectRevert.unspecified(tokenInstance.removeAdmin(accounts[1], { from: accounts[0] }))
   })
 })
