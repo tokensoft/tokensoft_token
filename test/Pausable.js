@@ -2,7 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
-
+const Constants = require('./Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -20,10 +20,18 @@ contract('Pauseable', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('Owner should be able to pause contract', async () => {
+    await tokenInstance.addPauser(ownerAccount)
+
     // get initial pause state
     const isPaused = await tokenInstance.paused()
     assert.equal(isPaused, false, 'Contract should not be paused initially')
@@ -37,7 +45,7 @@ contract('Pauseable', (accounts) => {
 
   it('Only owner should be able to pause contract', async () => {
     // add admin and whitelist accounts
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // pause the contract
@@ -52,7 +60,8 @@ contract('Pauseable', (accounts) => {
     const transferAmount = 100
 
     // add admin and whitelist accounts
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addPauser(ownerAccount)
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount2, 1, { from: adminAccount })
 
@@ -73,6 +82,8 @@ contract('Pauseable', (accounts) => {
   })
 
   it('should emit event when contract is unpaused', async () => {
+    await tokenInstance.addPauser(ownerAccount)
+
     // pause the contract
     const { logs } =  await tokenInstance.pause({ from: ownerAccount })
 
@@ -80,6 +91,8 @@ contract('Pauseable', (accounts) => {
   })
 
   it('should emit event when contract is unpaused', async () => {
+    await tokenInstance.addPauser(ownerAccount)
+    
     // pause the contract
     await tokenInstance.pause({ from: ownerAccount })
     // unpause the contract

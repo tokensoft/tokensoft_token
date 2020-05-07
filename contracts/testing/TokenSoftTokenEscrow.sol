@@ -3,25 +3,16 @@ pragma solidity 0.5.16;
 import "../capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "../roles/OwnerRole.sol";
-import "../roles/AdminRole.sol";
 import "../capabilities/Whitelistable.sol";
 import "../capabilities/Mintable.sol";
+import "../capabilities/Burnable.sol";
 import "../capabilities/Revocable.sol";
 import "../capabilities/Pausable.sol";
 import "./Escrowable.sol";
 
-contract TokenSoftTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable, Escrowable {
+contract TokenSoftTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Whitelistable, Mintable, Burnable, Revocable, Pausable, Escrowable {
 
-    // Token Details
-    string constant TOKEN_NAME = "TokenSoft Token";
-    string constant TOKEN_SYMBOL = "SOFT";
-    uint8 constant TOKEN_DECIMALS = 18;
-
-    // Token supply - 50 Billion Tokens, with 18 decimal precision
-    uint256 constant BILLION = 1000000000;
-    uint256 constant TOKEN_SUPPLY = 50 * BILLION * (10 ** uint256(TOKEN_DECIMALS));
-
-    // ERC1404 Error codes and messages
+    // ERC1404 Error codes and messages`
     uint8 public constant SUCCESS_CODE = 0;
     uint8 public constant FAILURE_NON_WHITELIST = 1;
     uint8 public constant FAILURE_PAUSED = 2;
@@ -34,13 +25,14 @@ contract TokenSoftTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole,
     Constructor for the token to set readable details and mint all tokens
     to the specified owner.
      */
-    function initialize (address owner)
+    function initialize (address owner, string memory name, string memory symbol, uint8 decimals, uint256 initialSupply, bool whitelistEnabled)
         public
         initializer
     {
-        ERC20Detailed.initialize(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS);
-        Mintable._mint(msg.sender, owner, TOKEN_SUPPLY);
-        _addOwner(owner);
+        ERC20Detailed.initialize(name, symbol, decimals);
+        Mintable._mint(msg.sender, owner, initialSupply);
+        OwnerRole._addOwner(owner);
+        Whitelistable._setWhitelistEnabled(whitelistEnabled);
     }
 
     /**
@@ -51,24 +43,16 @@ contract TokenSoftTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, AdminRole,
     }
 
     /**
-    Allow Owners to mint tokens to valid addresses
-    */
-    function mint(address account, uint256 amount) public onlyOwner returns (bool) {
-        Mintable._mint(msg.sender, account, amount);
-        return true;
-    }
-
-    /**
     Restrict rejectTransferProposals to admins only
      */
-    function rejectTransferProposal(uint requestId) public onlyAdmin {
+    function rejectTransferProposal(uint requestId) public onlyEscrower {
       Escrowable._rejectTransferProposal(requestId);
     }
 
     /**
     Restrict approveTransferProposals to admins only
      */
-    function approveTransferProposal(uint requestId) public onlyAdmin {
+    function approveTransferProposal(uint requestId) public onlyEscrower {
       Escrowable._approveTransferProposal(requestId);
     }
 

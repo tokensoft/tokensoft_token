@@ -2,6 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
+const Constants = require('./Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -19,7 +20,13 @@ contract('Revocable', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('Admin should be able to revoke tokens from any account', async () => {
@@ -28,8 +35,10 @@ contract('Revocable', (accounts) => {
     const revokeAmount = 25
     const afterRevokeAmount = transferAmount - revokeAmount
 
+    await tokenInstance.addRevoker(adminAccount)
+
     // add account2 to admin role
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(revokeeAccount, 1, { from: adminAccount })
 
     // transfer tokens from owner account to revokee accounts
@@ -57,7 +66,7 @@ contract('Revocable', (accounts) => {
     const revokeAmount = 25
 
     // add account2 to admin role
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(revokeeAccount, 1, { from: adminAccount })
 
     // transfer tokens from owner account to revokee account
@@ -70,12 +79,14 @@ contract('Revocable', (accounts) => {
   })
 
   it('should emit event when tokens are revoked', async () => {
+    await tokenInstance.addRevoker(adminAccount)
+    
     // set up the amounts to test
     const transferAmount = 100
     const revokeAmount = '25'
 
     // add account2 to admin role
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(revokeeAccount, 1, { from: adminAccount })
 
     // transfer tokens from owner account to revokee accounts

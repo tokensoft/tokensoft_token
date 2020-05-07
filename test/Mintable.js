@@ -2,6 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
+const Constants = require('./Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -19,15 +20,24 @@ contract('Mintable', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('Owner should be able to mint tokens to any account', async () => {
+    // Add minter
+    await tokenInstance.addMinter(accounts[0])
+
     // set up the amounts to test
     const mintAmount = '100'
 
     // assign roles
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // get initial account balance and token supply
@@ -62,7 +72,7 @@ contract('Mintable', (accounts) => {
     // set up the amounts to test
     const mintAmount = '100'
 
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // attempt to mint tokens from admin, whitelisted, and non whitelisted accounts; should all fail
@@ -72,11 +82,14 @@ contract('Mintable', (accounts) => {
   })
 
   it('should emit event when tokens are minted', async () => {
+    // Add minter
+    await tokenInstance.addMinter(ownerAccount)
+
     // set up the amounts to test
     const mintAmount = '100'
 
     // assign roles
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(minteeAccount, 1, { from: adminAccount })
 
     // mint tokens to mintee account

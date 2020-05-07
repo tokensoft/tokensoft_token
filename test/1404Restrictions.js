@@ -10,19 +10,27 @@ const FAILURE_NON_WHITELIST_MESSAGE = 'The transfer was restricted due to white 
 const FAILURE_PAUSED_MESSAGE = "The transfer was restricted due to the contract being paused."
 const UNKNOWN_ERROR = 'Unknown Error Code'
 
+const Constants = require('./Constants')
+
 contract('1404 Restrictions', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
   beforeEach(async () => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('should fail with non whitelisted accounts', async () => {
 
     // Set account 1 as an admin
-    await tokenInstance.addAdmin(accounts[1])
+    await tokenInstance.addWhitelister(accounts[1])
 
     // Both not on white list - should fail
     let failureCode = await tokenInstance.detectTransferRestriction.call(accounts[5], accounts[6], 100)
@@ -100,6 +108,9 @@ contract('1404 Restrictions', (accounts) => {
   })
 
   it('Should fail when paused', async () => {
+    // add account as pauser
+    await tokenInstance.addPauser(accounts[0])
+
     // pause the contract
     await tokenInstance.pause()
    
@@ -112,7 +123,7 @@ contract('1404 Restrictions', (accounts) => {
   it('should allow whitelists to be removed', async () => {
 
     // Set account 1 as an admin
-    await tokenInstance.addAdmin(accounts[1])
+    await tokenInstance.addWhitelister(accounts[1])
 
     // Both not on white list
     const failureCode = await tokenInstance.detectTransferRestriction.call(accounts[7], accounts[8], 100)

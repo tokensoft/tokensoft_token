@@ -2,6 +2,7 @@
 const { expectRevert } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
+const Constants = require('./Constants')
 
 contract('Transfers', (accounts) => {
   const ownerAccount = accounts[0]
@@ -13,22 +14,28 @@ contract('Transfers', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('All users should be blocked from sending to non whitelisted non role-assigned accounts', async () => {
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
-    // Sending to non whitelisted account should fail regardless of sender
-    await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: ownerAccount }))
+    // Sending to non whitelisted account should fail regardless of sender (except owner)
+    await tokenInstance.transfer(accounts[7], 100, { from: ownerAccount })
     await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: adminAccount }))
     await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: whitelistedAccount }))
   })
 
   it('Initial transfers should fail but succeed after white listing', async () => {
     // Set account 1 as an admin
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
 
     // Whitelist and send some initial tokens to account 5
     await tokenInstance.addToWhitelist(accounts[5], 20, { from: adminAccount })

@@ -4,6 +4,7 @@ const TokenSoftToken = artifacts.require('TokenSoftToken')
 const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
 const TokenSoftTokenEscrowNotProxiable = artifacts.require('TokenSoftTokenEscrowNotProxiable')
 const Proxy = artifacts.require('Proxy')
+const Constants = require('./Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -22,7 +23,13 @@ contract('Upgradeable', (accounts) => {
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
     tokenEscrowInstance = await TokenSoftTokenEscrow.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('Can upgrade to proxiable contract', async () => {
@@ -57,7 +64,7 @@ contract('Upgradeable', (accounts) => {
     const transferAmount = 100
 
     // add account2 to admin role
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // transfer tokens from owner account to revokee accounts
@@ -68,6 +75,9 @@ contract('Upgradeable', (accounts) => {
     
     // update the code address to the escrow logic
     await tokenInstance.updateCodeAddress(tokenEscrowDeploy.address)
+
+    // Add admin as escrower
+    await tokenEscrowInstance.addEscrower(adminAccount)
 
     // transfer tokens from owner account to revokee accounts
     await tokenEscrowInstance.transfer(whitelistedAccount, transferAmount, { from: ownerAccount })
@@ -85,7 +95,7 @@ contract('Upgradeable', (accounts) => {
     const transferAmount = 100
 
     // add account2 to admin role
-    await tokenInstance.addAdmin(adminAccount, { from: ownerAccount })
+    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
 
     // transfer tokens from owner account to revokee accounts

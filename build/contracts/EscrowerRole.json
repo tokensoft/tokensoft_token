@@ -1,0 +1,2987 @@
+{
+  "contractName": "EscrowerRole",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addedEscrow",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addedBy",
+          "type": "address"
+        }
+      ],
+      "name": "EscrowerAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "removedEscrow",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "removedBy",
+          "type": "address"
+        }
+      ],
+      "name": "EscrowerRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addedOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addedBy",
+          "type": "address"
+        }
+      ],
+      "name": "OwnerAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "removedOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "removedBy",
+          "type": "address"
+        }
+      ],
+      "name": "OwnerRemoved",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addOwner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isOwner",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "removeOwner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isEscrower",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addEscrower",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "removeEscrower",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedEscrow\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"EscrowerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedEscrow\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"EscrowerRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"OwnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"OwnerRemoved\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addEscrower\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isEscrower\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeEscrower\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/testing/EscrowerRole.sol\":\"EscrowerRole\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol\":{\"keccak256\":\"0x35532a2185165cec52f04fbff693877cfbe564cfdef2659c97f09e1965ac1d54\",\"urls\":[\"bzz-raw://afe81f64745439bd5c146d41e6d853b039c08b272fbfec2c0d9a6e331b858ad7\",\"dweb:/ipfs/QmWEHevjeFsgR8HcaBXwuhWkDwR13tdVtfq4RWxqNDf7CL\"]},\"/Users/james/Source/tokensoft/tokensoft_token/contracts/testing/EscrowerRole.sol\":{\"keccak256\":\"0xcbc3220fd62a2b03776560025b74ce881c9fd3fdd43f28c8f24862efc0d59da4\",\"urls\":[\"bzz-raw://cf8e24220d486b16e2033ac03a7cf57bbad90492f9bc3b614392f82403762ae3\",\"dweb:/ipfs/QmbURFthmuFTnf2s1REb6W2WdTFZ8j66rdvWxJJqx9zgkH\"]},\"@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610a51806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c8063173825d9146100675780632f54bf6e146100ab5780637065cb48146101075780638f6aabac1461014b57806393489f1d1461018f578063e884e1b4146101d3575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061031e565b604051808215151515815260200191505060405180910390f35b6101496004803603602081101561011d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033b565b005b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a5565b005b6101d1600480360360208110156101a557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061040f565b005b610215600480360360208110156101e957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506104fe565b604051808215151515815260200191505060405180910390f35b6102383361031e565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610312576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260288152602001806109c76028913960400191505060405180910390fd5b61031b8161051b565b50565b600061033482600061058c90919063ffffffff16565b9050919050565b6103443361031e565b610399576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b6103a28161066a565b50565b6103ae3361031e565b610403576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b61040c816106db565b50565b6104183361031e565b61046d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156104f2576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806109ef602e913960400191505060405180910390fd5b6104fb8161074c565b50565b600061051482600161058c90919063ffffffff16565b9050919050565b61052f8160006107bd90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415610613576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001806109a56022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b61067e81600061087a90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b6106ef81600161087a90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc40499ba035b8062e6798e3416432187fdca530d217e788b87357cddd5c56ac660405160405180910390a350565b6107608160016107bd90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167ffc92afc8a5449a0672774ee4b158bd167b5aa87938ddab1c116e96b2be589e8c60405160405180910390a350565b6107c7828261058c565b61081c576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260218152602001806109846021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b610884828261058c565b156108f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f20616464726573734f776e6572732063616e6e6f742072656d6f7665207468656d73656c766573206173206f776e6572457363726f776572732063616e6e6f742072656d6f7665207468656d73656c76657320617320457363726f776572a265627a7a7231582074d3e3bfe93ffc262586b89dfce75dbcefbedbc3fbe274ecceceee9c512a63a764736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c8063173825d9146100675780632f54bf6e146100ab5780637065cb48146101075780638f6aabac1461014b57806393489f1d1461018f578063e884e1b4146101d3575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061031e565b604051808215151515815260200191505060405180910390f35b6101496004803603602081101561011d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033b565b005b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a5565b005b6101d1600480360360208110156101a557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061040f565b005b610215600480360360208110156101e957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506104fe565b604051808215151515815260200191505060405180910390f35b6102383361031e565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610312576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260288152602001806109c76028913960400191505060405180910390fd5b61031b8161051b565b50565b600061033482600061058c90919063ffffffff16565b9050919050565b6103443361031e565b610399576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b6103a28161066a565b50565b6103ae3361031e565b610403576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b61040c816106db565b50565b6104183361031e565b61046d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180610956602e913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156104f2576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806109ef602e913960400191505060405180910390fd5b6104fb8161074c565b50565b600061051482600161058c90919063ffffffff16565b9050919050565b61052f8160006107bd90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415610613576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001806109a56022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b61067e81600061087a90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b6106ef81600161087a90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc40499ba035b8062e6798e3416432187fdca530d217e788b87357cddd5c56ac660405160405180910390a350565b6107608160016107bd90919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167ffc92afc8a5449a0672774ee4b158bd167b5aa87938ddab1c116e96b2be589e8c60405160405180910390a350565b6107c7828261058c565b61081c576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260218152602001806109846021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b610884828261058c565b156108f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f20616464726573734f776e6572732063616e6e6f742072656d6f7665207468656d73656c766573206173206f776e6572457363726f776572732063616e6e6f742072656d6f7665207468656d73656c76657320617320457363726f776572a265627a7a7231582074d3e3bfe93ffc262586b89dfce75dbcefbedbc3fbe274ecceceee9c512a63a764736f6c63430005100032",
+  "sourceMap": "59:1088:17:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;59:1088:17;;;;;;;",
+  "deployedSourceMap": "59:1088:17:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;59:1088:17;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;689:177:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;689:177:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;485:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;485:105:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;596:87;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;596:87:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;856:93:17;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;856:93:17;;;;;;;;;;;;;;;;;;;:::i;:::-;;955:189;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;955:189:17;;;;;;;;;;;;;;;;;;;:::i;:::-;;445:111;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;445:111:17;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;689:177:12;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;776:7;762:21;;:10;:21;;;;754:74;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;838:21;851:7;838:12;:21::i;:::-;689:177;:::o;485:105::-;540:4;563:20;575:7;563;:11;;:20;;;;:::i;:::-;556:27;;485:105;;;:::o;596:87::-;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;658:18;668:7;658:9;:18::i;:::-;596:87;:::o;856:93:17:-;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;921:21:17;934:7;921:12;:21::i;:::-;856:93;:::o;955:189::-;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1045:7:17;1031:21;;:10;:21;;;;1023:80;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1113:24;1129:7;1113:15;:24::i;:::-;955:189;:::o;445:111::-;503:4;526:23;541:7;526:10;:14;;:23;;;;:::i;:::-;519:30;;445:111;;;:::o;1006:136:12:-;1064:23;1079:7;1064;:14;;:23;;;;:::i;:::-;1124:10;1102:33;;1115:7;1102:33;;;;;;;;;;;;1006:136;:::o;779:200:21:-;851:4;894:1;875:21;;:7;:21;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;952:4;:11;;:20;964:7;952:20;;;;;;;;;;;;;;;;;;;;;;;;;945:27;;779:200;;;;:::o;872:128:12:-;927:20;939:7;927;:11;;:20;;;;:::i;:::-;982:10;962:31;;973:7;962:31;;;;;;;;;;;;872:128;:::o;562:137:17:-;620:23;635:7;620:10;:14;;:23;;;;:::i;:::-;681:10;658:34;;672:7;658:34;;;;;;;;;;;;562:137;:::o;705:145::-;766:26;784:7;766:10;:17;;:26;;;;:::i;:::-;832:10;807:36;;823:7;807:36;;;;;;;;;;;;705:145;:::o;510:180:21:-;589:18;593:4;599:7;589:3;:18::i;:::-;581:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;678:5;655:4;:11;;:20;667:7;655:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;510:180;;:::o;260:175::-;337:18;341:4;347:7;337:3;:18::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:4;401;:11;;:20;413:7;401:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:175;;:::o",
+  "source": "pragma solidity 0.5.16;\n\nimport \"../roles/OwnerRole.sol\";\n\ncontract EscrowerRole is OwnerRole {\n\n    event EscrowerAdded(address indexed addedEscrow, address indexed addedBy);\n    event EscrowerRemoved(address indexed removedEscrow, address indexed removedBy);\n\n    Roles.Role private _escrowers;\n\n    modifier onlyEscrower() {\n        require(isEscrower(msg.sender), \"EscrowerRole: caller does not have the Escrow role\");\n        _;\n    }\n\n    function isEscrower(address account) public view returns (bool) {\n        return _escrowers.has(account);\n    }\n\n    function _addEscrower(address account) internal {\n        _escrowers.add(account);\n        emit EscrowerAdded(account, msg.sender);\n    }\n\n    function _removeEscrower(address account) internal {\n        _escrowers.remove(account);\n        emit EscrowerRemoved(account, msg.sender);\n    }\n\n    function addEscrower(address account) public onlyOwner {\n        _addEscrower(account);\n    }\n\n    function removeEscrower(address account) public onlyOwner {\n        require(msg.sender != account, \"Escrowers cannot remove themselves as Escrower\");\n        _removeEscrower(account);\n    }\n\n}",
+  "sourcePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/testing/EscrowerRole.sol",
+  "ast": {
+    "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/testing/EscrowerRole.sol",
+    "exportedSymbols": {
+      "EscrowerRole": [
+        2099
+      ]
+    },
+    "id": 2100,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1988,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:17"
+      },
+      {
+        "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol",
+        "file": "../roles/OwnerRole.sol",
+        "id": 1989,
+        "nodeType": "ImportDirective",
+        "scope": 2100,
+        "sourceUnit": 1303,
+        "src": "25:32:17",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1990,
+              "name": "OwnerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1302,
+              "src": "84:9:17",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OwnerRole_$1302",
+                "typeString": "contract OwnerRole"
+              }
+            },
+            "id": 1991,
+            "nodeType": "InheritanceSpecifier",
+            "src": "84:9:17"
+          }
+        ],
+        "contractDependencies": [
+          1302
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2099,
+        "linearizedBaseContracts": [
+          2099,
+          1302
+        ],
+        "name": "EscrowerRole",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 1997,
+            "name": "EscrowerAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1996,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1993,
+                  "indexed": true,
+                  "name": "addedEscrow",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1997,
+                  "src": "121:27:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1992,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "121:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1995,
+                  "indexed": true,
+                  "name": "addedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1997,
+                  "src": "150:23:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1994,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "120:54:17"
+            },
+            "src": "101:74:17"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 2003,
+            "name": "EscrowerRemoved",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2002,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1999,
+                  "indexed": true,
+                  "name": "removedEscrow",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2003,
+                  "src": "202:29:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1998,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2001,
+                  "indexed": true,
+                  "name": "removedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2003,
+                  "src": "233:25:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2000,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "233:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "201:58:17"
+            },
+            "src": "180:80:17"
+          },
+          {
+            "constant": false,
+            "id": 2005,
+            "name": "_escrowers",
+            "nodeType": "VariableDeclaration",
+            "scope": 2099,
+            "src": "266:29:17",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_Role_$2477_storage",
+              "typeString": "struct Roles.Role"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 2004,
+              "name": "Roles.Role",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2477,
+              "src": "266:10:17",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Role_$2477_storage_ptr",
+                "typeString": "struct Roles.Role"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 2016,
+              "nodeType": "Block",
+              "src": "326:113:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 2009,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 3370,
+                              "src": "355:3:17",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 2010,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "355:10:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          ],
+                          "id": 2008,
+                          "name": "isEscrower",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2030,
+                          "src": "344:10:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 2011,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "344:22:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "457363726f776572526f6c653a2063616c6c657220646f6573206e6f7420686176652074686520457363726f7720726f6c65",
+                        "id": 2012,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "368:52:17",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_14c4e9e02bfab95bce818819eb6d1c221a78563c09880e1ee8b2109542d66834",
+                          "typeString": "literal_string \"EscrowerRole: caller does not have the Escrow role\""
+                        },
+                        "value": "EscrowerRole: caller does not have the Escrow role"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_14c4e9e02bfab95bce818819eb6d1c221a78563c09880e1ee8b2109542d66834",
+                          "typeString": "literal_string \"EscrowerRole: caller does not have the Escrow role\""
+                        }
+                      ],
+                      "id": 2007,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3373,
+                        3374
+                      ],
+                      "referencedDeclaration": 3374,
+                      "src": "336:7:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2013,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "336:85:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2014,
+                  "nodeType": "ExpressionStatement",
+                  "src": "336:85:17"
+                },
+                {
+                  "id": 2015,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "431:1:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2017,
+            "name": "onlyEscrower",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 2006,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "323:2:17"
+            },
+            "src": "302:137:17",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2029,
+              "nodeType": "Block",
+              "src": "509:47:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2026,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2019,
+                        "src": "541:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2024,
+                        "name": "_escrowers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2005,
+                        "src": "526:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Role_$2477_storage",
+                          "typeString": "struct Roles.Role storage ref"
+                        }
+                      },
+                      "id": 2025,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "has",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2550,
+                      "src": "526:14:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2477_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2477_storage_ptr_$",
+                        "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
+                      }
+                    },
+                    "id": 2027,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "526:23:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 2023,
+                  "id": 2028,
+                  "nodeType": "Return",
+                  "src": "519:30:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2030,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2020,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2019,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2030,
+                  "src": "465:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2018,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "465:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "464:17:17"
+            },
+            "returnParameters": {
+              "id": 2023,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2022,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2030,
+                  "src": "503:4:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 2021,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "503:4:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "502:6:17"
+            },
+            "scope": 2099,
+            "src": "445:111:17",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2047,
+              "nodeType": "Block",
+              "src": "610:89:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2038,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2032,
+                        "src": "635:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2035,
+                        "name": "_escrowers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2005,
+                        "src": "620:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Role_$2477_storage",
+                          "typeString": "struct Roles.Role storage ref"
+                        }
+                      },
+                      "id": 2037,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "add",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2502,
+                      "src": "620:14:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2477_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2477_storage_ptr_$",
+                        "typeString": "function (struct Roles.Role storage pointer,address)"
+                      }
+                    },
+                    "id": 2039,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "620:23:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2040,
+                  "nodeType": "ExpressionStatement",
+                  "src": "620:23:17"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2042,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2032,
+                        "src": "672:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2043,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3370,
+                          "src": "681:3:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 2044,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "681:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 2041,
+                      "name": "EscrowerAdded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1997,
+                      "src": "658:13:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 2045,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "658:34:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2046,
+                  "nodeType": "EmitStatement",
+                  "src": "653:39:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2048,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_addEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2033,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2032,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2048,
+                  "src": "584:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2031,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "584:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "583:17:17"
+            },
+            "returnParameters": {
+              "id": 2034,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "610:0:17"
+            },
+            "scope": 2099,
+            "src": "562:137:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2065,
+              "nodeType": "Block",
+              "src": "756:94:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2056,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2050,
+                        "src": "784:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2053,
+                        "name": "_escrowers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2005,
+                        "src": "766:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Role_$2477_storage",
+                          "typeString": "struct Roles.Role storage ref"
+                        }
+                      },
+                      "id": 2055,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "remove",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2526,
+                      "src": "766:17:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2477_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2477_storage_ptr_$",
+                        "typeString": "function (struct Roles.Role storage pointer,address)"
+                      }
+                    },
+                    "id": 2057,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "766:26:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2058,
+                  "nodeType": "ExpressionStatement",
+                  "src": "766:26:17"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2060,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2050,
+                        "src": "823:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2061,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3370,
+                          "src": "832:3:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 2062,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "832:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 2059,
+                      "name": "EscrowerRemoved",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2003,
+                      "src": "807:15:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 2063,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "807:36:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2064,
+                  "nodeType": "EmitStatement",
+                  "src": "802:41:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2066,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_removeEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2051,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2050,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2066,
+                  "src": "730:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2049,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "730:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "729:17:17"
+            },
+            "returnParameters": {
+              "id": 2052,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "756:0:17"
+            },
+            "scope": 2099,
+            "src": "705:145:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2077,
+              "nodeType": "Block",
+              "src": "911:38:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2074,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2068,
+                        "src": "934:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 2073,
+                      "name": "_addEscrower",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2048,
+                      "src": "921:12:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 2075,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "921:21:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2076,
+                  "nodeType": "ExpressionStatement",
+                  "src": "921:21:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2078,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 2071,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2070,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1220,
+                  "src": "901:9:17",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "901:9:17"
+              }
+            ],
+            "name": "addEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2068,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2078,
+                  "src": "877:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2067,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "877:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "876:17:17"
+            },
+            "returnParameters": {
+              "id": 2072,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "911:0:17"
+            },
+            "scope": 2099,
+            "src": "856:93:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2097,
+              "nodeType": "Block",
+              "src": "1013:131:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 2089,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 2086,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3370,
+                            "src": "1031:3:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 2087,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1031:10:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 2088,
+                          "name": "account",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2080,
+                          "src": "1045:7:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1031:21:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "457363726f776572732063616e6e6f742072656d6f7665207468656d73656c76657320617320457363726f776572",
+                        "id": 2090,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1054:48:17",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_be6ff7c5c1aaa42716cde4a347fe68983bc0846c6651ac33f14e4b910eaaac8c",
+                          "typeString": "literal_string \"Escrowers cannot remove themselves as Escrower\""
+                        },
+                        "value": "Escrowers cannot remove themselves as Escrower"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_be6ff7c5c1aaa42716cde4a347fe68983bc0846c6651ac33f14e4b910eaaac8c",
+                          "typeString": "literal_string \"Escrowers cannot remove themselves as Escrower\""
+                        }
+                      ],
+                      "id": 2085,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3373,
+                        3374
+                      ],
+                      "referencedDeclaration": 3374,
+                      "src": "1023:7:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2091,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1023:80:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2092,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1023:80:17"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2094,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2080,
+                        "src": "1129:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 2093,
+                      "name": "_removeEscrower",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2066,
+                      "src": "1113:15:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 2095,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1113:24:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2096,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1113:24:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2098,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 2083,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2082,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1220,
+                  "src": "1003:9:17",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1003:9:17"
+              }
+            ],
+            "name": "removeEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2081,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2080,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2098,
+                  "src": "979:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2079,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "979:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "978:17:17"
+            },
+            "returnParameters": {
+              "id": 2084,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1013:0:17"
+            },
+            "scope": 2099,
+            "src": "955:189:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2100,
+        "src": "59:1088:17"
+      }
+    ],
+    "src": "0:1147:17"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/testing/EscrowerRole.sol",
+    "exportedSymbols": {
+      "EscrowerRole": [
+        2099
+      ]
+    },
+    "id": 2100,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1988,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:17"
+      },
+      {
+        "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol",
+        "file": "../roles/OwnerRole.sol",
+        "id": 1989,
+        "nodeType": "ImportDirective",
+        "scope": 2100,
+        "sourceUnit": 1303,
+        "src": "25:32:17",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1990,
+              "name": "OwnerRole",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1302,
+              "src": "84:9:17",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OwnerRole_$1302",
+                "typeString": "contract OwnerRole"
+              }
+            },
+            "id": 1991,
+            "nodeType": "InheritanceSpecifier",
+            "src": "84:9:17"
+          }
+        ],
+        "contractDependencies": [
+          1302
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2099,
+        "linearizedBaseContracts": [
+          2099,
+          1302
+        ],
+        "name": "EscrowerRole",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 1997,
+            "name": "EscrowerAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1996,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1993,
+                  "indexed": true,
+                  "name": "addedEscrow",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1997,
+                  "src": "121:27:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1992,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "121:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1995,
+                  "indexed": true,
+                  "name": "addedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1997,
+                  "src": "150:23:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1994,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "120:54:17"
+            },
+            "src": "101:74:17"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 2003,
+            "name": "EscrowerRemoved",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2002,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1999,
+                  "indexed": true,
+                  "name": "removedEscrow",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2003,
+                  "src": "202:29:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1998,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2001,
+                  "indexed": true,
+                  "name": "removedBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2003,
+                  "src": "233:25:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2000,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "233:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "201:58:17"
+            },
+            "src": "180:80:17"
+          },
+          {
+            "constant": false,
+            "id": 2005,
+            "name": "_escrowers",
+            "nodeType": "VariableDeclaration",
+            "scope": 2099,
+            "src": "266:29:17",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_Role_$2477_storage",
+              "typeString": "struct Roles.Role"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 2004,
+              "name": "Roles.Role",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2477,
+              "src": "266:10:17",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Role_$2477_storage_ptr",
+                "typeString": "struct Roles.Role"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 2016,
+              "nodeType": "Block",
+              "src": "326:113:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 2009,
+                              "name": "msg",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 3370,
+                              "src": "355:3:17",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_message",
+                                "typeString": "msg"
+                              }
+                            },
+                            "id": 2010,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "sender",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "355:10:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address_payable",
+                              "typeString": "address payable"
+                            }
+                          ],
+                          "id": 2008,
+                          "name": "isEscrower",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2030,
+                          "src": "344:10:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (address) view returns (bool)"
+                          }
+                        },
+                        "id": 2011,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "344:22:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "457363726f776572526f6c653a2063616c6c657220646f6573206e6f7420686176652074686520457363726f7720726f6c65",
+                        "id": 2012,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "368:52:17",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_14c4e9e02bfab95bce818819eb6d1c221a78563c09880e1ee8b2109542d66834",
+                          "typeString": "literal_string \"EscrowerRole: caller does not have the Escrow role\""
+                        },
+                        "value": "EscrowerRole: caller does not have the Escrow role"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_14c4e9e02bfab95bce818819eb6d1c221a78563c09880e1ee8b2109542d66834",
+                          "typeString": "literal_string \"EscrowerRole: caller does not have the Escrow role\""
+                        }
+                      ],
+                      "id": 2007,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3373,
+                        3374
+                      ],
+                      "referencedDeclaration": 3374,
+                      "src": "336:7:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2013,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "336:85:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2014,
+                  "nodeType": "ExpressionStatement",
+                  "src": "336:85:17"
+                },
+                {
+                  "id": 2015,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "431:1:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2017,
+            "name": "onlyEscrower",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 2006,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "323:2:17"
+            },
+            "src": "302:137:17",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2029,
+              "nodeType": "Block",
+              "src": "509:47:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2026,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2019,
+                        "src": "541:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2024,
+                        "name": "_escrowers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2005,
+                        "src": "526:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Role_$2477_storage",
+                          "typeString": "struct Roles.Role storage ref"
+                        }
+                      },
+                      "id": 2025,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "has",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2550,
+                      "src": "526:14:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2477_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2477_storage_ptr_$",
+                        "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
+                      }
+                    },
+                    "id": 2027,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "526:23:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 2023,
+                  "id": 2028,
+                  "nodeType": "Return",
+                  "src": "519:30:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2030,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2020,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2019,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2030,
+                  "src": "465:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2018,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "465:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "464:17:17"
+            },
+            "returnParameters": {
+              "id": 2023,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2022,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2030,
+                  "src": "503:4:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 2021,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "503:4:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "502:6:17"
+            },
+            "scope": 2099,
+            "src": "445:111:17",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2047,
+              "nodeType": "Block",
+              "src": "610:89:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2038,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2032,
+                        "src": "635:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2035,
+                        "name": "_escrowers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2005,
+                        "src": "620:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Role_$2477_storage",
+                          "typeString": "struct Roles.Role storage ref"
+                        }
+                      },
+                      "id": 2037,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "add",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2502,
+                      "src": "620:14:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2477_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2477_storage_ptr_$",
+                        "typeString": "function (struct Roles.Role storage pointer,address)"
+                      }
+                    },
+                    "id": 2039,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "620:23:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2040,
+                  "nodeType": "ExpressionStatement",
+                  "src": "620:23:17"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2042,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2032,
+                        "src": "672:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2043,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3370,
+                          "src": "681:3:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 2044,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "681:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 2041,
+                      "name": "EscrowerAdded",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1997,
+                      "src": "658:13:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 2045,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "658:34:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2046,
+                  "nodeType": "EmitStatement",
+                  "src": "653:39:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2048,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_addEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2033,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2032,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2048,
+                  "src": "584:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2031,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "584:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "583:17:17"
+            },
+            "returnParameters": {
+              "id": 2034,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "610:0:17"
+            },
+            "scope": 2099,
+            "src": "562:137:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2065,
+              "nodeType": "Block",
+              "src": "756:94:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2056,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2050,
+                        "src": "784:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2053,
+                        "name": "_escrowers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2005,
+                        "src": "766:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Role_$2477_storage",
+                          "typeString": "struct Roles.Role storage ref"
+                        }
+                      },
+                      "id": 2055,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "remove",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2526,
+                      "src": "766:17:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2477_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2477_storage_ptr_$",
+                        "typeString": "function (struct Roles.Role storage pointer,address)"
+                      }
+                    },
+                    "id": 2057,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "766:26:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2058,
+                  "nodeType": "ExpressionStatement",
+                  "src": "766:26:17"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2060,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2050,
+                        "src": "823:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2061,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3370,
+                          "src": "832:3:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 2062,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "832:10:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      ],
+                      "id": 2059,
+                      "name": "EscrowerRemoved",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2003,
+                      "src": "807:15:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address)"
+                      }
+                    },
+                    "id": 2063,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "807:36:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2064,
+                  "nodeType": "EmitStatement",
+                  "src": "802:41:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2066,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_removeEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2051,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2050,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2066,
+                  "src": "730:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2049,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "730:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "729:17:17"
+            },
+            "returnParameters": {
+              "id": 2052,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "756:0:17"
+            },
+            "scope": 2099,
+            "src": "705:145:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2077,
+              "nodeType": "Block",
+              "src": "911:38:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2074,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2068,
+                        "src": "934:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 2073,
+                      "name": "_addEscrower",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2048,
+                      "src": "921:12:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 2075,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "921:21:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2076,
+                  "nodeType": "ExpressionStatement",
+                  "src": "921:21:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2078,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 2071,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2070,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1220,
+                  "src": "901:9:17",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "901:9:17"
+              }
+            ],
+            "name": "addEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2068,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2078,
+                  "src": "877:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2067,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "877:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "876:17:17"
+            },
+            "returnParameters": {
+              "id": 2072,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "911:0:17"
+            },
+            "scope": 2099,
+            "src": "856:93:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2097,
+              "nodeType": "Block",
+              "src": "1013:131:17",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 2089,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 2086,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3370,
+                            "src": "1031:3:17",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 2087,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1031:10:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 2088,
+                          "name": "account",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2080,
+                          "src": "1045:7:17",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1031:21:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "457363726f776572732063616e6e6f742072656d6f7665207468656d73656c76657320617320457363726f776572",
+                        "id": 2090,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1054:48:17",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_be6ff7c5c1aaa42716cde4a347fe68983bc0846c6651ac33f14e4b910eaaac8c",
+                          "typeString": "literal_string \"Escrowers cannot remove themselves as Escrower\""
+                        },
+                        "value": "Escrowers cannot remove themselves as Escrower"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_be6ff7c5c1aaa42716cde4a347fe68983bc0846c6651ac33f14e4b910eaaac8c",
+                          "typeString": "literal_string \"Escrowers cannot remove themselves as Escrower\""
+                        }
+                      ],
+                      "id": 2085,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3373,
+                        3374
+                      ],
+                      "referencedDeclaration": 3374,
+                      "src": "1023:7:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 2091,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1023:80:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2092,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1023:80:17"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2094,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2080,
+                        "src": "1129:7:17",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 2093,
+                      "name": "_removeEscrower",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2066,
+                      "src": "1113:15:17",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 2095,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1113:24:17",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2096,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1113:24:17"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 2098,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 2083,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 2082,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1220,
+                  "src": "1003:9:17",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1003:9:17"
+              }
+            ],
+            "name": "removeEscrower",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2081,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2080,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2098,
+                  "src": "979:15:17",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2079,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "979:7:17",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "978:17:17"
+            },
+            "returnParameters": {
+              "id": 2084,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1013:0:17"
+            },
+            "scope": 2099,
+            "src": "955:189:17",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2100,
+        "src": "59:1088:17"
+      }
+    ],
+    "src": "0:1147:17"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-07T21:08:15.049Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,13 +1,14 @@
 pragma solidity 0.5.16;
 
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
+import './EscrowerRole.sol';
 
 /**
 Keeps track of transfers that have been requested and locked up in escrow.
 An administrator is required to approve/reject transfer proposals.
 A user can cancel a previously requested transfer that is locked in escrow.
  */
-contract Escrowable is ERC20 {
+contract Escrowable is ERC20, EscrowerRole {
 
     // Event emitted when a proposal is created/updated
     event TransferProposalUpdated(address indexed updatedBy, uint requestId, ProposalState state);
@@ -161,5 +162,5 @@ contract Escrowable is ERC20 {
         to = request.to;
         value = request.value;
         state = request.state;
-    } 
+    }
 }

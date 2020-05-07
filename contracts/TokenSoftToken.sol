@@ -4,22 +4,13 @@ import "./capabilities/Proxiable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "./ERC1404.sol";
 import "./roles/OwnerRole.sol";
-import "./roles/AdminRole.sol";
 import "./capabilities/Whitelistable.sol";
 import "./capabilities/Mintable.sol";
+import "./capabilities/Burnable.sol";
 import "./capabilities/Revocable.sol";
 import "./capabilities/Pausable.sol";
 
-contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRole, Whitelistable, Mintable, Revocable, Pausable {
-
-    // Token Details
-    string constant TOKEN_NAME = "TokenSoft Token";
-    string constant TOKEN_SYMBOL = "SOFT";
-    uint8 constant TOKEN_DECIMALS = 18;
-
-    // Token supply - 50 Billion Tokens, with 18 decimal precision
-    uint256 constant BILLION = 1000000000;
-    uint256 constant TOKEN_SUPPLY = 50 * BILLION * (10 ** uint256(TOKEN_DECIMALS));
+contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whitelistable, Mintable, Burnable, Revocable, Pausable {
 
     // ERC1404 Error codes and messages
     uint8 public constant SUCCESS_CODE = 0;
@@ -35,13 +26,14 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRo
     Constructor for the token to set readable details and mint all tokens
     to the specified owner.
      */
-    function initialize (address owner)
+    function initialize (address owner, string memory name, string memory symbol, uint8 decimals, uint256 initialSupply, bool whitelistEnabled)
         public
         initializer
     {
-        ERC20Detailed.initialize(TOKEN_NAME, TOKEN_SYMBOL, TOKEN_DECIMALS);
-        Mintable._mint(msg.sender, owner, TOKEN_SUPPLY);
-        _addOwner(owner);
+        ERC20Detailed.initialize(name, symbol, decimals);
+        Mintable._mint(msg.sender, owner, initialSupply);
+        OwnerRole._addOwner(owner);
+        Whitelistable._setWhitelistEnabled(whitelistEnabled);
     }
 
     /**
@@ -65,13 +57,8 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRo
             return FAILURE_PAUSED;
         }
 
-        // Confirm that that destination address is either an Owner, Admin, or whitelisted
-        if(!isValidAddress(to)) {
-            return FAILURE_NON_WHITELIST;
-        }
-
-        // If an owner or an admin is transferring, then ignore reistrictions
-        if(isOwner(from) || isAdmin(from)) {
+        // If an owner transferring, then ignore reistrictions
+        if(OwnerRole.isOwner(from)) {
             return SUCCESS_CODE;
         }
 
@@ -118,64 +105,6 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, AdminRo
         uint8 restrictionCode = detectTransferRestriction(from, to, value);
         require(restrictionCode == SUCCESS_CODE, messageForTransferRestriction(restrictionCode));
         _;
-    }
-
-    /**
-    Validate that address is one of Owner, Admin, or Whitelisted
-     */
-    function isValidAddress(address _address) public view returns (bool) {
-         return isOwner(_address) || isAdmin(_address) || addressWhitelists[_address] != 0;
-    }
-
-    /**
-     * @dev Called by an Owner to pause, triggers stopped state.
-     */
-    function pause() public onlyOwner whenNotPaused {
-        Pausable._pause();
-    }
-
-    /**
-     * @dev Called by an Owner to unpause, returns to normal state.
-     */
-    function unpause() public onlyOwner whenPaused {
-        Pausable._unpause();
-    }
-
-    /**
-    Allow Owners to mint tokens to valid addresses
-    */
-    function mint(address account, uint256 amount) public onlyOwner returns (bool) {
-        require(isValidAddress(account), "Can only mint to a valid address");
-        return Mintable._mint(msg.sender, account, amount);
-    }
-
-
-    /**
-    Allow Admins to revoke tokens from any address
-     */
-    function revoke(address from, uint256 amount) public onlyAdmin returns (bool) {
-        return Revocable._revoke(from, amount);
-    }
-
-    /**
-    Public function that allows admins to remove an address from a whitelist
-     */
-    function addToWhitelist(address addressToAdd, uint8 whitelist) public onlyAdmin {
-        Whitelistable._addToWhitelist(addressToAdd, whitelist);
-    }
-
-    /**
-    Public function that allows admins to remove an address from a whitelist
-     */
-    function removeFromWhitelist(address addressToRemove) public onlyAdmin {
-        Whitelistable._removeFromWhitelist(addressToRemove);
-    }
-
-    /**
-    Public function that allows admins to update outbound whitelists
-     */
-    function updateOutboundWhitelistEnabled(uint8 sourceWhitelist, uint8 destinationWhitelist, bool newEnabledValue) public onlyAdmin {
-        Whitelistable._updateOutboundWhitelistEnabled(sourceWhitelist, destinationWhitelist, newEnabledValue);
     }
 
     /**

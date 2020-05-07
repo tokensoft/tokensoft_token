@@ -1,11 +1,16 @@
 pragma solidity 0.5.16;
 
+import "../roles/WhitelisterRole.sol";
+
 /**
 Keeps track of whitelists and can check if sender and reciever are configured to allow a transfer.
 Only administrators can update the whitelists.
 Any address can only be a member of one whitelist at a time.
  */
-contract Whitelistable {
+contract Whitelistable is WhitelisterRole {
+    // Track whether whitelisting is enabled
+    bool public isWhitelistEnabled;
+
     // Zero is reserved for indicating it is not on a whitelist
     uint8 constant NO_WHITELIST = 0;
 
@@ -22,6 +27,12 @@ contract Whitelistable {
     event AddressRemovedFromWhitelist(address indexed removedAddress, uint8 indexed whitelist, address indexed removedBy);
     event OutboundWhitelistUpdated(
         address indexed updatedBy, uint8 indexed sourceWhitelist, uint8 indexed destinationWhitelist, bool from, bool to);
+    event WhitelistEnabledUpdated(address indexed updatedBy, bool indexed enabled);
+
+    function _setWhitelistEnabled(bool enabled) internal {
+        isWhitelistEnabled = enabled;
+        emit WhitelistEnabledUpdated(msg.sender, enabled);
+    }
 
     /**
     Sets an address's white list ID.  Only administrators should be allowed to update this.
@@ -81,6 +92,11 @@ contract Whitelistable {
     The source whitelist must be enabled to send to the whitelist where the receive exists.
      */
     function checkWhitelistAllowed(address sender, address receiver) public view returns (bool) {
+        // If whitelist enforcement is not enabled, then allow all
+        if(!isWhitelistEnabled){
+            return true;
+        }
+
         // First get each address white list
         uint8 senderWhiteList = addressWhitelists[sender];
         uint8 receiverWhiteList = addressWhitelists[receiver];
@@ -92,5 +108,33 @@ contract Whitelistable {
 
         // Determine if the sending whitelist is allowed to send to the destination whitelist
         return outboundWhitelistsEnabled[senderWhiteList][receiverWhiteList];
+    }
+
+    /**
+     * Enable or disable the whitelist enforcement
+     */
+    function setWhitelistEnabled(bool enabled) public onlyOwner {
+        _setWhitelistEnabled(enabled);
+    }
+
+    /**
+    Public function that allows admins to remove an address from a whitelist
+     */
+    function addToWhitelist(address addressToAdd, uint8 whitelist) public onlyWhitelister {
+        _addToWhitelist(addressToAdd, whitelist);
+    }
+
+    /**
+    Public function that allows admins to remove an address from a whitelist
+     */
+    function removeFromWhitelist(address addressToRemove) public onlyWhitelister {
+        _removeFromWhitelist(addressToRemove);
+    }
+
+    /**
+    Public function that allows admins to update outbound whitelists
+     */
+    function updateOutboundWhitelistEnabled(uint8 sourceWhitelist, uint8 destinationWhitelist, bool newEnabledValue) public onlyWhitelister {
+        _updateOutboundWhitelistEnabled(sourceWhitelist, destinationWhitelist, newEnabledValue);
     }
 }

@@ -4,6 +4,8 @@ const BigNumber = require('bignumber.js')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 
+const Constants = require('./Constants')
+
 contract('TokenSoftToken', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
 
@@ -11,21 +13,28 @@ contract('TokenSoftToken', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true
+      );
   })
   it('should deploy', async () => {
     assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
   })
 
   it('should have correct details set', async () => {
-    assert.equal(await tokenInstance.name.call(), 'TokenSoft Token', 'Name should be set correctly')
-    assert.equal(await tokenInstance.symbol.call(), 'SOFT', 'Symbol should be set correctly')
-    assert.equal(await tokenInstance.decimals.call(), 18, 'Decimals should be set correctly')
+    assert.equal(await tokenInstance.name.call(), Constants.name, 'Name should be set correctly')
+    assert.equal(await tokenInstance.symbol.call(), Constants.symbol, 'Symbol should be set correctly')
+    assert.equal(await tokenInstance.decimals.call(), Constants.decimals, 'Decimals should be set correctly')
   })
 
   it('should mint tokens to owner', async () => {
     // Expected amount is decimals of (10^18) time supply of 50 billion
-    const expectedSupply = new BigNumber(10).pow(18).multipliedBy(50).multipliedBy(1000000000)
+    const expectedSupply = Constants.supply
     const creatorBalance = new BigNumber(await tokenInstance.balanceOf(accounts[0]))
 
     // Verify the creator got all the coins
@@ -44,9 +53,16 @@ contract('TokenSoftToken', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[1]);
+    await tokenInstance.initialize(
+      accounts[1],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true
+    );
     // Expected amount is decimals of (10^18) time supply of 50 billion
-    const expectedSupply = new BigNumber(10).pow(18).multipliedBy(50).multipliedBy(1000000000)
+    const expectedSupply = Constants.supply
     const creatorBalance = new BigNumber(await tokenInstance.balanceOf(accounts[1]))
 
     // Verify the creator got all the coins

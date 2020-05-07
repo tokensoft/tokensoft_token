@@ -2,6 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
+const Constants = require('./Constants')
 
 const NO_WHITELIST = 0
 
@@ -12,12 +13,18 @@ contract('Whitelistable', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('should allow adding and removing an address to a whitelist', async () => {
     // First allow acct 1 be an administrator
-    await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
+    await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
 
     // Check acct 2 whitelist should default to NONE
     const existingWhitelist = await tokenInstance.addressWhitelists.call(accounts[2])
@@ -50,7 +57,7 @@ contract('Whitelistable', (accounts) => {
     await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
 
     // Now allow acct 4 be an administrator
-    await tokenInstance.addAdmin(accounts[4], { from: accounts[0] })
+    await tokenInstance.addWhitelister(accounts[4], { from: accounts[0] })
 
     // Adding as admin should work
     await tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] })
@@ -62,7 +69,7 @@ contract('Whitelistable', (accounts) => {
     await tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[4] })
 
     // Now remove acct 4 from the admin list
-    await tokenInstance.removeAdmin(accounts[4], { from: accounts[0] })
+    await tokenInstance.removeWhitelister(accounts[4], { from: accounts[0] })
 
     // It should fail again now that acct 4 is non-admin
     await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
@@ -70,7 +77,7 @@ contract('Whitelistable', (accounts) => {
 
   it('should validate if addresses are not on a whitelist', async () => {
     // First allow acct 1 be an administrator
-    await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
+    await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
 
     // Allow whitelist 10 to send to self
     await tokenInstance.updateOutboundWhitelistEnabled(10, 10, true, { from: accounts[1] })
@@ -125,7 +132,7 @@ contract('Whitelistable', (accounts) => {
 
   it('should trigger events', async () => {
     // First allow acct 1 to be an administrator
-    await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
+    await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
 
     // Check for initial add
     let ret = await tokenInstance.addToWhitelist(accounts[3], 20, { from: accounts[1] })
@@ -143,7 +150,7 @@ contract('Whitelistable', (accounts) => {
 
   it('should validate outbound whitelist enabled flag', async () => {
     // Allow acct 1 to be an admin
-    await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
+    await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
 
     // Default should be disabled to self
     let existingOutboundEnabled = await tokenInstance.outboundWhitelistsEnabled.call(4, 4)
@@ -187,7 +194,7 @@ contract('Whitelistable', (accounts) => {
   })
 
   it('should trigger events for whitelist enable/disable', async () => {
-    await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
+    await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
 
     // Verify logs for enabling outbound
     let ret = await tokenInstance.updateOutboundWhitelistEnabled(90, 100, true, { from: accounts[1] })
@@ -204,7 +211,7 @@ contract('Whitelistable', (accounts) => {
 
   it('should not allow adding an address to invalid whitelist ID (0)', async () => {
     // First allow acct 1 be an administrator
-    await tokenInstance.addAdmin(accounts[1], { from: accounts[0] })
+    await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
 
     // Adding acct 2 to whitelist 0 should get rejected
     await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], NO_WHITELIST, { from: accounts[1] }))

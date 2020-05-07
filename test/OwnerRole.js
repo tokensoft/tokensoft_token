@@ -2,6 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
+const Constants = require('./Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -13,7 +14,13 @@ contract('OwnerRole', (accounts) => {
     tokenDeploy = await TokenSoftToken.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
     tokenInstance = await TokenSoftToken.at(proxyInstance.address)
-    await tokenInstance.initialize(accounts[0]);
+    await tokenInstance.initialize(
+      accounts[0],
+      Constants.name,
+      Constants.symbol,
+      Constants.decimals,
+      Constants.supply,
+      true);
   })
 
   it('should allow an owner to add/remove owners', async () => {
@@ -36,7 +43,7 @@ contract('OwnerRole', (accounts) => {
     const whitelistedAccount = accounts[2]
     const nonWhitelistedAccount = accounts[3]
 
-    await tokenInstance.addAdmin(adminAccount, { from: accounts[0] })
+    await tokenInstance.addWhitelister(adminAccount, { from: accounts[0] })
     await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: accounts[1] })
 
     await expectRevert.unspecified(tokenInstance.addOwner(accounts[4], { from: adminAccount }))
