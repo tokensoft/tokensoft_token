@@ -11,35 +11,38 @@ The following features will be determined at deploy time, locking them in place.
  - Symbol
  - Decimals
 
-The following feature can be increased via minting after deployment.
+The following feature can be increased via minting and burning after deployment.
 
  - Total Supply
 
 On deployment, all tokens will be transferred to the owner account passed in during deployment.
 
-There will be **NO** functionality for burning tokens after the initial creation of the contract, but minting is supported.
+## Restrictions
 
-## Users
-All accounts need to be one of 2 roles; Owner, Admin or have a whitelist other than 0, in order to be able to interact with the contract
+If a token transfer is restricted, the code will follow the ERC1404 spec and revert the transaction. Any wallets interacting with an ERC1404 token contract should first query the contract to determine if the transfer is allowed, and if not, show the appropriate error to the user (including the reason code/text from the contract).
 
- - Owner: Owners can add/remove other owners or admins, mint tokens, and transfer to any other valid account
- - Admins: Admins can revoke tokens, update user whitelists, and update whitelist configurations, and transfer to any other valid account
- - Whitelist: Whitelist users can transfer tokens to other valid accounts subject to whitelist restrictions.
+## Roles
+All accounts need to be granted a role by an admin in order to be able to interact with the contract's administrative functions:
+
+ - Owner: Onwers are responsible for managing permissions of all roles.
+ - BurnerRole: These accounts can burn tokens from accounts.
+ - MinterRole: These accounts can mint new tokens to other accounts.
+ - PauserRole: These accounts can halt all transfers on the contract.
+ - RevokerRole: These accounts can revoke tokens from other accounts into their own.
+ - WhitelisterRole: These accounts can configure whitelist rules and add/remove accounts from whitelists.
 
 ## Owners
 
-Owner accounts can add and remove other account addresses to both the list of Owners and Admins. Owners cannot remove themselves from being an Owner.  Accounts in the Owner list can also mint new tokens to other addresses and upgrade the contract logic including transfer restrictions.
+Owner accounts can add and remove other account addresses to all Roles, including Owners. Owners cannot remove themselves from being an Owner. 
 
 The Owner account specified at the time of deployment will be the only Owner account by default.
-
-## Administrators
-
-Admins can add or remove accounts from any of the whitelists. They can also enable or disable transfers between whitelists.
 
 ## Whitelists
 Before tokens can be transferred to a new address, it must be validated that the source is allowed to send to that destination address and that the destination address can receive funds. If the sending client does not check this in advance and sends an invalid transfer, the transfer functionality will fail and the transaction will revert.
 
-Owner and Admin accounts will have the ability to transfer tokens to any valid address, regardless of the whitelist configuration state.
+Owner accounts will have the ability to transfer tokens to any valid address, regardless of the whitelist configuration state.
+
+An Owner can enable and disable the whitelist functionality to remove the whitelist restrictions on transfers.  The default state is set as enabled/disabled in the initialiation of the token contract.
 
 An address can only be a member of one whitelist at any point in time. If an admin adds any address to a new whitelist, it will no longer be a member of the previous whitelist it was on (if any). Adding an address to a whitelist of ID 0 will remove it from all whitelists, as whitelist ID 0 is invalid. Removing an address from the existing whitelist will set it to belong to whitelist 0. An address with whitelist 0 will be prevented from transferring or receiving tokens. Any tokens on a whitelist 0 account are frozen. All addresses belong to whitelist 0 by default.
 
@@ -62,21 +65,20 @@ By default, all whitelists will **NOT** be allowed to transfer between source an
 
 Administrators will have the ability modify a whitelist beyond the default configuration to add or remove outbound whitelists.
 
-## Restrictions
-
-If a transfer is restricted, the code will follow the ERC1404 spec and revert the transaction. Any wallets interacting with an ERC1404 token contract should first query the contract to determine if the transfer is allowed, and if not, show the appropriate error to the user (including the reason code/text from the contract).
-
 ## Pausing
 
-The owner may pause/unpause the contract. When the contract is paused all transfers will be blocked. When deployed the contract is initially unpaused.
+The Pauser accounts may pause/unpause the contract. When the contract is paused all transfers will be blocked. When deployed the contract is initially unpaused.
 
 ## Minting
-Owner accounts can mint tokens to Owner, Admin, or any whitelisted account. Minting tokens increases the total supply of tokens and the balance of the account the tokens are minted to.
+Minter accounts can mint tokens to other accounts. Minting tokens increases the total supply of tokens and the balance of the account the tokens are minted to.
+
+## Burning
+Burner accounts can burn tokens from other accounts. Burning tokens decreases the total supply of tokens and the balance of the account the tokens are burned from.
 
 ## Revoking
-Admin accounts can revoke tokens from any account. Revoking tokens has no effect on the total supply, it increases the balance of the admin revoking the tokens and decreases the balance of the account the tokens are revoked from.
+Revoker accounts can revoke tokens from any account. Revoking tokens has no effect on the total supply, it increases the balance of the account revoking the tokens and decreases the balance of the account the tokens are revoked from.
 
-## Upgrading
+## Upgrading via Proxy
 
 The contract is upgradeable and allows for Owners to update the contract logic while maintaining contract state. Contracts can be upgraded to have more or less restrictive transfer logic or new transfer paradigms including escrow. Upgrading can be a **potentially destructive** operation if the new contract is incompatible with the existing contract due to broken upgrade methods or memory layout issues.
 

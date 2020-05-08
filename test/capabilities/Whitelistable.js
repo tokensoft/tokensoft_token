@@ -2,7 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
-const Constants = require('./Constants')
+const Constants = require('../Constants')
 
 const NO_WHITELIST = 0
 
@@ -54,7 +54,9 @@ contract('Whitelistable', (accounts) => {
 
   it('should only allow admins adding or removing on whitelists', async () => {
     // Non admin should fail adding to white list
-    await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
+    await expectRevert(
+      tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }),
+      "WhitelisterRole: caller does not have the Whitelister role")
 
     // Now allow acct 4 be an administrator
     await tokenInstance.addWhitelister(accounts[4], { from: accounts[0] })
@@ -63,7 +65,9 @@ contract('Whitelistable', (accounts) => {
     await tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] })
 
     // Removing as non-admin should fail
-    await expectRevert.unspecified(tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[8] }))
+    await expectRevert(
+      tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[8] }),
+      "WhitelisterRole: caller does not have the Whitelister role")
 
     // Removing as admin should work
     await tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[4] })
@@ -72,7 +76,9 @@ contract('Whitelistable', (accounts) => {
     await tokenInstance.removeWhitelister(accounts[4], { from: accounts[0] })
 
     // It should fail again now that acct 4 is non-admin
-    await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }))
+    await expectRevert(
+      tokenInstance.addToWhitelist(accounts[2], 10, { from: accounts[4] }),
+      "WhitelisterRole: caller does not have the Whitelister role")
   })
 
   it('should validate if addresses are not on a whitelist', async () => {
@@ -214,6 +220,47 @@ contract('Whitelistable', (accounts) => {
     await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
 
     // Adding acct 2 to whitelist 0 should get rejected
-    await expectRevert.unspecified(tokenInstance.addToWhitelist(accounts[2], NO_WHITELIST, { from: accounts[1] }))
+    await expectRevert(
+      tokenInstance.addToWhitelist(accounts[2], NO_WHITELIST, { from: accounts[1] }), 
+      "Invalid whitelist ID supplied"
+    )
+  })
+
+  it('should allow disabling and re-enabling the whitelist logic', async () => {
+    // First allow acct 1 be whitelister
+    await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
+
+    // Send some tokens to account 2
+    await tokenInstance.transfer(accounts[2], 1000)
+
+    // Verify accounts can't transfer
+    await expectRevert(
+      tokenInstance.transfer(accounts[3], 100, { from: accounts[2] }), 
+      "The transfer was restricted due to white list configuration."
+    )
+
+    // Turn it off - and verify event
+    let ret = await tokenInstance.setWhitelistEnabled(false)
+    expectEvent.inLogs(ret.logs, 'WhitelistEnabledUpdated', { updatedBy: accounts[0], enabled: false })
+
+    // Validate it works
+    await tokenInstance.transfer(accounts[3], 100, { from: accounts[2] })
+
+    // Turn it on - and verify event
+    ret = await tokenInstance.setWhitelistEnabled(true)
+    expectEvent.inLogs(ret.logs, 'WhitelistEnabledUpdated', { updatedBy: accounts[0], enabled: true })
+
+    // Verify accounts can't transfer
+    await expectRevert(
+      tokenInstance.transfer(accounts[3], 100, { from: accounts[2] }), 
+      "The transfer was restricted due to white list configuration."
+    )
+  })
+
+  it('should not allow non-owner disabling the whitelist logic', async () => {
+    await expectRevert(
+      tokenInstance.setWhitelistEnabled(false, { from: accounts[2] }), 
+        "OwnerRole: caller does not have the Owner role"
+    )
   })
 })

@@ -63,7 +63,7 @@ contract Pausable is PauserRole {
         emit Unpaused(msg.sender);
     }
 
-        /**
+    /**
      * @dev Called by an Owner to pause, triggers stopped state.
      */
     function pause() public onlyPauser whenNotPaused {

@@ -4,6 +4,8 @@ const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
 const Constants = require('./Constants')
 
+const invalidWhitelistMsg = "The transfer was restricted due to white list configuration." 
+
 contract('Transfers', (accounts) => {
   const ownerAccount = accounts[0]
   const adminAccount = accounts[1]
@@ -29,8 +31,8 @@ contract('Transfers', (accounts) => {
 
     // Sending to non whitelisted account should fail regardless of sender (except owner)
     await tokenInstance.transfer(accounts[7], 100, { from: ownerAccount })
-    await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: adminAccount }))
-    await expectRevert.unspecified(tokenInstance.transfer(accounts[7], 100, { from: whitelistedAccount }))
+    await expectRevert(tokenInstance.transfer(accounts[7], 100, { from: adminAccount }), invalidWhitelistMsg)
+    await expectRevert(tokenInstance.transfer(accounts[7], 100, { from: whitelistedAccount }), invalidWhitelistMsg)
   })
 
   it('Initial transfers should fail but succeed after white listing', async () => {
@@ -42,22 +44,22 @@ contract('Transfers', (accounts) => {
     await tokenInstance.transfer(accounts[5], 10000, { from: ownerAccount })
 
     // Try to send to account 2
-    await expectRevert.unspecified(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
+    await expectRevert(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }), invalidWhitelistMsg)
 
     // Approve a transfer from account 5 and then try to spend it from account 2
     await tokenInstance.approve(accounts[2], 100, { from: accounts[5] })
-    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
+    await expectRevert(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }), invalidWhitelistMsg)
 
     // Try to send to account 2 should still fail
-    await expectRevert.unspecified(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
-    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
+    await expectRevert(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }), invalidWhitelistMsg)
+    await expectRevert(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }), invalidWhitelistMsg)
 
     // Move address 2 to whitelist
     await tokenInstance.addToWhitelist(accounts[2], 20, { from: accounts[1] })
 
     // Try to send to account 2 should still fail
-    await expectRevert.unspecified(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }))
-    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }))
+    await expectRevert(tokenInstance.transfer(accounts[2], 100, { from: accounts[5] }), invalidWhitelistMsg)
+    await expectRevert(tokenInstance.transferFrom(accounts[5], accounts[2], 100, { from: accounts[2] }), invalidWhitelistMsg)
 
     // Now allow whitelist 20 to send to itself
     await tokenInstance.updateOutboundWhitelistEnabled(20, 20, true, { from: accounts[1] })
@@ -74,10 +76,10 @@ contract('Transfers', (accounts) => {
     await tokenInstance.removeFromWhitelist(accounts[2], { from: accounts[1] })
 
     // Should fail trying to send back to account 5 from 2
-    await expectRevert.unspecified(tokenInstance.transfer(accounts[5], 100, { from: accounts[2] }))
+    await expectRevert(tokenInstance.transfer(accounts[5], 100, { from: accounts[2] }), invalidWhitelistMsg)
 
     // Should fail with approved transfer from going back to account 5 from 2 using approval
     await tokenInstance.approve(accounts[5], 100, { from: accounts[2] })
-    await expectRevert.unspecified(tokenInstance.transferFrom(accounts[2], accounts[5], 100, { from: accounts[5] }))
+    await expectRevert(tokenInstance.transferFrom(accounts[2], accounts[5], 100, { from: accounts[5] }), invalidWhitelistMsg)
   })
 })

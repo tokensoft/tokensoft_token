@@ -33,7 +33,6 @@ contract MinterRole is OwnerRole {
     }
 
     function removeMinter(address account) public onlyOwner {
-        require(msg.sender != account, "Minters cannot remove themselves as owner");
         _removeMinter(account);
     }
 

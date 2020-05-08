@@ -57,7 +57,7 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whiteli
             return FAILURE_PAUSED;
         }
 
-        // If an owner transferring, then ignore reistrictions
+        // If an owner transferring, then ignore whitelist restrictions
         if(OwnerRole.isOwner(from)) {
             return SUCCESS_CODE;
         }

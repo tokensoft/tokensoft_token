@@ -32,8 +32,7 @@ contract BurnerRole is OwnerRole {
         _addBurner(account);
     }
 
-    function removeBurner(address account) public onlyOwner {
-        require(msg.sender != account, "Burners cannot remove themselves as Burner");
+    function removeBurner(address account) public onlyOwner {        
         _removeBurner(account);
     }
 

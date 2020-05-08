@@ -4,7 +4,7 @@ const TokenSoftToken = artifacts.require('TokenSoftToken')
 const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
 const TokenSoftTokenEscrowNotProxiable = artifacts.require('TokenSoftTokenEscrowNotProxiable')
 const Proxy = artifacts.require('Proxy')
-const Constants = require('./Constants')
+const Constants = require('../Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -54,8 +54,9 @@ contract('Upgradeable', (accounts) => {
 
   it('Contract cannot be upgraded by non owner', async () => {
     // update the code address to the escrow logic
-    await expectRevert.unspecified(
-      tokenInstance.updateCodeAddress(tokenEscrowDeploy.address, {from: accounts[1]})
+    await expectRevert(
+      tokenInstance.updateCodeAddress(tokenEscrowDeploy.address, {from: accounts[1]}),
+      "OwnerRole: caller does not have the Owner role"
     )
   })
 

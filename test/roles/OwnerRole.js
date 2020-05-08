@@ -2,7 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
-const Constants = require('./Constants')
+const Constants = require('../Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -24,9 +24,13 @@ contract('OwnerRole', (accounts) => {
   })
 
   it('should allow an owner to add/remove owners', async () => {
+    // Should start out as false
+    let isOwner1 = await tokenInstance.isOwner(accounts[1])
+    assert.equal(isOwner1, false, 'Account 1 should not be an owner by default')
+
     // Should have been updated
     await tokenInstance.addOwner(accounts[1], { from: accounts[0] })
-    let isOwner1 = await tokenInstance.isOwner(accounts[1])
+    isOwner1 = await tokenInstance.isOwner(accounts[1])
     assert.equal(isOwner1, true, 'Account 1 should be an owner')
 
     await tokenInstance.removeOwner(accounts[1], { from: accounts[0] })
@@ -35,24 +39,21 @@ contract('OwnerRole', (accounts) => {
   })
 
   it('should not allow an owner to remove itself', async () => {
-    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[0], { from: accounts[0] }))
+    await expectRevert(tokenInstance.removeOwner(accounts[0], { from: accounts[0] }), "Owners cannot remove themselves as owner")
   })
 
   it('should not allow a non owner to add/remove owners', async () => {
-    const adminAccount = accounts[1]
-    const whitelistedAccount = accounts[2]
-    const nonWhitelistedAccount = accounts[3]
+    // Prove it can't be added by account 3
+    await expectRevert(tokenInstance.addOwner(accounts[4], { from: accounts[3] }), "OwnerRole: caller does not have the Owner role")
+    
+    // Add it with owner
+    await tokenInstance.addOwner(accounts[4])
 
-    await tokenInstance.addWhitelister(adminAccount, { from: accounts[0] })
-    await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: accounts[1] })
+    // Prove it can't be removed by account 3
+    await expectRevert(tokenInstance.removeOwner(accounts[4], { from: accounts[3] }), "OwnerRole: caller does not have the Owner role")
 
-    await expectRevert.unspecified(tokenInstance.addOwner(accounts[4], { from: adminAccount }))
-    await expectRevert.unspecified(tokenInstance.addOwner(accounts[4], { from: whitelistedAccount }))
-    await expectRevert.unspecified(tokenInstance.addOwner(accounts[4], { from: nonWhitelistedAccount }))
-    await tokenInstance.addOwner(accounts[4], { from: accounts[0] })
-    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[4], { from: adminAccount }))
-    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[4], { from: whitelistedAccount }))
-    await expectRevert.unspecified(tokenInstance.removeOwner(accounts[4], { from: nonWhitelistedAccount }))
+    // Remove it with the owner
+    tokenInstance.removeOwner(accounts[4])
   })
 
   it('should emit events for adding owners', async () => {

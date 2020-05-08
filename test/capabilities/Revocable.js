@@ -2,7 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
-const Constants = require('./Constants')
+const Constants = require('../Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -37,10 +37,6 @@ contract('Revocable', (accounts) => {
 
     await tokenInstance.addRevoker(adminAccount)
 
-    // add account2 to admin role
-    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
-    await tokenInstance.addToWhitelist(revokeeAccount, 1, { from: adminAccount })
-
     // transfer tokens from owner account to revokee accounts
     await tokenInstance.transfer(revokeeAccount, transferAmount, { from: ownerAccount })
 
@@ -65,17 +61,13 @@ contract('Revocable', (accounts) => {
     const transferAmount = 100
     const revokeAmount = 25
 
-    // add account2 to admin role
-    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
-    await tokenInstance.addToWhitelist(revokeeAccount, 1, { from: adminAccount })
-
     // transfer tokens from owner account to revokee account
     await tokenInstance.transfer(revokeeAccount, transferAmount, { from: ownerAccount })
 
     // attempt to revoke tokens from owner, whitelisted, and non whitelisted accounts; should all fail
-    await expectRevert.unspecified(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: ownerAccount }))
-    await expectRevert.unspecified(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: whitelistedAccount }))
-    await expectRevert.unspecified(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: nonWhitelistedAccount }))
+    await expectRevert(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: ownerAccount }), "RevokerRole: caller does not have the Revoker role")
+    await expectRevert(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: whitelistedAccount }), "RevokerRole: caller does not have the Revoker role")
+    await expectRevert(tokenInstance.revoke(revokeeAccount, revokeAmount, { from: nonWhitelistedAccount }), "RevokerRole: caller does not have the Revoker role")
   })
 
   it('should emit event when tokens are revoked', async () => {
@@ -84,10 +76,6 @@ contract('Revocable', (accounts) => {
     // set up the amounts to test
     const transferAmount = 100
     const revokeAmount = '25'
-
-    // add account2 to admin role
-    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
-    await tokenInstance.addToWhitelist(revokeeAccount, 1, { from: adminAccount })
 
     // transfer tokens from owner account to revokee accounts
     await tokenInstance.transfer(revokeeAccount, transferAmount, { from: ownerAccount })

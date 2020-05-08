@@ -2,7 +2,7 @@
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
-const Constants = require('./Constants')
+const Constants = require('../Constants')
 
 /**
  * Sanity check for transferring ownership.  Most logic is fully tested in OpenZeppelin lib.
@@ -44,14 +44,10 @@ contract('Pauseable', (accounts) => {
   })
 
   it('Only owner should be able to pause contract', async () => {
-    // add admin and whitelist accounts
-    await tokenInstance.addWhitelister(adminAccount, { from: ownerAccount })
-    await tokenInstance.addToWhitelist(whitelistedAccount, 1, { from: adminAccount })
-
     // pause the contract
-    await expectRevert.unspecified(tokenInstance.pause({ from: adminAccount }))
-    await expectRevert.unspecified(tokenInstance.pause({ from: whitelistedAccount }))
-    await expectRevert.unspecified(tokenInstance.pause({ from: nonWhitelistedAccount }))
+    await expectRevert(tokenInstance.pause({ from: adminAccount }), "PauserRole: caller does not have the Pauser role")
+    await expectRevert(tokenInstance.pause({ from: whitelistedAccount }), "PauserRole: caller does not have the Pauser role")
+    await expectRevert(tokenInstance.pause({ from: nonWhitelistedAccount }), "PauserRole: caller does not have the Pauser role")
 
   })
 
@@ -76,8 +72,14 @@ contract('Pauseable', (accounts) => {
     await tokenInstance.pause({ from: ownerAccount })
 
     // transfers while paused should fail
-    await expectRevert.unspecified(tokenInstance.transfer(whitelistedAccount2, transferAmount/2, { from: whitelistedAccount }))
-    await expectRevert.unspecified(tokenInstance.transfer(whitelistedAccount, transferAmount, { from: ownerAccount }))
+    await expectRevert(
+      tokenInstance.transfer(whitelistedAccount2, transferAmount/2, { from: whitelistedAccount }),
+      "The transfer was restricted due to the contract being paused."
+    )
+    await expectRevert(
+      tokenInstance.transfer(whitelistedAccount, transferAmount, { from: ownerAccount }),
+      "The transfer was restricted due to the contract being paused."
+    )
     
   })
 
@@ -99,5 +101,23 @@ contract('Pauseable', (accounts) => {
     const { logs } =  await tokenInstance.unpause({ from: ownerAccount })
 
     expectEvent.inLogs(logs, 'Unpaused', { account: ownerAccount })
+  })
+
+  it('should not allow calls when already in the state', async () => {
+    await tokenInstance.addPauser(ownerAccount)
+
+    // pause the contract and should fail second time
+    await tokenInstance.pause({ from: ownerAccount })
+    await expectRevert(
+      tokenInstance.pause({ from: ownerAccount }),
+      "Pausable: paused"
+    )
+    
+    // pause the contract and should fail second time
+    await tokenInstance.unpause({ from: ownerAccount })
+    await expectRevert(
+      tokenInstance.unpause({ from: ownerAccount }),
+      "Pausable: not paused"
+    )
   })
 })
