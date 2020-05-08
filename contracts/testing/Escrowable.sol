@@ -93,11 +93,11 @@ contract Escrowable is ERC20, EscrowerRole {
         // Ensure the request can be approved
         require(request.state == ProposalState.Pending, "Request must be in Pending state to approve.");
 
-        // Transfer funds - function will check balances
-        ERC20._transfer(address(this), request.to, request.value);
-
         // Release the proposal
         _releaseProposal(request, requestId, ProposalState.Approved);
+
+        // Transfer funds - function will check balances
+        ERC20._transfer(address(this), request.to, request.value);
     }
 
     /**
@@ -114,11 +114,11 @@ contract Escrowable is ERC20, EscrowerRole {
         // Ensure the request can be rejected
         require(request.state == ProposalState.Pending, "Request must be in Pending state to reject.");
 
-        // Transfer funds back to source - function will check balances
-        ERC20._transfer(address(this), request.from, request.value);
-
         // Release the proposal
         _releaseProposal(request, requestId, ProposalState.Rejected);
+
+        // Transfer funds back to source - function will check balances
+        ERC20._transfer(address(this), request.from, request.value);
     }
 
     /**
@@ -137,11 +137,11 @@ contract Escrowable is ERC20, EscrowerRole {
         // Ensure the message sender it the address where funds are moving from
         require(msg.sender == request.createdBy, "Only the creator of a request can cancel it");
 
-        // Transfer funds back to source - function will check balances
-        ERC20._transfer(address(this), request.from, request.value);
-
          // Release the proposal
         _releaseProposal(request, requestId, ProposalState.Canceled);
+
+        // Transfer funds back to source - function will check balances
+        ERC20._transfer(address(this), request.from, request.value);
     }
 
     function getTransferProposal(uint requestId)
