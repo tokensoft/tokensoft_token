@@ -115,4 +115,15 @@ contract Exchange {
         return (transfer(seller_address, buyer_address, seller_amount, seller_token) &&
         transfer(buyer_address, seller_address, buyer_amount, buyer_token));
     }
+
+    /** Transfers tokens from first party to second party.
+      * Prior to a transfer being done by the contract, ensure that
+      * tokenVal.approve(this, amount, {from : address}) has been called
+      * throws if the transferFrom of the token returns false
+      * returns true if, the transfer went through
+      */
+    function transfer(address from, address to, uint amount, address token) private returns (bool) {
+        require(ERC20(token).transferFrom(from, to, amount));
+        return true;
+    }
 }
