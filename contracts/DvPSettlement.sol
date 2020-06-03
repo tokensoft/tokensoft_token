@@ -38,8 +38,15 @@ contract DvPSettlement {
 
     /** Settle an off-chain Trade between a Buyer and Seller, approved by the broker_dealer
      *
-     * Buyer and Seller commit to the Order they would like to settle on Order creation/update. Once an Order
-     * is matched by the Broker Dealer
+     * Buyer and Seller create buy and sell Orders offchain. The Broker Dealer reviews the Orders, matches
+     * a pair of them to create a Trade, generates a nonce (to prevent re-entrancy and replay attacks),
+     * and then gets a cryptographic signature from each of the Buyer and Seller in which they commit to the
+     * terms of the Trade. The Broker Dealer does a final review of the Trade and finally calls `settle()`
+     * with the appropriate arguments.
+     *
+     * This call assumes that `seller_address` and `buyer_address` are holders of an ERC20 token, and that
+     * prior to the call to `settle()` they have each called `ERC20.approve()` for the at least the amounts
+     * they want settled in the Trade. Failure to do so will cause the call to `settle()` to fail.
      */
     function settle(address seller_address, uint seller_amount, address seller_token, address buyer_address,
         uint buyer_amount, address buyer_token, uint128 nonce, uint8 buyer_v, bytes32 buyer_r, bytes32 buyer_s,
