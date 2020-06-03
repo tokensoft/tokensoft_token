@@ -110,19 +110,22 @@ contract DvPSettlement {
       */
     function trade(address seller_address, uint seller_amount, address seller_token,
         address buyer_address, uint buyer_amount, address buyer_token) private returns (bool) {
-        return (transfer(seller_address, buyer_address, seller_amount, seller_token) &&
+        // send tokens from buyer to seller, reverting if anything goes wrong
+        transfer(seller_address, buyer_address, seller_amount, seller_token);
+
+        // send tokens from seller to buyer, reverting if anything goes wrong
         transfer(buyer_address, seller_address, buyer_amount, buyer_token));
+
+        return true;
     }
 
     /** Transfers tokens from first party to second party.
       * Prior to a transfer being done by the contract, ensure that
       * tokenVal.approve(this, amount, {from : address}) has been called
       * throws if the transferFrom of the token returns false
-      * returns true if, the transfer went through
       */
-    function transfer(address from, address to, uint amount, address token) private returns (bool) {
+    function transfer(address from, address to, uint amount, address token) private {
         require(ERC20(token).transferFrom(from, to, amount), "transfer failed");
-        return true;
     }
 
     /**
