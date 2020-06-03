@@ -32,14 +32,18 @@ contract DvPSettlement {
      * 1 -> “The seller_address and buyer_address must be different”
      * 2 -> “This order has already been filled”
      * 3 -> “The call to settle() must be made by the broker_dealer”
-     * 4 -> "No ether is required, this contract always settles two ERC20 tokens"
      */
     event Failed(uint code, address seller_address, uint seller_amount, address indexed seller_token,
         address buyer_address, uint buyer_amount, address indexed buyer_token, uint128 nonce);
 
+    /** Settle an off-chain Trade between a Buyer and Seller, approved by the broker_dealer
+     *
+     * Buyer and Seller commit to the Order they would like to settle on Order creation/update. Once an Order
+     * is matched by the Broker Dealer
+     */
     function settle(address seller_address, uint seller_amount, address seller_token, address buyer_address,
         uint buyer_amount, address buyer_token, uint128 nonce, uint8 buyer_v, bytes32 buyer_r, bytes32 buyer_s,
-        uint8 seller_v, bytes32 seller_r, bytes32 seller_s) external payable {
+        uint8 seller_v, bytes32 seller_r, bytes32 seller_s) external {
 
         // no making a trade with yourself
         if (seller_address == buyer_address) {
@@ -59,20 +63,13 @@ contract DvPSettlement {
             return;
         }
 
-        if (msg.value != 0) {
-            emit_failed(4, seller_address, seller_amount, seller_token, buyer_address, buyer_amount, buyer_token, nonce);
-            return;
-        }
-
-        // First verify that the seller has agreed to this Trade by verifying their signature against the Trade data
-        bytes32 hash = verify(seller_address, seller_address, seller_amount, seller_token,
-            buyer_address, buyer_amount, buyer_token,
-            nonce, buyer_v, buyer_r, buyer_s);
-
-        // Now do the same but for the buyer
-        hash = verify(buyer_address, seller_address, seller_amount, seller_token,
-            buyer_address, buyer_amount, buyer_token,
+        // First verify that the Seller has agreed to this Trade by verifying their signature against the Order data
+        verify(seller_address, seller_amount, seller_token, buyer_amount, buyer_token,
             nonce, seller_v, seller_r, seller_s);
+
+        // Now do the same but for the Buyer
+        verify(buyer_address, buyer_amount, buyer_token, seller_amount, seller_token,
+            nonce, buyer_v, buyer_r, buyer_s);
 
         // Mark order as filled to prevent reentrancy.
         fills[nonce] = true;
@@ -87,20 +84,38 @@ contract DvPSettlement {
         emit_settled(seller_address, seller_amount, seller_token, buyer_address, buyer_amount, buyer_token, nonce);
     }
 
-    /** Verifies that either the buyer or seller have agreed to this Trade*/
-    function verify(address address_to_verify, address seller_address, uint seller_amount, address seller_token,
-                      address buyer_address, uint buyer_amount, address buyer_token,
-                      uint256 nonce, uint8 v, bytes32 r, bytes32 s) private pure returns (bytes32) {
+    /** Verifies that an investor has agreed to this Trade
+     *
+     * The Investor (either a Buyer or Seller) agrees to a trade by using their `investor_address`
+     * private key to generate a signature for the following payload payload:
+     * `bytes32 payload = keccak256(abi.encode(investor_address, investor_amount, investor_token,
+            other_amount, other_token, nonce))`
+     *
+     * For example, An investor will commit to the statement "I agree to buy 10 REP for 20 OMG using my address
+     * "0x7141fa6801ae65a8d127152a9d8fa4e6b1eeab97bc16a2c87bda936b6039787c" with nonce 42". In this example
+     * the function argument values are:
+     *
+     * investor_address: "0x7141fa6801ae65a8d127152a9d8fa4e6b1eeab97bc16a2c87bda936b6039787c"
+     * investor_amount: 10
+     * investor_token: REP
+     * other_amount: 20
+     * other_token: OMG
+     * nonce: 42
+     *
+     * and v, r, s is return value of `web3.eth.sign(investor_address, payload);
+    */
+    function verify(address investor_address, uint investor_amount, address investor_token,
+                    uint other_amount, address other_token, uint256 nonce, uint8 v,
+                    bytes32 r, bytes32 s) private pure returns (bytes32) {
 
         // Hash arguments to identify the order.
-        bytes32 hashV = keccak256(abi.encode(seller_address, seller_amount, seller_token,
-            buyer_address, buyer_amount, buyer_token,
-            nonce));
+        bytes32 hashV = keccak256(abi.encode(investor_address, investor_amount, investor_token,
+            other_amount, other_token, nonce));
 
         bytes memory prefix = "\x19Ethereum Signed Message:\n32";
         bytes32 prefixedHash = keccak256(abi.encode(prefix, hashV));
 
-        require(ecrecover(prefixedHash, v, r, s) == address_to_verify, "signature verification failed");
+        require(ecrecover(prefixedHash, v, r, s) == investor_address, "signature verification failed");
 
         return hashV;
     }
@@ -114,7 +129,7 @@ contract DvPSettlement {
         transfer(seller_address, buyer_address, seller_amount, seller_token);
 
         // send tokens from seller to buyer, reverting if anything goes wrong
-        transfer(buyer_address, seller_address, buyer_amount, buyer_token));
+        transfer(buyer_address, seller_address, buyer_amount, buyer_token);
 
         return true;
     }
