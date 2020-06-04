@@ -93,6 +93,8 @@ contract DvPSettlement {
 
     /** Verifies that an investor has agreed to this Trade
      *
+     * Throws if the the signature verification fails in `ecrecover`
+     *
      * The Investor (either a Buyer or Seller) agrees to a trade by using their `investor_address`
      * private key to generate a signature for the following payload payload:
      * `bytes32 payload = keccak256(abi.encode(investor_address, investor_amount, investor_token,
@@ -132,19 +134,21 @@ contract DvPSettlement {
       */
     function trade(address seller_address, uint seller_amount, IERC20 seller_token,
         address buyer_address, uint buyer_amount, IERC20 buyer_token) private returns (bool) {
-        // send tokens from buyer to seller, reverting if anything goes wrong
+        // send tokens from seller to buyer, throwing if anything goes wrong
         transfer(seller_address, buyer_address, seller_amount, seller_token);
 
-        // send tokens from seller to buyer, reverting if anything goes wrong
+        // send tokens from buyer to seller, throwing if anything goes wrong
         transfer(buyer_address, seller_address, buyer_amount, buyer_token);
 
         return true;
     }
 
     /** Transfers tokens from first party to second party.
+      *
+      * Throws if the call to transferFrom returns false
+      *
       * Prior to a transfer being done by the contract, ensure that
-      * tokenVal.approve(this, amount, {from : address}) has been called
-      * throws if the transferFrom of the token returns false
+      * IERC20(token).approve(this, amount, {from : address}) has been called
       */
     function transfer(address from, address to, uint amount, IERC20 token) private {
         require(IERC20(token).transferFrom(from, to, amount), "transfer failed");
