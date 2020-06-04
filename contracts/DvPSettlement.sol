@@ -25,7 +25,7 @@ contract DvPSettlement {
 
     // Fired after a call to `settle()`
     event Settled(address seller_address, uint seller_amount, address indexed seller_token,
-        address buyer_address, uint buyer_amount, address indexed buyer_token, uint128 nonce);
+        address buyer_address, uint buyer_amount, address indexed buyer_token, indexed uint128 nonce);
 
     // Fired after any expected failure code path
     /**
@@ -34,7 +34,7 @@ contract DvPSettlement {
      * 3 -> “The call to settle() must be made by the broker_dealer”
      */
     event Failed(uint code, address seller_address, uint seller_amount, address indexed seller_token,
-        address buyer_address, uint buyer_amount, address indexed buyer_token, uint128 nonce);
+        address buyer_address, uint buyer_amount, address indexed buyer_token, indexed uint128 nonce);
 
     /** Settle an off-chain Trade between a Buyer and Seller, approved by the broker_dealer
      *
