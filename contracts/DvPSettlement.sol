@@ -1,6 +1,6 @@
 pragma solidity 0.5.16;
 
-import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
 
 /** @title Tokensoft Delivery vs. Payment Contract. Allows Buyer and Seller ERC20 tokens to be atomically
   * swapped when OK'ed by a Broker Dealer. This atomic swapping is called Delivery vs. Payment in traditional
@@ -24,8 +24,8 @@ contract DvPSettlement {
     mapping (uint128 => bool) public fills;
 
     // Fired after a call to `settle()`
-    event Settled(address seller_address, uint seller_amount, address indexed seller_token,
-        address buyer_address, uint buyer_amount, address indexed buyer_token, indexed uint128 nonce);
+    event Settled(address seller_address, uint seller_amount, IERC20 indexed seller_token,
+        address buyer_address, uint buyer_amount, IERC20 indexed buyer_token, uint128 indexed nonce);
 
     // Fired after any expected failure code path
     /**
@@ -33,8 +33,8 @@ contract DvPSettlement {
      * 2 -> “This order has already been filled”
      * 3 -> “The call to settle() must be made by the broker_dealer”
      */
-    event Failed(uint code, address seller_address, uint seller_amount, address indexed seller_token,
-        address buyer_address, uint buyer_amount, address indexed buyer_token, indexed uint128 nonce);
+    event Failed(uint code, address seller_address, uint seller_amount, IERC20 indexed seller_token,
+        address buyer_address, uint buyer_amount, IERC20 indexed buyer_token, uint128 indexed nonce);
 
     /** Settle an off-chain Trade between a Buyer and Seller, approved by the broker_dealer
      *
@@ -48,8 +48,8 @@ contract DvPSettlement {
      * prior to the call to `settle()` they have each called `ERC20.approve()` for the at least the amounts
      * they want settled in the Trade. Failure to do so will cause the call to `settle()` to fail.
      */
-    function settle(address seller_address, uint seller_amount, address seller_token, address buyer_address,
-        uint buyer_amount, address buyer_token, uint128 nonce, uint8 buyer_v, bytes32 buyer_r, bytes32 buyer_s,
+    function settle(address seller_address, uint seller_amount, IERC20 seller_token, address buyer_address,
+        uint buyer_amount, IERC20 buyer_token, uint128 nonce, uint8 buyer_v, bytes32 buyer_r, bytes32 buyer_s,
         uint8 seller_v, bytes32 seller_r, bytes32 seller_s) external {
 
         // no making a trade with yourself
@@ -111,8 +111,8 @@ contract DvPSettlement {
      *
      * and v, r, s is return value of `web3.eth.sign(investor_address, payload);
     */
-    function verify(address investor_address, uint investor_amount, address investor_token,
-                    uint other_amount, address other_token, uint256 nonce, uint8 v,
+    function verify(address investor_address, uint investor_amount, IERC20 investor_token,
+                    uint other_amount, IERC20 other_token, uint256 nonce, uint8 v,
                     bytes32 r, bytes32 s) private pure returns (bytes32) {
 
         // Hash arguments to identify the order.
@@ -130,8 +130,8 @@ contract DvPSettlement {
     /** Atomic trade of tokens between first party and second party.
       * Throws if one of the trades does not go through.
       */
-    function trade(address seller_address, uint seller_amount, address seller_token,
-        address buyer_address, uint buyer_amount, address buyer_token) private returns (bool) {
+    function trade(address seller_address, uint seller_amount, IERC20 seller_token,
+        address buyer_address, uint buyer_amount, IERC20 buyer_token) private returns (bool) {
         // send tokens from buyer to seller, reverting if anything goes wrong
         transfer(seller_address, buyer_address, seller_amount, seller_token);
 
@@ -146,8 +146,8 @@ contract DvPSettlement {
       * tokenVal.approve(this, amount, {from : address}) has been called
       * throws if the transferFrom of the token returns false
       */
-    function transfer(address from, address to, uint amount, address token) private {
-        require(ERC20(token).transferFrom(from, to, amount), "transfer failed");
+    function transfer(address from, address to, uint amount, IERC20 token) private {
+        require(IERC20(token).transferFrom(from, to, amount), "transfer failed");
     }
 
     /**
@@ -157,8 +157,8 @@ contract DvPSettlement {
      * would complain about a "Stack Too Deep Error". See the following blog post for details:
      * https://blog.aventus.io/stack-too-deep-error-in-solidity-5b8861891bae
      */
-    function emit_failed(uint8 code, address seller_address, uint seller_amount, address seller_token, address buyer_address,
-        uint buyer_amount, address buyer_token, uint128 nonce) private {
+    function emit_failed(uint8 code, address seller_address, uint seller_amount, IERC20 seller_token, address buyer_address,
+        uint buyer_amount, IERC20 buyer_token, uint128 nonce) private {
         emit Failed(code, seller_address, seller_amount, seller_token, buyer_address, buyer_amount, buyer_token, nonce);
     }
 
@@ -169,8 +169,8 @@ contract DvPSettlement {
      * would complain about a "Stack Too Deep Error". See the following blog post for details:
      * https://blog.aventus.io/stack-too-deep-error-in-solidity-5b8861891bae
      */
-    function emit_settled(address seller_address, uint seller_amount, address seller_token,
-        address buyer_address, uint buyer_amount, address buyer_token, uint128 nonce) private {
+    function emit_settled(address seller_address, uint seller_amount, IERC20 seller_token,
+        address buyer_address, uint buyer_amount, IERC20 buyer_token, uint128 nonce) private {
         emit Settled(seller_address, seller_amount, seller_token,
             buyer_address, buyer_amount, buyer_token,
             nonce);
