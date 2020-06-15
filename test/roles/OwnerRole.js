@@ -38,8 +38,8 @@ contract('OwnerRole', (accounts) => {
     assert.equal(isOwner1, false, 'Account 1 should not be an owner')
   })
 
-  it('should not allow an owner to remove itself', async () => {
-    await expectRevert(tokenInstance.removeOwner(accounts[0], { from: accounts[0] }), "Owners cannot remove themselves as owner")
+  it('should allow an owner to remove itself', async () => {
+    await tokenInstance.removeOwner(accounts[0], { from: accounts[0] })
   })
 
   it('should not allow a non owner to add/remove owners', async () => {
