@@ -19,21 +19,21 @@
       "type": "fallback"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractLogic\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol\":\"Proxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol\":{\"keccak256\":\"0xc32d41967400fb7e966043bd4b2698abe124d6af2f6ccbcd6f9bd455dae94977\",\"urls\":[\"bzz-raw://99eb3b12f70d77bd728c3370b32d60ad966b6cf7d5429c6426e9bf626729d3e0\",\"dweb:/ipfs/QmezAQs6Q8w4x1yL5NibsKFHucBooCwkZsKhAbD2KzHxog\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516100f73803806100f78339818101604052602081101561003357600080fd5b8101908080519060200190929190505050807fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf755506081806100766000396000f3fe60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a72315820a9117bd514b6656cf22ec9ced3c4cafb65544cf530d952a9084fa1cbf99f6dc664736f6c63430005100032",
-  "deployedBytecode": "0x60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a72315820a9117bd514b6656cf22ec9ced3c4cafb65544cf530d952a9084fa1cbf99f6dc664736f6c63430005100032",
-  "sourceMap": "25:1086:2:-;;;254:236;8:9:-1;5:2;;;30:1;27;20:12;5:2;254:236:2;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;254:236:2;;;;;;;;;;;;;;;;460:13;392:66;385:89;348:136;25:1086;;;;;;",
-  "deployedSourceMap": "25:1086:2:-;;;607:66;601:73;704:4;698:11;745:12;740:3;735;722:36;841:1;838;824:12;819:3;804:13;799:3;786:57;869:14;919:5;916:1;911:3;896:29;945:7;970:1;965:57;;;;1073:5;1068:3;1061:18;965:57;1002:5;997:3;990:18",
-  "source": "pragma solidity 0.5.16;\n\ncontract Proxy {\n    // Code position in storage is keccak256(\"PROXIABLE\") = \"0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7\"\n    // constructor(bytes memory constructData, address contractLogic) public {\n    constructor(address contractLogic) public {\n        // save the code address\n        assembly { // solium-disable-line\n            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n        }\n    }\n\n    function() external payable {\n        assembly { // solium-disable-line\n            let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n            let ptr := mload(0x40)\n            calldatacopy(ptr, 0x0, calldatasize)\n            let success := delegatecall(gas, contractLogic, ptr, calldatasize, 0, 0)\n            let retSz := returndatasize\n            returndatacopy(ptr, 0, retSz)\n            switch success\n            case 0 {\n                revert(ptr, retSz)\n            }\n            default {\n                return(ptr, retSz)\n            }\n        }\n    }\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"contractLogic\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol\":\"Proxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol\":{\"keccak256\":\"0x0f217d586de580c77484e77fb8845443152b557fb66f63de4e8b2d267849f456\",\"urls\":[\"bzz-raw://bfe84a132446c452621bc01f69782408ff0debe8d1e7bd969b8854a1d2eb523d\",\"dweb:/ipfs/QmTy8WhsVpkB7TYP3kLnmhZ4HgPqP3mestgZR1WUJ3UMj7\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161019a38038061019a8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100e7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601c8152602001807f436f6e7472616374204c6f6769632063616e6e6f74206265203078300000000081525060200191505060405180910390fd5b807fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf755506081806101196000396000f3fe60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a7231582041514110cdbbec8fc122812ad0330812f09c7a1e7cf4cecbaaecf1af883489d864736f6c63430005100032",
+  "deployedBytecode": "0x60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75460405136600082376000803683855af43d806000843e81600081146048578184f35b8184fdfea265627a7a7231582041514110cdbbec8fc122812ad0330812f09c7a1e7cf4cecbaaecf1af883489d864736f6c63430005100032",
+  "sourceMap": "25:1213:2:-;;;254:363;8:9:-1;5:2;;;30:1;27;20:12;5:2;254:363:2;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;254:363:2;;;;;;;;;;;;;;;;387:1;362:27;;:13;:27;;;;354:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;587:13;519:66;512:89;475:136;25:1213;;;;;;",
+  "deployedSourceMap": "25:1213:2:-;;;734:66;728:73;831:4;825:11;872:12;867:3;862;849:36;968:1;965;951:12;946:3;931:13;926:3;913:57;996:14;1046:5;1043:1;1038:3;1023:29;1072:7;1097:1;1092:57;;;;1200:5;1195:3;1188:18;1092:57;1129:5;1124:3;1117:18",
+  "source": "pragma solidity 0.5.16;\n\ncontract Proxy {\n    // Code position in storage is keccak256(\"PROXIABLE\") = \"0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7\"\n    // constructor(bytes memory constructData, address contractLogic) public {\n    constructor(address contractLogic) public {\n        // Verify a valid address was passed in\n        require(contractLogic != address(0), \"Contract Logic cannot be 0x0\");\n\n        // save the code address\n        assembly { // solium-disable-line\n            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n        }\n    }\n\n    function() external payable {\n        assembly { // solium-disable-line\n            let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n            let ptr := mload(0x40)\n            calldatacopy(ptr, 0x0, calldatasize)\n            let success := delegatecall(gas, contractLogic, ptr, calldatasize, 0, 0)\n            let retSz := returndatasize\n            returndatacopy(ptr, 0, retSz)\n            switch success\n            case 0 {\n                revert(ptr, retSz)\n            }\n            default {\n                return(ptr, retSz)\n            }\n        }\n    }\n}",
   "sourcePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol",
   "ast": {
     "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        95
+        104
       ]
     },
-    "id": 96,
+    "id": 105,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -52,19 +52,173 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 95,
+        "id": 104,
         "linearizedBaseContracts": [
-          95
+          104
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 88,
+              "id": 97,
               "nodeType": "Block",
-              "src": "296:194:2",
+              "src": "296:321:2",
               "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 92,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 88,
+                          "name": "contractLogic",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 84,
+                          "src": "362:13:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 90,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "387:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 89,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "379:7:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": "address"
+                          },
+                          "id": 91,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "379:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "src": "362:27:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "436f6e7472616374204c6f6769632063616e6e6f7420626520307830",
+                        "id": 93,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "391:30:2",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_0dee7da6d7e543059da8914f051466db24a2474868d960ebbdb55dbc3eef58e5",
+                          "typeString": "literal_string \"Contract Logic cannot be 0x0\""
+                        },
+                        "value": "Contract Logic cannot be 0x0"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_0dee7da6d7e543059da8914f051466db24a2474868d960ebbdb55dbc3eef58e5",
+                          "typeString": "literal_string \"Contract Logic cannot be 0x0\""
+                        }
+                      ],
+                      "id": 87,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3383,
+                        3384
+                      ],
+                      "referencedDeclaration": 3384,
+                      "src": "354:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 94,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "354:68:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 95,
+                  "nodeType": "ExpressionStatement",
+                  "src": "354:68:2"
+                },
                 {
                   "externalReferences": [
                     {
@@ -72,20 +226,20 @@
                         "declaration": 84,
                         "isOffset": false,
                         "isSlot": false,
-                        "src": "460:13:2",
+                        "src": "587:13:2",
                         "valueSize": 1
                       }
                     }
                   ],
-                  "id": 87,
+                  "id": 96,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n}",
-                  "src": "339:145:2"
+                  "src": "466:145:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 89,
+            "id": 98,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -100,7 +254,7 @@
                   "id": 84,
                   "name": "contractLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 89,
+                  "scope": 98,
                   "src": "266:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -131,67 +285,67 @@
               "parameters": [],
               "src": "296:0:2"
             },
-            "scope": 95,
-            "src": "254:236:2",
+            "scope": 104,
+            "src": "254:363:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 93,
+              "id": 102,
               "nodeType": "Block",
-              "src": "524:585:2",
+              "src": "651:585:2",
               "statements": [
                 {
                   "externalReferences": [],
-                  "id": 92,
+                  "id": 101,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n    let ptr := mload(0x40)\n    calldatacopy(ptr, 0x0, calldatasize())\n    let success := delegatecall(gas(), contractLogic, ptr, calldatasize(), 0, 0)\n    let retSz := returndatasize()\n    returndatacopy(ptr, 0, retSz)\n    switch success\n    case 0 { revert(ptr, retSz) }\n    default { return(ptr, retSz) }\n}",
-                  "src": "534:569:2"
+                  "src": "661:569:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 94,
+            "id": 103,
             "implemented": true,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 90,
+              "id": 99,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "504:2:2"
+              "src": "631:2:2"
             },
             "returnParameters": {
-              "id": 91,
+              "id": 100,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:0:2"
+              "src": "651:0:2"
             },
-            "scope": 95,
-            "src": "496:613:2",
+            "scope": 104,
+            "src": "623:613:2",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 96,
-        "src": "25:1086:2"
+        "scope": 105,
+        "src": "25:1213:2"
       }
     ],
-    "src": "0:1111:2"
+    "src": "0:1238:2"
   },
   "legacyAST": {
     "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        95
+        104
       ]
     },
-    "id": 96,
+    "id": 105,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -210,19 +364,173 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 95,
+        "id": 104,
         "linearizedBaseContracts": [
-          95
+          104
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 88,
+              "id": 97,
               "nodeType": "Block",
-              "src": "296:194:2",
+              "src": "296:321:2",
               "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 92,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 88,
+                          "name": "contractLogic",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 84,
+                          "src": "362:13:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 90,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "387:1:2",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 89,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "379:7:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": "address"
+                          },
+                          "id": 91,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "379:10:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "src": "362:27:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "436f6e7472616374204c6f6769632063616e6e6f7420626520307830",
+                        "id": 93,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "391:30:2",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_0dee7da6d7e543059da8914f051466db24a2474868d960ebbdb55dbc3eef58e5",
+                          "typeString": "literal_string \"Contract Logic cannot be 0x0\""
+                        },
+                        "value": "Contract Logic cannot be 0x0"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_0dee7da6d7e543059da8914f051466db24a2474868d960ebbdb55dbc3eef58e5",
+                          "typeString": "literal_string \"Contract Logic cannot be 0x0\""
+                        }
+                      ],
+                      "id": 87,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        3383,
+                        3384
+                      ],
+                      "referencedDeclaration": 3384,
+                      "src": "354:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 94,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "354:68:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 95,
+                  "nodeType": "ExpressionStatement",
+                  "src": "354:68:2"
+                },
                 {
                   "externalReferences": [
                     {
@@ -230,20 +538,20 @@
                         "declaration": 84,
                         "isOffset": false,
                         "isSlot": false,
-                        "src": "460:13:2",
+                        "src": "587:13:2",
                         "valueSize": 1
                       }
                     }
                   ],
-                  "id": 87,
+                  "id": 96,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n}",
-                  "src": "339:145:2"
+                  "src": "466:145:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 89,
+            "id": 98,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -258,7 +566,7 @@
                   "id": 84,
                   "name": "contractLogic",
                   "nodeType": "VariableDeclaration",
-                  "scope": 89,
+                  "scope": 98,
                   "src": "266:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -289,58 +597,58 @@
               "parameters": [],
               "src": "296:0:2"
             },
-            "scope": 95,
-            "src": "254:236:2",
+            "scope": 104,
+            "src": "254:363:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 93,
+              "id": 102,
               "nodeType": "Block",
-              "src": "524:585:2",
+              "src": "651:585:2",
               "statements": [
                 {
                   "externalReferences": [],
-                  "id": 92,
+                  "id": 101,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n    let ptr := mload(0x40)\n    calldatacopy(ptr, 0x0, calldatasize())\n    let success := delegatecall(gas(), contractLogic, ptr, calldatasize(), 0, 0)\n    let retSz := returndatasize()\n    returndatacopy(ptr, 0, retSz)\n    switch success\n    case 0 { revert(ptr, retSz) }\n    default { return(ptr, retSz) }\n}",
-                  "src": "534:569:2"
+                  "src": "661:569:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 94,
+            "id": 103,
             "implemented": true,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 90,
+              "id": 99,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "504:2:2"
+              "src": "631:2:2"
             },
             "returnParameters": {
-              "id": 91,
+              "id": 100,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:0:2"
+              "src": "651:0:2"
             },
-            "scope": 95,
-            "src": "496:613:2",
+            "scope": 104,
+            "src": "623:613:2",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 96,
-        "src": "25:1086:2"
+        "scope": 105,
+        "src": "25:1213:2"
       }
     ],
-    "src": "0:1111:2"
+    "src": "0:1238:2"
   },
   "compiler": {
     "name": "solc",
@@ -348,7 +656,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-08T00:57:29.390Z",
+  "updatedAt": "2020-06-15T20:24:29.346Z",
   "devdoc": {
     "methods": {}
   },

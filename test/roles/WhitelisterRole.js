@@ -75,5 +75,5 @@ contract('WhitelisterRole', (accounts) => {
     tokenInstance.removeWhitelister(accounts[0])
     isWhitelister1 = await tokenInstance.isWhitelister(accounts[0])
     assert.equal(isWhitelister1, false, 'Account 0 should not be a whitelister')
-  })
+  })  
 })

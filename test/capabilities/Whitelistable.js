@@ -226,6 +226,28 @@ contract('Whitelistable', (accounts) => {
     )
   })
 
+  it('should not allow adding or removing address 0x0', async () => {
+    // First allow acct 0 be an administrator
+    await tokenInstance.addWhitelister(accounts[0], { from: accounts[0] })
+
+    await expectRevert(
+      tokenInstance.addToWhitelist(
+        "0x0000000000000000000000000000000000000000",
+        1,
+        { from: accounts[0] }
+      ), 
+      "Cannot add address 0x0 to a whitelist."
+    )
+
+    await expectRevert(
+      tokenInstance.removeFromWhitelist(
+        "0x0000000000000000000000000000000000000000",
+        { from: accounts[0] }
+      ), 
+      "Cannot remove address 0x0 from a whitelist."
+    )
+  })
+
   it('should allow disabling and re-enabling the whitelist logic', async () => {
     // First allow acct 1 be whitelister
     await tokenInstance.addWhitelister(accounts[1], { from: accounts[0] })
@@ -261,6 +283,17 @@ contract('Whitelistable', (accounts) => {
     await expectRevert(
       tokenInstance.setWhitelistEnabled(false, { from: accounts[2] }), 
         "OwnerRole: caller does not have the Owner role"
+    )
+  })
+
+  it('should verify an address is on a valid whitelist when removing', async () => {
+    // First allow acct 0 be whitelister
+    await tokenInstance.addWhitelister(accounts[0], { from: accounts[0] })
+  
+    // Try to remove an address that was never added to a whitelist
+    await expectRevert(
+      tokenInstance.removeFromWhitelist(accounts[1], { from: accounts[0] }), 
+      "Address cannot be removed from invalid whitelist."
     )
   })
 })

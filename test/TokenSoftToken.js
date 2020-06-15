@@ -1,5 +1,6 @@
 /* global artifacts contract it assert */
 const BigNumber = require('bignumber.js')
+const { expectRevert } = require('@openzeppelin/test-helpers')
 
 const TokenSoftToken = artifacts.require('TokenSoftToken')
 const Proxy = artifacts.require('Proxy')
@@ -24,6 +25,10 @@ contract('TokenSoftToken', (accounts) => {
   })
   it('should deploy', async () => {
     assert.equal(tokenInstance !== null, true, 'Contract should be deployed')
+  })
+
+  it('should not allow a 0x0 address in setting proxy', async () => {
+    await expectRevert(Proxy.new("0x0000000000000000000000000000000000000000"), "Contract Logic cannot be 0x0")
   })
 
   it('should have correct details set', async () => {
