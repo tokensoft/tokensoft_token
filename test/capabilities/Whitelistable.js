@@ -263,4 +263,15 @@ contract('Whitelistable', (accounts) => {
         "OwnerRole: caller does not have the Owner role"
     )
   })
+
+  it('should verify an address is on a valid whitelist when removing', async () => {
+    // First allow acct 0 be whitelister
+    await tokenInstance.addWhitelister(accounts[0], { from: accounts[0] })
+  
+    // Try to remove an address that was never added to a whitelist
+    await expectRevert(
+      tokenInstance.removeFromWhitelist(accounts[1], { from: accounts[0] }), 
+      "Address cannot be removed from invalid whitelist."
+    )
+  })
 })
