@@ -100,3 +100,16 @@ For unit test code coverage metrics:
 ```
 $ npm run coverage
 ```
+
+# General Warnings
+
+### Proxy Deployment 
+The intial deployment logic will not guarantee you are setting the logic address to a valid contract address.  If you set this to an external address, or a contract that is not "Proxiable" then the deployment will result in an invalid state.  This should just be a normal check after deployment and initialization that contract state is valid.
+
+### Approve/TransferFrom ERC20 "Double Spend"
+It is a known issue with ERC20 that incorrectly using approve could allow a spending to transfer more tokens than is desired.  To prevent this, ALWAYS set the approval amount to 0 before setting it to a new value.
+
+### Centralization
+This token contract allows administrative capabilities that may not be expected on completely decentralized system.  Accounts with administrative capabilities can burn tokens from any account, revoke tokens from any account, mint new tokens, upgrade contract logic, etc.  This should be evaluated before using/interacting with the contract. 
+
+ The main use case for this contract is in dealing with Security Tokens which may require these capabilities from a regulatory necessity.
