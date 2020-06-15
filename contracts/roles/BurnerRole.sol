@@ -32,7 +32,7 @@ contract BurnerRole is OwnerRole {
         _addBurner(account);
     }
 
-    function removeBurner(address account) public onlyOwner {        
+    function removeBurner(address account) public onlyOwner {
         _removeBurner(account);
     }
 

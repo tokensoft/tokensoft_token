@@ -39,6 +39,9 @@ contract Whitelistable is WhitelisterRole {
     If an address is on an existing whitelist, it will just get updated to the new value (removed from previous).
      */
     function _addToWhitelist(address addressToAdd, uint8 whitelist) internal {
+        // Verify a valid address was passed in
+        require(addressToAdd != address(0), "Cannot add address 0x0 to a whitelist.");
+
         // Verify the whitelist is valid
         require(whitelist != NO_WHITELIST, "Invalid whitelist ID supplied");
 
@@ -62,6 +65,9 @@ contract Whitelistable is WhitelisterRole {
     Clears out an address's white list ID.  Only administrators should be allowed to update this.
      */
     function _removeFromWhitelist(address addressToRemove) internal {
+        // Verify a valid address was passed in
+        require(addressToRemove != address(0), "Cannot remove address 0x0 from a whitelist.");
+
         // Save off the previous white list
         uint8 previousWhitelist = addressWhitelists[addressToRemove];
 
