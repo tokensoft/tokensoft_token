@@ -33,7 +33,7 @@ All accounts need to be granted a role by an admin in order to be able to intera
 
 ## Owners
 
-Owner accounts can add and remove other account addresses to all Roles, including Owners. Owners cannot remove themselves from being an Owner. 
+Owner accounts can add and remove other account addresses to all Roles, including Owners. Owners can remove themselves from being an Owner, so care needs to be taken to ensure at least 1 address maintains ownership (unless the goal is to remove all owners).
 
 The Owner account specified at the time of deployment will be the only Owner account by default.
 
