@@ -180,11 +180,11 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"BurnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"BurnerRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"OwnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"OwnerRemoved\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isBurner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":\"BurnerRole\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":{\"keccak256\":\"0x3743fa8536d9fdd6bbdf434403715cabf075f39fa18d5060b5b84927d13d7665\",\"urls\":[\"bzz-raw://347b6ed96206f36bf6b729c90628461a639137dcd315925475323141f200b10a\",\"dweb:/ipfs/QmdH6MKy39pRbR5qYcBBfQuaiPQN28JAtvZFJFhovDFHiS\"]},\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol\":{\"keccak256\":\"0x35532a2185165cec52f04fbff693877cfbe564cfdef2659c97f09e1965ac1d54\",\"urls\":[\"bzz-raw://afe81f64745439bd5c146d41e6d853b039c08b272fbfec2c0d9a6e331b858ad7\",\"dweb:/ipfs/QmWEHevjeFsgR8HcaBXwuhWkDwR13tdVtfq4RWxqNDf7CL\"]},\"@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5061099e806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610388565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a5565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103c2565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061042c565b005b61023833610388565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b61029681610496565b50565b6102a233610388565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561037c576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260288152602001806109426028913960400191505060405180910390fd5b61038581610507565b50565b600061039e82600061057890919063ffffffff16565b9050919050565b60006103bb82600161057890919063ffffffff16565b9050919050565b6103cb33610388565b610420576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b61042981610656565b50565b61043533610388565b61048a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b610493816106c7565b50565b6104aa81600161073890919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b61051b81600061073890919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156105ff576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001806109206022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b61066a8160006107f590919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b6106db8160016107f590919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6107428282610578565b610797576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260218152602001806108ff6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b6107ff8282610578565b15610872576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f20616464726573734f776e6572732063616e6e6f742072656d6f7665207468656d73656c766573206173206f776e6572a265627a7a72315820f1eb6e3ddd070e593f47894af710e7f1848882cb58e24385ad48a6300c3854a264736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610388565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a5565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103c2565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061042c565b005b61023833610388565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b61029681610496565b50565b6102a233610388565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561037c576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260288152602001806109426028913960400191505060405180910390fd5b61038581610507565b50565b600061039e82600061057890919063ffffffff16565b9050919050565b60006103bb82600161057890919063ffffffff16565b9050919050565b6103cb33610388565b610420576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b61042981610656565b50565b61043533610388565b61048a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e8152602001806108d1602e913960400191505060405180910390fd5b610493816106c7565b50565b6104aa81600161073890919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b61051b81600061073890919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156105ff576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001806109206022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b61066a8160006107f590919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b6106db8160016107f590919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6107428282610578565b610797576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260218152602001806108ff6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b6107ff8282610578565b15610872576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f20616464726573734f776e6572732063616e6e6f742072656d6f7665207468656d73656c766573206173206f776e6572a265627a7a72315820f1eb6e3ddd070e593f47894af710e7f1848882cb58e24385ad48a6300c3854a264736f6c63430005100032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"BurnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"BurnerRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"OwnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"OwnerRemoved\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isBurner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":\"BurnerRole\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":{\"keccak256\":\"0x3743fa8536d9fdd6bbdf434403715cabf075f39fa18d5060b5b84927d13d7665\",\"urls\":[\"bzz-raw://347b6ed96206f36bf6b729c90628461a639137dcd315925475323141f200b10a\",\"dweb:/ipfs/QmdH6MKy39pRbR5qYcBBfQuaiPQN28JAtvZFJFhovDFHiS\"]},\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol\":{\"keccak256\":\"0xb656b1b359666037e9ddf6d581808dfab3ceeb2052e1bf930464026730237b39\",\"urls\":[\"bzz-raw://3de71401573923f98b0754d6575a8941688e96195b96c0411cd7384e1a9a7e5b\",\"dweb:/ipfs/QmXyUfsVebAkQ12eWLNKPV5f1Hg9pvSfTEjMWewWuvZmXt\"]},\"@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506108f1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610303565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610320565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033d565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a7565b005b61023833610303565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61029681610411565b50565b6102a233610303565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61030081610482565b50565b60006103198260006104f390919063ffffffff16565b9050919050565b60006103368260016104f390919063ffffffff16565b9050919050565b61034633610303565b61039b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b6103a4816105d1565b50565b6103b033610303565b610405576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61040e81610642565b50565b6104258160016106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b6104968160006106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561057a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602281526020018061089b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6105e581600061077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b61065681600161077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6106bd82826104f3565b610712576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602181526020018061087a6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b61077a82826104f3565b156107ed576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820ca308af64b68b19b134137b5e246fe3057edab4c1153d88a9f5f16144a6288e564736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610303565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610320565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033d565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a7565b005b61023833610303565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61029681610411565b50565b6102a233610303565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61030081610482565b50565b60006103198260006104f390919063ffffffff16565b9050919050565b60006103368260016104f390919063ffffffff16565b9050919050565b61034633610303565b61039b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b6103a4816105d1565b50565b6103b033610303565b610405576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61040e81610642565b50565b6104258160016106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b6104968160006106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561057a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602281526020018061089b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6105e581600061077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b61065681600161077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6106bd82826104f3565b610712576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602181526020018061087a6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b61077a82826104f3565b156107ed576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820ca308af64b68b19b134137b5e246fe3057edab4c1153d88a9f5f16144a6288e564736f6c63430005100032",
   "sourceMap": "52:960:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:960:10;;;;;;;",
-  "deployedSourceMap": "52:960:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:960:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;914:95;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;914:95:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;689:177:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;689:177:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;485:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;485:105:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;424:107:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;424:107:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;596:87:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;596:87:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;819:89:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;819:89:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;914:95;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;980:22:10;994:7;980:13;:22::i;:::-;914:95;:::o;689:177:12:-;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;776:7;762:21;;:10;:21;;;;754:74;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;838:21;851:7;838:12;:21::i;:::-;689:177;:::o;485:105::-;540:4;563:20;575:7;563;:11;;:20;;;;:::i;:::-;556:27;;485:105;;;:::o;424:107:10:-;480:4;503:21;516:7;503:8;:12;;:21;;;;:::i;:::-;496:28;;424:107;;;:::o;596:87:12:-;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;658:18;668:7;658:9;:18::i;:::-;596:87;:::o;819:89:10:-;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;882:19:10;893:7;882:10;:19::i;:::-;819:89;:::o;674:139::-;733:24;749:7;733:8;:15;;:24;;;;:::i;:::-;795:10;772:34;;786:7;772:34;;;;;;;;;;;;674:139;:::o;1006:136:12:-;1064:23;1079:7;1064;:14;;:23;;;;:::i;:::-;1124:10;1102:33;;1115:7;1102:33;;;;;;;;;;;;1006:136;:::o;779:200:21:-;851:4;894:1;875:21;;:7;:21;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;952:4;:11;;:20;964:7;952:20;;;;;;;;;;;;;;;;;;;;;;;;;945:27;;779:200;;;;:::o;872:128:12:-;927:20;939:7;927;:11;;:20;;;;:::i;:::-;982:10;962:31;;973:7;962:31;;;;;;;;;;;;872:128;:::o;537:131:10:-;593:21;606:7;593:8;:12;;:21;;;;:::i;:::-;650:10;629:32;;641:7;629:32;;;;;;;;;;;;537:131;:::o;510:180:21:-;589:18;593:4;599:7;589:3;:18::i;:::-;581:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;678:5;655:4;:11;;:20;667:7;655:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;510:180;;:::o;260:175::-;337:18;341:4;347:7;337:3;:18::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:4;401;:11;;:20;413:7;401:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:175;;:::o",
+  "deployedSourceMap": "52:960:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:960:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;914:95;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;914:95:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;689:93:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;689:93:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;485:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;485:105:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;424:107:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;424:107:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;596:87:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;596:87:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;819:89:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;819:89:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;914:95;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;980:22:10;994:7;980:13;:22::i;:::-;914:95;:::o;689:93:12:-;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;754:21;767:7;754:12;:21::i;:::-;689:93;:::o;485:105::-;540:4;563:20;575:7;563;:11;;:20;;;;:::i;:::-;556:27;;485:105;;;:::o;424:107:10:-;480:4;503:21;516:7;503:8;:12;;:21;;;;:::i;:::-;496:28;;424:107;;;:::o;596:87:12:-;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;658:18;668:7;658:9;:18::i;:::-;596:87;:::o;819:89:10:-;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;882:19:10;893:7;882:10;:19::i;:::-;819:89;:::o;674:139::-;733:24;749:7;733:8;:15;;:24;;;;:::i;:::-;795:10;772:34;;786:7;772:34;;;;;;;;;;;;674:139;:::o;922:136:12:-;980:23;995:7;980;:14;;:23;;;;:::i;:::-;1040:10;1018:33;;1031:7;1018:33;;;;;;;;;;;;922:136;:::o;779:200:21:-;851:4;894:1;875:21;;:7;:21;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;952:4;:11;;:20;964:7;952:20;;;;;;;;;;;;;;;;;;;;;;;;;945:27;;779:200;;;;:::o;788:128:12:-;843:20;855:7;843;:11;;:20;;;;:::i;:::-;898:10;878:31;;889:7;878:31;;;;;;;;;;;;788:128;:::o;537:131:10:-;593:21;606:7;593:8;:12;;:21;;;;:::i;:::-;650:10;629:32;;641:7;629:32;;;;;;;;;;;;537:131;:::o;510:180:21:-;589:18;593:4;599:7;589:3;:18::i;:::-;581:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;678:5;655:4;:11;;:20;667:7;655:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;510:180;;:::o;260:175::-;337:18;341:4;347:7;337:3;:18::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:4;401;:11;;:20;413:7;401:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:175;;:::o",
   "source": "pragma solidity 0.5.16;\n\nimport \"./OwnerRole.sol\";\n\ncontract BurnerRole is OwnerRole {\n\n    event BurnerAdded(address indexed addedBurner, address indexed addedBy);\n    event BurnerRemoved(address indexed removedBurner, address indexed removedBy);\n\n    Roles.Role private _burners;\n\n    modifier onlyBurner() {\n        require(isBurner(msg.sender), \"BurnerRole: caller does not have the Burner role\");\n        _;\n    }\n\n    function isBurner(address account) public view returns (bool) {\n        return _burners.has(account);\n    }\n\n    function _addBurner(address account) internal {\n        _burners.add(account);\n        emit BurnerAdded(account, msg.sender);\n    }\n\n    function _removeBurner(address account) internal {\n        _burners.remove(account);\n        emit BurnerRemoved(account, msg.sender);\n    }\n\n    function addBurner(address account) public onlyOwner {\n        _addBurner(account);\n    }\n\n    function removeBurner(address account) public onlyOwner {\n        _removeBurner(account);\n    }\n\n}",
   "sourcePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol",
   "ast": {
@@ -213,7 +213,7 @@
         "id": 999,
         "nodeType": "ImportDirective",
         "scope": 1102,
-        "sourceUnit": 1321,
+        "sourceUnit": 1313,
         "src": "25:25:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -227,10 +227,10 @@
               "id": 1000,
               "name": "OwnerRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1320,
+              "referencedDeclaration": 1312,
               "src": "75:9:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_OwnerRole_$1320",
+                "typeIdentifier": "t_contract$_OwnerRole_$1312",
                 "typeString": "contract OwnerRole"
               }
             },
@@ -240,7 +240,7 @@
           }
         ],
         "contractDependencies": [
-          1320
+          1312
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -248,7 +248,7 @@
         "id": 1101,
         "linearizedBaseContracts": [
           1101,
-          1320
+          1312
         ],
         "name": "BurnerRole",
         "nodeType": "ContractDefinition",
@@ -405,7 +405,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_struct$_Role_$2495_storage",
+              "typeIdentifier": "t_struct$_Role_$2487_storage",
               "typeString": "struct Roles.Role"
             },
             "typeName": {
@@ -413,10 +413,10 @@
               "id": 1014,
               "name": "Roles.Role",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2495,
+              "referencedDeclaration": 2487,
               "src": "253:10:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Role_$2495_storage_ptr",
+                "typeIdentifier": "t_struct$_Role_$2487_storage_ptr",
                 "typeString": "struct Roles.Role"
               }
             },
@@ -444,7 +444,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3388,
+                              "referencedDeclaration": 3380,
                               "src": "336:3:10",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -532,10 +532,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3391,
-                        3392
+                        3383,
+                        3384
                       ],
-                      "referencedDeclaration": 3392,
+                      "referencedDeclaration": 3384,
                       "src": "319:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -620,7 +620,7 @@
                         "referencedDeclaration": 1015,
                         "src": "503:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2495_storage",
+                          "typeIdentifier": "t_struct$_Role_$2487_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
@@ -631,10 +631,10 @@
                       "lValueRequested": false,
                       "memberName": "has",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2568,
+                      "referencedDeclaration": 2560,
                       "src": "503:12:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2495_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2495_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                       }
                     },
@@ -779,7 +779,7 @@
                         "referencedDeclaration": 1015,
                         "src": "593:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2495_storage",
+                          "typeIdentifier": "t_struct$_Role_$2487_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
@@ -790,10 +790,10 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2520,
+                      "referencedDeclaration": 2512,
                       "src": "593:12:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2495_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2495_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
@@ -840,7 +840,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3388,
+                          "referencedDeclaration": 3380,
                           "src": "650:3:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -997,7 +997,7 @@
                         "referencedDeclaration": 1015,
                         "src": "733:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2495_storage",
+                          "typeIdentifier": "t_struct$_Role_$2487_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
@@ -1008,10 +1008,10 @@
                       "lValueRequested": false,
                       "memberName": "remove",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2544,
+                      "referencedDeclaration": 2536,
                       "src": "733:15:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2495_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2495_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
@@ -1058,7 +1058,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3388,
+                          "referencedDeclaration": 3380,
                           "src": "795:3:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1478,7 +1478,7 @@
         "id": 999,
         "nodeType": "ImportDirective",
         "scope": 1102,
-        "sourceUnit": 1321,
+        "sourceUnit": 1313,
         "src": "25:25:10",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1492,10 +1492,10 @@
               "id": 1000,
               "name": "OwnerRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1320,
+              "referencedDeclaration": 1312,
               "src": "75:9:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_OwnerRole_$1320",
+                "typeIdentifier": "t_contract$_OwnerRole_$1312",
                 "typeString": "contract OwnerRole"
               }
             },
@@ -1505,7 +1505,7 @@
           }
         ],
         "contractDependencies": [
-          1320
+          1312
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -1513,7 +1513,7 @@
         "id": 1101,
         "linearizedBaseContracts": [
           1101,
-          1320
+          1312
         ],
         "name": "BurnerRole",
         "nodeType": "ContractDefinition",
@@ -1670,7 +1670,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_struct$_Role_$2495_storage",
+              "typeIdentifier": "t_struct$_Role_$2487_storage",
               "typeString": "struct Roles.Role"
             },
             "typeName": {
@@ -1678,10 +1678,10 @@
               "id": 1014,
               "name": "Roles.Role",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2495,
+              "referencedDeclaration": 2487,
               "src": "253:10:10",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Role_$2495_storage_ptr",
+                "typeIdentifier": "t_struct$_Role_$2487_storage_ptr",
                 "typeString": "struct Roles.Role"
               }
             },
@@ -1709,7 +1709,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3388,
+                              "referencedDeclaration": 3380,
                               "src": "336:3:10",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -1797,10 +1797,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3391,
-                        3392
+                        3383,
+                        3384
                       ],
-                      "referencedDeclaration": 3392,
+                      "referencedDeclaration": 3384,
                       "src": "319:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1885,7 +1885,7 @@
                         "referencedDeclaration": 1015,
                         "src": "503:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2495_storage",
+                          "typeIdentifier": "t_struct$_Role_$2487_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
@@ -1896,10 +1896,10 @@
                       "lValueRequested": false,
                       "memberName": "has",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2568,
+                      "referencedDeclaration": 2560,
                       "src": "503:12:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2495_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2495_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                       }
                     },
@@ -2044,7 +2044,7 @@
                         "referencedDeclaration": 1015,
                         "src": "593:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2495_storage",
+                          "typeIdentifier": "t_struct$_Role_$2487_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
@@ -2055,10 +2055,10 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2520,
+                      "referencedDeclaration": 2512,
                       "src": "593:12:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2495_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2495_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
@@ -2105,7 +2105,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3388,
+                          "referencedDeclaration": 3380,
                           "src": "650:3:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2262,7 +2262,7 @@
                         "referencedDeclaration": 1015,
                         "src": "733:8:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2495_storage",
+                          "typeIdentifier": "t_struct$_Role_$2487_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
@@ -2273,10 +2273,10 @@
                       "lValueRequested": false,
                       "memberName": "remove",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2544,
+                      "referencedDeclaration": 2536,
                       "src": "733:15:10",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2495_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2495_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
@@ -2323,7 +2323,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3388,
+                          "referencedDeclaration": 3380,
                           "src": "795:3:10",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2723,7 +2723,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-06-15T20:19:35.449Z",
+  "updatedAt": "2020-06-15T20:24:29.356Z",
   "devdoc": {
     "methods": {}
   },

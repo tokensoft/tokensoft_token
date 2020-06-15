@@ -24,7 +24,6 @@ contract OwnerRole {
     }
 
     function removeOwner(address account) public onlyOwner {
-        require(msg.sender != account, "Owners cannot remove themselves as owner");
         _removeOwner(account);
     }
 
