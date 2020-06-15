@@ -65,6 +65,9 @@ contract Whitelistable is WhitelisterRole {
         // Save off the previous white list
         uint8 previousWhitelist = addressWhitelists[addressToRemove];
 
+        // Verify the address was actually on a whitelist
+        require(previousWhitelist != NO_WHITELIST, "Address cannot be removed from invalid whitelist.");
+
         // Zero out the previous white list
         addressWhitelists[addressToRemove] = NO_WHITELIST;
 
