@@ -1,3 +1,5 @@
+// Tokensoft Token v1.0
+
 
 // File: contracts/capabilities/Proxiable.sol
 
