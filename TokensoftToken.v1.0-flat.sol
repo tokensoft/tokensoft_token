@@ -3,37 +3,6 @@
 
 pragma solidity 0.5.16;
 
-
-contract Proxy {
-    // Code position in storage is keccak256("PROXIABLE") = "0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7"
-    // constructor(bytes memory constructData, address contractLogic) public {
-    constructor(address contractLogic) public {
-        // save the code address
-        assembly { // solium-disable-line
-            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)
-        }
-    }
-
-    function() external payable {
-        assembly { // solium-disable-line
-            let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)
-            let ptr := mload(0x40)
-            calldatacopy(ptr, 0x0, calldatasize)
-            let success := delegatecall(gas, contractLogic, ptr, calldatasize, 0, 0)
-            let retSz := returndatasize
-            returndatacopy(ptr, 0, retSz)
-            switch success
-            case 0 {
-                revert(ptr, retSz)
-            }
-            default {
-                return(ptr, retSz)
-            }
-        }
-    }
-}
-
-
 contract Proxiable {
     // Code position in storage is keccak256("PROXIABLE") = "0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7"
 
@@ -352,7 +321,6 @@ contract OwnerRole {
     }
 
     function removeOwner(address account) public onlyOwner {
-        require(msg.sender != account, "Owners cannot remove themselves as owner");
         _removeOwner(account);
     }
 
@@ -449,6 +417,9 @@ contract Whitelistable is WhitelisterRole {
     If an address is on an existing whitelist, it will just get updated to the new value (removed from previous).
      */
     function _addToWhitelist(address addressToAdd, uint8 whitelist) internal {
+        // Verify a valid address was passed in
+        require(addressToAdd != address(0), "Cannot add address 0x0 to a whitelist.");
+
         // Verify the whitelist is valid
         require(whitelist != NO_WHITELIST, "Invalid whitelist ID supplied");
 
@@ -472,8 +443,14 @@ contract Whitelistable is WhitelisterRole {
     Clears out an address's white list ID.  Only administrators should be allowed to update this.
      */
     function _removeFromWhitelist(address addressToRemove) internal {
+        // Verify a valid address was passed in
+        require(addressToRemove != address(0), "Cannot remove address 0x0 from a whitelist.");
+
         // Save off the previous white list
         uint8 previousWhitelist = addressWhitelists[addressToRemove];
+
+        // Verify the address was actually on a whitelist
+        require(previousWhitelist != NO_WHITELIST, "Address cannot be removed from invalid whitelist.");
 
         // Zero out the previous white list
         addressWhitelists[addressToRemove] = NO_WHITELIST;
@@ -1073,7 +1050,7 @@ contract BurnerRole is OwnerRole {
         _addBurner(account);
     }
 
-    function removeBurner(address account) public onlyOwner {        
+    function removeBurner(address account) public onlyOwner {
         _removeBurner(account);
     }
 
