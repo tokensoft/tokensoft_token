@@ -180,41 +180,41 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"BurnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"BurnerRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"OwnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"OwnerRemoved\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isBurner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":\"BurnerRole\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":{\"keccak256\":\"0x3743fa8536d9fdd6bbdf434403715cabf075f39fa18d5060b5b84927d13d7665\",\"urls\":[\"bzz-raw://347b6ed96206f36bf6b729c90628461a639137dcd315925475323141f200b10a\",\"dweb:/ipfs/QmdH6MKy39pRbR5qYcBBfQuaiPQN28JAtvZFJFhovDFHiS\"]},\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol\":{\"keccak256\":\"0xb656b1b359666037e9ddf6d581808dfab3ceeb2052e1bf930464026730237b39\",\"urls\":[\"bzz-raw://3de71401573923f98b0754d6575a8941688e96195b96c0411cd7384e1a9a7e5b\",\"dweb:/ipfs/QmXyUfsVebAkQ12eWLNKPV5f1Hg9pvSfTEjMWewWuvZmXt\"]},\"@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506108f1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610303565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610320565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033d565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a7565b005b61023833610303565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61029681610411565b50565b6102a233610303565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61030081610482565b50565b60006103198260006104f390919063ffffffff16565b9050919050565b60006103368260016104f390919063ffffffff16565b9050919050565b61034633610303565b61039b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b6103a4816105d1565b50565b6103b033610303565b610405576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61040e81610642565b50565b6104258160016106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b6104968160006106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561057a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602281526020018061089b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6105e581600061077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b61065681600161077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6106bd82826104f3565b610712576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602181526020018061087a6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b61077a82826104f3565b156107ed576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820ca308af64b68b19b134137b5e246fe3057edab4c1153d88a9f5f16144a6288e564736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610303565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610320565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033d565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a7565b005b61023833610303565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61029681610411565b50565b6102a233610303565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61030081610482565b50565b60006103198260006104f390919063ffffffff16565b9050919050565b60006103368260016104f390919063ffffffff16565b9050919050565b61034633610303565b61039b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b6103a4816105d1565b50565b6103b033610303565b610405576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61040e81610642565b50565b6104258160016106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b6104968160006106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561057a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602281526020018061089b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6105e581600061077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b61065681600161077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6106bd82826104f3565b610712576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602181526020018061087a6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b61077a82826104f3565b156107ed576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820ca308af64b68b19b134137b5e246fe3057edab4c1153d88a9f5f16144a6288e564736f6c63430005100032",
-  "sourceMap": "52:960:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:960:10;;;;;;;",
-  "deployedSourceMap": "52:960:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:960:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;914:95;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;914:95:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;689:93:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;689:93:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;485:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;485:105:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;424:107:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;424:107:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;596:87:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;596:87:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;819:89:10;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;819:89:10;;;;;;;;;;;;;;;;;;;:::i;:::-;;914:95;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;980:22:10;994:7;980:13;:22::i;:::-;914:95;:::o;689:93:12:-;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;754:21;767:7;754:12;:21::i;:::-;689:93;:::o;485:105::-;540:4;563:20;575:7;563;:11;;:20;;;;:::i;:::-;556:27;;485:105;;;:::o;424:107:10:-;480:4;503:21;516:7;503:8;:12;;:21;;;;:::i;:::-;496:28;;424:107;;;:::o;596:87:12:-;391:19;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;658:18;668:7;658:9;:18::i;:::-;596:87;:::o;819:89:10:-;391:19:12;399:10;391:7;:19::i;:::-;383:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;882:19:10;893:7;882:10;:19::i;:::-;819:89;:::o;674:139::-;733:24;749:7;733:8;:15;;:24;;;;:::i;:::-;795:10;772:34;;786:7;772:34;;;;;;;;;;;;674:139;:::o;922:136:12:-;980:23;995:7;980;:14;;:23;;;;:::i;:::-;1040:10;1018:33;;1031:7;1018:33;;;;;;;;;;;;922:136;:::o;779:200:21:-;851:4;894:1;875:21;;:7;:21;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;952:4;:11;;:20;964:7;952:20;;;;;;;;;;;;;;;;;;;;;;;;;945:27;;779:200;;;;:::o;788:128:12:-;843:20;855:7;843;:11;;:20;;;;:::i;:::-;898:10;878:31;;889:7;878:31;;;;;;;;;;;;788:128;:::o;537:131:10:-;593:21;606:7;593:8;:12;;:21;;;;:::i;:::-;650:10;629:32;;641:7;629:32;;;;;;;;;;;;537:131;:::o;510:180:21:-;589:18;593:4;599:7;589:3;:18::i;:::-;581:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;678:5;655:4;:11;;:20;667:7;655:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;510:180;;:::o;260:175::-;337:18;341:4;347:7;337:3;:18::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:4;401;:11;;:20;413:7;401:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:175;;:::o",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"BurnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBurner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"BurnerRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"addedBy\",\"type\":\"address\"}],\"name\":\"OwnerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"removedBy\",\"type\":\"address\"}],\"name\":\"OwnerRemoved\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isBurner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeBurner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeOwner\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":\"BurnerRole\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/@openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]},\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol\":{\"keccak256\":\"0x3743fa8536d9fdd6bbdf434403715cabf075f39fa18d5060b5b84927d13d7665\",\"urls\":[\"bzz-raw://347b6ed96206f36bf6b729c90628461a639137dcd315925475323141f200b10a\",\"dweb:/ipfs/QmdH6MKy39pRbR5qYcBBfQuaiPQN28JAtvZFJFhovDFHiS\"]},\"/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol\":{\"keccak256\":\"0xeb09986597984e6fb387f7eaca763e87aac607bd03c8121fa71f58d5e4fb87b4\",\"urls\":[\"bzz-raw://5e02f655efae4b6ba5d8c8e839f61651d818350b5ad30de3d95d8d0a61ecd4a2\",\"dweb:/ipfs/QmVDY9vMR24mEbCYG7ehcgAXUDtg3pDahf8VefhcusdKey\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506108f1806100206000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610303565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610320565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033d565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a7565b005b61023833610303565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61029681610411565b50565b6102a233610303565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61030081610482565b50565b60006103198260006104f390919063ffffffff16565b9050919050565b60006103368260016104f390919063ffffffff16565b9050919050565b61034633610303565b61039b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b6103a4816105d1565b50565b6103b033610303565b610405576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61040e81610642565b50565b6104258160016106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b6104968160006106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561057a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602281526020018061089b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6105e581600061077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b61065681600161077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6106bd82826104f3565b610712576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602181526020018061087a6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b61077a82826104f3565b156107ed576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820114ab71325fc30842606f71579140c266057ecbc1e8f049a54336104b9846f8f64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c80630284685814610067578063173825d9146100ab5780632f54bf6e146100ef5780634334614a1461014b5780637065cb48146101a7578063f44637ba146101eb575b600080fd5b6100a96004803603602081101561007d57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061022f565b005b6100ed600480360360208110156100c157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b6101316004803603602081101561010557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610303565b604051808215151515815260200191505060405180910390f35b61018d6004803603602081101561016157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610320565b604051808215151515815260200191505060405180910390f35b6101e9600480360360208110156101bd57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061033d565b005b61022d6004803603602081101561020157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a7565b005b61023833610303565b61028d576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61029681610411565b50565b6102a233610303565b6102f7576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61030081610482565b50565b60006103198260006104f390919063ffffffff16565b9050919050565b60006103368260016104f390919063ffffffff16565b9050919050565b61034633610303565b61039b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b6103a4816105d1565b50565b6103b033610303565b610405576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e81526020018061084c602e913960400191505060405180910390fd5b61040e81610642565b50565b6104258160016106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f85222465e0d438163a28671b59fc9ebeb03bf39f880ddd36c8315da7512b31c060405160405180910390a350565b6104968160006106b390919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fe594d081b4382713733fe631966432c9cea5199afb2db5c3c1931f9f9300367960405160405180910390a350565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561057a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602281526020018061089b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6105e581600061077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167fc82bdbbf677a2462f2a7e22e4ba9abd209496b69cd7b868b3b1d28f76e09a40a60405160405180910390a350565b61065681600161077090919063ffffffff16565b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f86515ebaad527298e98929c064c075f5a2604cc80afc0db29e73c01a36f8e98c60405160405180910390a350565b6106bd82826104f3565b610712576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602181526020018061087a6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b61077a82826104f3565b156107ed576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fe4f776e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204f776e657220726f6c65526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820114ab71325fc30842606f71579140c266057ecbc1e8f049a54336104b9846f8f64736f6c63430005100032",
+  "sourceMap": "52:960:21:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:960:21;;;;;;;",
+  "deployedSourceMap": "52:960:21:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:960:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;914:95;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;914:95:21;;;;;;;;;;;;;;;;;;;:::i;:::-;;692:93:23;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;692:93:23;;;;;;;;;;;;;;;;;;;:::i;:::-;;488:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;488:105:23;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;424:107:21;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;424:107:21;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;599:87:23;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;599:87:23;;;;;;;;;;;;;;;;;;;:::i;:::-;;819:89:21;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;819:89:21;;;;;;;;;;;;;;;;;;;:::i;:::-;;914:95;394:19:23;402:10;394:7;:19::i;:::-;386:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;980:22:21;994:7;980:13;:22::i;:::-;914:95;:::o;692:93:23:-;394:19;402:10;394:7;:19::i;:::-;386:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;757:21;770:7;757:12;:21::i;:::-;692:93;:::o;488:105::-;543:4;566:20;578:7;566;:11;;:20;;;;:::i;:::-;559:27;;488:105;;;:::o;424:107:21:-;480:4;503:21;516:7;503:8;:12;;:21;;;;:::i;:::-;496:28;;424:107;;;:::o;599:87:23:-;394:19;402:10;394:7;:19::i;:::-;386:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;661:18;671:7;661:9;:18::i;:::-;599:87;:::o;819:89:21:-;394:19:23;402:10;394:7;:19::i;:::-;386:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;882:19:21;893:7;882:10;:19::i;:::-;819:89;:::o;674:139::-;733:24;749:7;733:8;:15;;:24;;;;:::i;:::-;795:10;772:34;;786:7;772:34;;;;;;;;;;;;674:139;:::o;925:136:23:-;983:23;998:7;983;:14;;:23;;;;:::i;:::-;1043:10;1021:33;;1034:7;1021:33;;;;;;;;;;;;925:136;:::o;779:200:1:-;851:4;894:1;875:21;;:7;:21;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;952:4;:11;;:20;964:7;952:20;;;;;;;;;;;;;;;;;;;;;;;;;945:27;;779:200;;;;:::o;791:128:23:-;846:20;858:7;846;:11;;:20;;;;:::i;:::-;901:10;881:31;;892:7;881:31;;;;;;;;;;;;791:128;:::o;537:131:21:-;593:21;606:7;593:8;:12;;:21;;;;:::i;:::-;650:10;629:32;;641:7;629:32;;;;;;;;;;;;537:131;:::o;510:180:1:-;589:18;593:4;599:7;589:3;:18::i;:::-;581:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;678:5;655:4;:11;;:20;667:7;655:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;510:180;;:::o;260:175::-;337:18;341:4;347:7;337:3;:18::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:4;401;:11;;:20;413:7;401:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:175;;:::o",
   "source": "pragma solidity 0.5.16;\n\nimport \"./OwnerRole.sol\";\n\ncontract BurnerRole is OwnerRole {\n\n    event BurnerAdded(address indexed addedBurner, address indexed addedBy);\n    event BurnerRemoved(address indexed removedBurner, address indexed removedBy);\n\n    Roles.Role private _burners;\n\n    modifier onlyBurner() {\n        require(isBurner(msg.sender), \"BurnerRole: caller does not have the Burner role\");\n        _;\n    }\n\n    function isBurner(address account) public view returns (bool) {\n        return _burners.has(account);\n    }\n\n    function _addBurner(address account) internal {\n        _burners.add(account);\n        emit BurnerAdded(account, msg.sender);\n    }\n\n    function _removeBurner(address account) internal {\n        _burners.remove(account);\n        emit BurnerRemoved(account, msg.sender);\n    }\n\n    function addBurner(address account) public onlyOwner {\n        _addBurner(account);\n    }\n\n    function removeBurner(address account) public onlyOwner {\n        _removeBurner(account);\n    }\n\n}",
   "sourcePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol",
   "ast": {
     "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol",
     "exportedSymbols": {
       "BurnerRole": [
-        1101
+        2485
       ]
     },
-    "id": 1102,
+    "id": 2486,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 998,
+        "id": 2382,
         "literals": [
           "solidity",
           "0.5",
           ".16"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:10"
+        "src": "0:23:21"
       },
       {
         "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol",
         "file": "./OwnerRole.sol",
-        "id": 999,
+        "id": 2383,
         "nodeType": "ImportDirective",
-        "scope": 1102,
-        "sourceUnit": 1313,
-        "src": "25:25:10",
+        "scope": 2486,
+        "sourceUnit": 2697,
+        "src": "25:25:21",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -224,31 +224,31 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1000,
+              "id": 2384,
               "name": "OwnerRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1312,
-              "src": "75:9:10",
+              "referencedDeclaration": 2696,
+              "src": "75:9:21",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_OwnerRole_$1312",
+                "typeIdentifier": "t_contract$_OwnerRole_$2696",
                 "typeString": "contract OwnerRole"
               }
             },
-            "id": 1001,
+            "id": 2385,
             "nodeType": "InheritanceSpecifier",
-            "src": "75:9:10"
+            "src": "75:9:21"
           }
         ],
         "contractDependencies": [
-          1312
+          2696
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1101,
+        "id": 2485,
         "linearizedBaseContracts": [
-          1101,
-          1312
+          2485,
+          2696
         ],
         "name": "BurnerRole",
         "nodeType": "ContractDefinition",
@@ -256,21 +256,21 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1007,
+            "id": 2391,
             "name": "BurnerAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1006,
+              "id": 2390,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1003,
+                  "id": 2387,
                   "indexed": true,
                   "name": "addedBurner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1007,
-                  "src": "110:27:10",
+                  "scope": 2391,
+                  "src": "110:27:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -278,10 +278,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1002,
+                    "id": 2386,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "110:7:10",
+                    "src": "110:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -293,12 +293,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1005,
+                  "id": 2389,
                   "indexed": true,
                   "name": "addedBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1007,
-                  "src": "139:23:10",
+                  "scope": 2391,
+                  "src": "139:23:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -306,10 +306,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1004,
+                    "id": 2388,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "139:7:10",
+                    "src": "139:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -320,28 +320,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "109:54:10"
+              "src": "109:54:21"
             },
-            "src": "92:72:10"
+            "src": "92:72:21"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1013,
+            "id": 2397,
             "name": "BurnerRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1012,
+              "id": 2396,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1009,
+                  "id": 2393,
                   "indexed": true,
                   "name": "removedBurner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1013,
-                  "src": "189:29:10",
+                  "scope": 2397,
+                  "src": "189:29:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -349,10 +349,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1008,
+                    "id": 2392,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "189:7:10",
+                    "src": "189:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -364,12 +364,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1011,
+                  "id": 2395,
                   "indexed": true,
                   "name": "removedBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1013,
-                  "src": "220:25:10",
+                  "scope": 2397,
+                  "src": "220:25:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -377,10 +377,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1010,
+                    "id": 2394,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "220:7:10",
+                    "src": "220:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -391,32 +391,32 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "188:58:10"
+              "src": "188:58:21"
             },
-            "src": "169:78:10"
+            "src": "169:78:21"
           },
           {
             "constant": false,
-            "id": 1015,
+            "id": 2399,
             "name": "_burners",
             "nodeType": "VariableDeclaration",
-            "scope": 1101,
-            "src": "253:27:10",
+            "scope": 2485,
+            "src": "253:27:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_struct$_Role_$2487_storage",
+              "typeIdentifier": "t_struct$_Role_$36_storage",
               "typeString": "struct Roles.Role"
             },
             "typeName": {
               "contractScope": null,
-              "id": 1014,
+              "id": 2398,
               "name": "Roles.Role",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2487,
-              "src": "253:10:10",
+              "referencedDeclaration": 36,
+              "src": "253:10:21",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Role_$2487_storage_ptr",
+                "typeIdentifier": "t_struct$_Role_$36_storage_ptr",
                 "typeString": "struct Roles.Role"
               }
             },
@@ -425,9 +425,9 @@
           },
           {
             "body": {
-              "id": 1026,
+              "id": 2410,
               "nodeType": "Block",
-              "src": "309:109:10",
+              "src": "309:109:21",
               "statements": [
                 {
                   "expression": {
@@ -440,18 +440,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 1019,
+                              "id": 2403,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3380,
-                              "src": "336:3:10",
+                              "referencedDeclaration": 3849,
+                              "src": "336:3:21",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 1020,
+                            "id": 2404,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -459,7 +459,7 @@
                             "memberName": "sender",
                             "nodeType": "MemberAccess",
                             "referencedDeclaration": null,
-                            "src": "336:10:10",
+                            "src": "336:10:21",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address_payable",
                               "typeString": "address payable"
@@ -473,18 +473,18 @@
                               "typeString": "address payable"
                             }
                           ],
-                          "id": 1018,
+                          "id": 2402,
                           "name": "isBurner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1040,
-                          "src": "327:8:10",
+                          "referencedDeclaration": 2424,
+                          "src": "327:8:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                             "typeString": "function (address) view returns (bool)"
                           }
                         },
-                        "id": 1021,
+                        "id": 2405,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -492,7 +492,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "327:20:10",
+                        "src": "327:20:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -501,14 +501,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4275726e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204275726e657220726f6c65",
-                        "id": 1022,
+                        "id": 2406,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "349:50:10",
+                        "src": "349:50:21",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_414f1aded2a791f2d49002801e50b158b5ee4acfa3bc2055210cf8a1bb62ea3b",
@@ -528,21 +528,21 @@
                           "typeString": "literal_string \"BurnerRole: caller does not have the Burner role\""
                         }
                       ],
-                      "id": 1017,
+                      "id": 2401,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3383,
-                        3384
+                        3852,
+                        3853
                       ],
-                      "referencedDeclaration": 3384,
-                      "src": "319:7:10",
+                      "referencedDeclaration": 3853,
+                      "src": "319:7:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1023,
+                    "id": 2407,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -550,41 +550,41 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "319:81:10",
+                    "src": "319:81:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1024,
+                  "id": 2408,
                   "nodeType": "ExpressionStatement",
-                  "src": "319:81:10"
+                  "src": "319:81:21"
                 },
                 {
-                  "id": 1025,
+                  "id": 2409,
                   "nodeType": "PlaceholderStatement",
-                  "src": "410:1:10"
+                  "src": "410:1:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1027,
+            "id": 2411,
             "name": "onlyBurner",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1016,
+              "id": 2400,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "306:2:10"
+              "src": "306:2:21"
             },
-            "src": "287:131:10",
+            "src": "287:131:21",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1039,
+              "id": 2423,
               "nodeType": "Block",
-              "src": "486:45:10",
+              "src": "486:45:21",
               "statements": [
                 {
                   "expression": {
@@ -592,12 +592,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1036,
+                        "id": 2420,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1029,
-                        "src": "516:7:10",
+                        "referencedDeclaration": 2413,
+                        "src": "516:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -613,32 +613,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1034,
+                        "id": 2418,
                         "name": "_burners",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1015,
-                        "src": "503:8:10",
+                        "referencedDeclaration": 2399,
+                        "src": "503:8:21",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2487_storage",
+                          "typeIdentifier": "t_struct$_Role_$36_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
-                      "id": 1035,
+                      "id": 2419,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "has",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2560,
-                      "src": "503:12:10",
+                      "referencedDeclaration": 109,
+                      "src": "503:12:21",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$36_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$36_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                       }
                     },
-                    "id": 1037,
+                    "id": 2421,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -646,37 +646,37 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "503:21:10",
+                    "src": "503:21:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1033,
-                  "id": 1038,
+                  "functionReturnParameters": 2417,
+                  "id": 2422,
                   "nodeType": "Return",
-                  "src": "496:28:10"
+                  "src": "496:28:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1040,
+            "id": 2424,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1030,
+              "id": 2414,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1029,
+                  "id": 2413,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1040,
-                  "src": "442:15:10",
+                  "scope": 2424,
+                  "src": "442:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -684,10 +684,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1028,
+                    "id": 2412,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "442:7:10",
+                    "src": "442:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -698,19 +698,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "441:17:10"
+              "src": "441:17:21"
             },
             "returnParameters": {
-              "id": 1033,
+              "id": 2417,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1032,
+                  "id": 2416,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1040,
-                  "src": "480:4:10",
+                  "scope": 2424,
+                  "src": "480:4:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -718,10 +718,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1031,
+                    "id": 2415,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "480:4:10",
+                    "src": "480:4:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -731,19 +731,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "479:6:10"
+              "src": "479:6:21"
             },
-            "scope": 1101,
-            "src": "424:107:10",
+            "scope": 2485,
+            "src": "424:107:21",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1057,
+              "id": 2441,
               "nodeType": "Block",
-              "src": "583:85:10",
+              "src": "583:85:21",
               "statements": [
                 {
                   "expression": {
@@ -751,12 +751,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1048,
+                        "id": 2432,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1042,
-                        "src": "606:7:10",
+                        "referencedDeclaration": 2426,
+                        "src": "606:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -772,32 +772,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1045,
+                        "id": 2429,
                         "name": "_burners",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1015,
-                        "src": "593:8:10",
+                        "referencedDeclaration": 2399,
+                        "src": "593:8:21",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2487_storage",
+                          "typeIdentifier": "t_struct$_Role_$36_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
-                      "id": 1047,
+                      "id": 2431,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2512,
-                      "src": "593:12:10",
+                      "referencedDeclaration": 61,
+                      "src": "593:12:21",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$36_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$36_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
-                    "id": 1049,
+                    "id": 2433,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -805,15 +805,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "593:21:10",
+                    "src": "593:21:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1050,
+                  "id": 2434,
                   "nodeType": "ExpressionStatement",
-                  "src": "593:21:10"
+                  "src": "593:21:21"
                 },
                 {
                   "eventCall": {
@@ -821,12 +821,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1052,
+                        "id": 2436,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1042,
-                        "src": "641:7:10",
+                        "referencedDeclaration": 2426,
+                        "src": "641:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -836,18 +836,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1053,
+                          "id": 2437,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3380,
-                          "src": "650:3:10",
+                          "referencedDeclaration": 3849,
+                          "src": "650:3:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1054,
+                        "id": 2438,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -855,7 +855,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "650:10:10",
+                        "src": "650:10:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -873,18 +873,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 1051,
+                      "id": 2435,
                       "name": "BurnerAdded",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1007,
-                      "src": "629:11:10",
+                      "referencedDeclaration": 2391,
+                      "src": "629:11:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
                         "typeString": "function (address,address)"
                       }
                     },
-                    "id": 1055,
+                    "id": 2439,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -892,36 +892,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "629:32:10",
+                    "src": "629:32:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1056,
+                  "id": 2440,
                   "nodeType": "EmitStatement",
-                  "src": "624:37:10"
+                  "src": "624:37:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1058,
+            "id": 2442,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_addBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1043,
+              "id": 2427,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1042,
+                  "id": 2426,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1058,
-                  "src": "557:15:10",
+                  "scope": 2442,
+                  "src": "557:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -929,10 +929,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1041,
+                    "id": 2425,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "557:7:10",
+                    "src": "557:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -943,25 +943,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "556:17:10"
+              "src": "556:17:21"
             },
             "returnParameters": {
-              "id": 1044,
+              "id": 2428,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "583:0:10"
+              "src": "583:0:21"
             },
-            "scope": 1101,
-            "src": "537:131:10",
+            "scope": 2485,
+            "src": "537:131:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1075,
+              "id": 2459,
               "nodeType": "Block",
-              "src": "723:90:10",
+              "src": "723:90:21",
               "statements": [
                 {
                   "expression": {
@@ -969,12 +969,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1066,
+                        "id": 2450,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1060,
-                        "src": "749:7:10",
+                        "referencedDeclaration": 2444,
+                        "src": "749:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -990,32 +990,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1063,
+                        "id": 2447,
                         "name": "_burners",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1015,
-                        "src": "733:8:10",
+                        "referencedDeclaration": 2399,
+                        "src": "733:8:21",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2487_storage",
+                          "typeIdentifier": "t_struct$_Role_$36_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
-                      "id": 1065,
+                      "id": 2449,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "remove",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2536,
-                      "src": "733:15:10",
+                      "referencedDeclaration": 85,
+                      "src": "733:15:21",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$36_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$36_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
-                    "id": 1067,
+                    "id": 2451,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1023,15 +1023,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "733:24:10",
+                    "src": "733:24:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1068,
+                  "id": 2452,
                   "nodeType": "ExpressionStatement",
-                  "src": "733:24:10"
+                  "src": "733:24:21"
                 },
                 {
                   "eventCall": {
@@ -1039,12 +1039,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1070,
+                        "id": 2454,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1060,
-                        "src": "786:7:10",
+                        "referencedDeclaration": 2444,
+                        "src": "786:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1054,18 +1054,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1071,
+                          "id": 2455,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3380,
-                          "src": "795:3:10",
+                          "referencedDeclaration": 3849,
+                          "src": "795:3:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1072,
+                        "id": 2456,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1073,7 +1073,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "795:10:10",
+                        "src": "795:10:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -1091,18 +1091,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 1069,
+                      "id": 2453,
                       "name": "BurnerRemoved",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1013,
-                      "src": "772:13:10",
+                      "referencedDeclaration": 2397,
+                      "src": "772:13:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
                         "typeString": "function (address,address)"
                       }
                     },
-                    "id": 1073,
+                    "id": 2457,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1110,36 +1110,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "772:34:10",
+                    "src": "772:34:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1074,
+                  "id": 2458,
                   "nodeType": "EmitStatement",
-                  "src": "767:39:10"
+                  "src": "767:39:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1076,
+            "id": 2460,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_removeBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1061,
+              "id": 2445,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1060,
+                  "id": 2444,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1076,
-                  "src": "697:15:10",
+                  "scope": 2460,
+                  "src": "697:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1147,10 +1147,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1059,
+                    "id": 2443,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "697:7:10",
+                    "src": "697:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1161,25 +1161,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "696:17:10"
+              "src": "696:17:21"
             },
             "returnParameters": {
-              "id": 1062,
+              "id": 2446,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "723:0:10"
+              "src": "723:0:21"
             },
-            "scope": 1101,
-            "src": "674:139:10",
+            "scope": 2485,
+            "src": "674:139:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1087,
+              "id": 2471,
               "nodeType": "Block",
-              "src": "872:36:10",
+              "src": "872:36:21",
               "statements": [
                 {
                   "expression": {
@@ -1187,12 +1187,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1084,
+                        "id": 2468,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1078,
-                        "src": "893:7:10",
+                        "referencedDeclaration": 2462,
+                        "src": "893:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1206,18 +1206,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 1083,
+                      "id": 2467,
                       "name": "_addBurner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1058,
-                      "src": "882:10:10",
+                      "referencedDeclaration": 2442,
+                      "src": "882:10:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 1085,
+                    "id": 2469,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1225,56 +1225,56 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "882:19:10",
+                    "src": "882:19:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1086,
+                  "id": 2470,
                   "nodeType": "ExpressionStatement",
-                  "src": "882:19:10"
+                  "src": "882:19:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1088,
+            "id": 2472,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1081,
+                "id": 2465,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1080,
+                  "id": 2464,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1238,
-                  "src": "862:9:10",
+                  "referencedDeclaration": 2622,
+                  "src": "862:9:21",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "862:9:10"
+                "src": "862:9:21"
               }
             ],
             "name": "addBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1079,
+              "id": 2463,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1078,
+                  "id": 2462,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1088,
-                  "src": "838:15:10",
+                  "scope": 2472,
+                  "src": "838:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1282,10 +1282,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1077,
+                    "id": 2461,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "838:7:10",
+                    "src": "838:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1296,25 +1296,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "837:17:10"
+              "src": "837:17:21"
             },
             "returnParameters": {
-              "id": 1082,
+              "id": 2466,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "872:0:10"
+              "src": "872:0:21"
             },
-            "scope": 1101,
-            "src": "819:89:10",
+            "scope": 2485,
+            "src": "819:89:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1099,
+              "id": 2483,
               "nodeType": "Block",
-              "src": "970:39:10",
+              "src": "970:39:21",
               "statements": [
                 {
                   "expression": {
@@ -1322,12 +1322,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1096,
+                        "id": 2480,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1090,
-                        "src": "994:7:10",
+                        "referencedDeclaration": 2474,
+                        "src": "994:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1341,18 +1341,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 1095,
+                      "id": 2479,
                       "name": "_removeBurner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1076,
-                      "src": "980:13:10",
+                      "referencedDeclaration": 2460,
+                      "src": "980:13:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 1097,
+                    "id": 2481,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1360,56 +1360,56 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "980:22:10",
+                    "src": "980:22:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1098,
+                  "id": 2482,
                   "nodeType": "ExpressionStatement",
-                  "src": "980:22:10"
+                  "src": "980:22:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1100,
+            "id": 2484,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1093,
+                "id": 2477,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1092,
+                  "id": 2476,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1238,
-                  "src": "960:9:10",
+                  "referencedDeclaration": 2622,
+                  "src": "960:9:21",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "960:9:10"
+                "src": "960:9:21"
               }
             ],
             "name": "removeBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1091,
+              "id": 2475,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1090,
+                  "id": 2474,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1100,
-                  "src": "936:15:10",
+                  "scope": 2484,
+                  "src": "936:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1417,10 +1417,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1089,
+                    "id": 2473,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "936:7:10",
+                    "src": "936:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1431,55 +1431,55 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "935:17:10"
+              "src": "935:17:21"
             },
             "returnParameters": {
-              "id": 1094,
+              "id": 2478,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "970:0:10"
+              "src": "970:0:21"
             },
-            "scope": 1101,
-            "src": "914:95:10",
+            "scope": 2485,
+            "src": "914:95:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1102,
-        "src": "52:960:10"
+        "scope": 2486,
+        "src": "52:960:21"
       }
     ],
-    "src": "0:1012:10"
+    "src": "0:1012:21"
   },
   "legacyAST": {
     "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/BurnerRole.sol",
     "exportedSymbols": {
       "BurnerRole": [
-        1101
+        2485
       ]
     },
-    "id": 1102,
+    "id": 2486,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 998,
+        "id": 2382,
         "literals": [
           "solidity",
           "0.5",
           ".16"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:10"
+        "src": "0:23:21"
       },
       {
         "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/roles/OwnerRole.sol",
         "file": "./OwnerRole.sol",
-        "id": 999,
+        "id": 2383,
         "nodeType": "ImportDirective",
-        "scope": 1102,
-        "sourceUnit": 1313,
-        "src": "25:25:10",
+        "scope": 2486,
+        "sourceUnit": 2697,
+        "src": "25:25:21",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1489,31 +1489,31 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1000,
+              "id": 2384,
               "name": "OwnerRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1312,
-              "src": "75:9:10",
+              "referencedDeclaration": 2696,
+              "src": "75:9:21",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_OwnerRole_$1312",
+                "typeIdentifier": "t_contract$_OwnerRole_$2696",
                 "typeString": "contract OwnerRole"
               }
             },
-            "id": 1001,
+            "id": 2385,
             "nodeType": "InheritanceSpecifier",
-            "src": "75:9:10"
+            "src": "75:9:21"
           }
         ],
         "contractDependencies": [
-          1312
+          2696
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1101,
+        "id": 2485,
         "linearizedBaseContracts": [
-          1101,
-          1312
+          2485,
+          2696
         ],
         "name": "BurnerRole",
         "nodeType": "ContractDefinition",
@@ -1521,21 +1521,21 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1007,
+            "id": 2391,
             "name": "BurnerAdded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1006,
+              "id": 2390,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1003,
+                  "id": 2387,
                   "indexed": true,
                   "name": "addedBurner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1007,
-                  "src": "110:27:10",
+                  "scope": 2391,
+                  "src": "110:27:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1543,10 +1543,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1002,
+                    "id": 2386,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "110:7:10",
+                    "src": "110:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1558,12 +1558,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1005,
+                  "id": 2389,
                   "indexed": true,
                   "name": "addedBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1007,
-                  "src": "139:23:10",
+                  "scope": 2391,
+                  "src": "139:23:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1571,10 +1571,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1004,
+                    "id": 2388,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "139:7:10",
+                    "src": "139:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1585,28 +1585,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "109:54:10"
+              "src": "109:54:21"
             },
-            "src": "92:72:10"
+            "src": "92:72:21"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1013,
+            "id": 2397,
             "name": "BurnerRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1012,
+              "id": 2396,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1009,
+                  "id": 2393,
                   "indexed": true,
                   "name": "removedBurner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1013,
-                  "src": "189:29:10",
+                  "scope": 2397,
+                  "src": "189:29:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1614,10 +1614,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1008,
+                    "id": 2392,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "189:7:10",
+                    "src": "189:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1629,12 +1629,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1011,
+                  "id": 2395,
                   "indexed": true,
                   "name": "removedBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1013,
-                  "src": "220:25:10",
+                  "scope": 2397,
+                  "src": "220:25:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1642,10 +1642,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1010,
+                    "id": 2394,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "220:7:10",
+                    "src": "220:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1656,32 +1656,32 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "188:58:10"
+              "src": "188:58:21"
             },
-            "src": "169:78:10"
+            "src": "169:78:21"
           },
           {
             "constant": false,
-            "id": 1015,
+            "id": 2399,
             "name": "_burners",
             "nodeType": "VariableDeclaration",
-            "scope": 1101,
-            "src": "253:27:10",
+            "scope": 2485,
+            "src": "253:27:21",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_struct$_Role_$2487_storage",
+              "typeIdentifier": "t_struct$_Role_$36_storage",
               "typeString": "struct Roles.Role"
             },
             "typeName": {
               "contractScope": null,
-              "id": 1014,
+              "id": 2398,
               "name": "Roles.Role",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2487,
-              "src": "253:10:10",
+              "referencedDeclaration": 36,
+              "src": "253:10:21",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_Role_$2487_storage_ptr",
+                "typeIdentifier": "t_struct$_Role_$36_storage_ptr",
                 "typeString": "struct Roles.Role"
               }
             },
@@ -1690,9 +1690,9 @@
           },
           {
             "body": {
-              "id": 1026,
+              "id": 2410,
               "nodeType": "Block",
-              "src": "309:109:10",
+              "src": "309:109:21",
               "statements": [
                 {
                   "expression": {
@@ -1705,18 +1705,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 1019,
+                              "id": 2403,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3380,
-                              "src": "336:3:10",
+                              "referencedDeclaration": 3849,
+                              "src": "336:3:21",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 1020,
+                            "id": 2404,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -1724,7 +1724,7 @@
                             "memberName": "sender",
                             "nodeType": "MemberAccess",
                             "referencedDeclaration": null,
-                            "src": "336:10:10",
+                            "src": "336:10:21",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address_payable",
                               "typeString": "address payable"
@@ -1738,18 +1738,18 @@
                               "typeString": "address payable"
                             }
                           ],
-                          "id": 1018,
+                          "id": 2402,
                           "name": "isBurner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1040,
-                          "src": "327:8:10",
+                          "referencedDeclaration": 2424,
+                          "src": "327:8:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                             "typeString": "function (address) view returns (bool)"
                           }
                         },
-                        "id": 1021,
+                        "id": 2405,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1757,7 +1757,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "327:20:10",
+                        "src": "327:20:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1766,14 +1766,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "4275726e6572526f6c653a2063616c6c657220646f6573206e6f74206861766520746865204275726e657220726f6c65",
-                        "id": 1022,
+                        "id": 2406,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "349:50:10",
+                        "src": "349:50:21",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_414f1aded2a791f2d49002801e50b158b5ee4acfa3bc2055210cf8a1bb62ea3b",
@@ -1793,21 +1793,21 @@
                           "typeString": "literal_string \"BurnerRole: caller does not have the Burner role\""
                         }
                       ],
-                      "id": 1017,
+                      "id": 2401,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3383,
-                        3384
+                        3852,
+                        3853
                       ],
-                      "referencedDeclaration": 3384,
-                      "src": "319:7:10",
+                      "referencedDeclaration": 3853,
+                      "src": "319:7:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1023,
+                    "id": 2407,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1815,41 +1815,41 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "319:81:10",
+                    "src": "319:81:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1024,
+                  "id": 2408,
                   "nodeType": "ExpressionStatement",
-                  "src": "319:81:10"
+                  "src": "319:81:21"
                 },
                 {
-                  "id": 1025,
+                  "id": 2409,
                   "nodeType": "PlaceholderStatement",
-                  "src": "410:1:10"
+                  "src": "410:1:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1027,
+            "id": 2411,
             "name": "onlyBurner",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1016,
+              "id": 2400,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "306:2:10"
+              "src": "306:2:21"
             },
-            "src": "287:131:10",
+            "src": "287:131:21",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1039,
+              "id": 2423,
               "nodeType": "Block",
-              "src": "486:45:10",
+              "src": "486:45:21",
               "statements": [
                 {
                   "expression": {
@@ -1857,12 +1857,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1036,
+                        "id": 2420,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1029,
-                        "src": "516:7:10",
+                        "referencedDeclaration": 2413,
+                        "src": "516:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1878,32 +1878,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1034,
+                        "id": 2418,
                         "name": "_burners",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1015,
-                        "src": "503:8:10",
+                        "referencedDeclaration": 2399,
+                        "src": "503:8:21",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2487_storage",
+                          "typeIdentifier": "t_struct$_Role_$36_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
-                      "id": 1035,
+                      "id": 2419,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "has",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2560,
-                      "src": "503:12:10",
+                      "referencedDeclaration": 109,
+                      "src": "503:12:21",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$36_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$36_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                       }
                     },
-                    "id": 1037,
+                    "id": 2421,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1911,37 +1911,37 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "503:21:10",
+                    "src": "503:21:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1033,
-                  "id": 1038,
+                  "functionReturnParameters": 2417,
+                  "id": 2422,
                   "nodeType": "Return",
-                  "src": "496:28:10"
+                  "src": "496:28:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1040,
+            "id": 2424,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1030,
+              "id": 2414,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1029,
+                  "id": 2413,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1040,
-                  "src": "442:15:10",
+                  "scope": 2424,
+                  "src": "442:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1949,10 +1949,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1028,
+                    "id": 2412,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "442:7:10",
+                    "src": "442:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1963,19 +1963,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "441:17:10"
+              "src": "441:17:21"
             },
             "returnParameters": {
-              "id": 1033,
+              "id": 2417,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1032,
+                  "id": 2416,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1040,
-                  "src": "480:4:10",
+                  "scope": 2424,
+                  "src": "480:4:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1983,10 +1983,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1031,
+                    "id": 2415,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "480:4:10",
+                    "src": "480:4:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1996,19 +1996,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "479:6:10"
+              "src": "479:6:21"
             },
-            "scope": 1101,
-            "src": "424:107:10",
+            "scope": 2485,
+            "src": "424:107:21",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1057,
+              "id": 2441,
               "nodeType": "Block",
-              "src": "583:85:10",
+              "src": "583:85:21",
               "statements": [
                 {
                   "expression": {
@@ -2016,12 +2016,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1048,
+                        "id": 2432,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1042,
-                        "src": "606:7:10",
+                        "referencedDeclaration": 2426,
+                        "src": "606:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2037,32 +2037,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1045,
+                        "id": 2429,
                         "name": "_burners",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1015,
-                        "src": "593:8:10",
+                        "referencedDeclaration": 2399,
+                        "src": "593:8:21",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2487_storage",
+                          "typeIdentifier": "t_struct$_Role_$36_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
-                      "id": 1047,
+                      "id": 2431,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2512,
-                      "src": "593:12:10",
+                      "referencedDeclaration": 61,
+                      "src": "593:12:21",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$36_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$36_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
-                    "id": 1049,
+                    "id": 2433,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2070,15 +2070,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "593:21:10",
+                    "src": "593:21:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1050,
+                  "id": 2434,
                   "nodeType": "ExpressionStatement",
-                  "src": "593:21:10"
+                  "src": "593:21:21"
                 },
                 {
                   "eventCall": {
@@ -2086,12 +2086,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1052,
+                        "id": 2436,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1042,
-                        "src": "641:7:10",
+                        "referencedDeclaration": 2426,
+                        "src": "641:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2101,18 +2101,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1053,
+                          "id": 2437,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3380,
-                          "src": "650:3:10",
+                          "referencedDeclaration": 3849,
+                          "src": "650:3:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1054,
+                        "id": 2438,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2120,7 +2120,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "650:10:10",
+                        "src": "650:10:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -2138,18 +2138,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 1051,
+                      "id": 2435,
                       "name": "BurnerAdded",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1007,
-                      "src": "629:11:10",
+                      "referencedDeclaration": 2391,
+                      "src": "629:11:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
                         "typeString": "function (address,address)"
                       }
                     },
-                    "id": 1055,
+                    "id": 2439,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2157,36 +2157,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "629:32:10",
+                    "src": "629:32:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1056,
+                  "id": 2440,
                   "nodeType": "EmitStatement",
-                  "src": "624:37:10"
+                  "src": "624:37:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1058,
+            "id": 2442,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_addBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1043,
+              "id": 2427,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1042,
+                  "id": 2426,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1058,
-                  "src": "557:15:10",
+                  "scope": 2442,
+                  "src": "557:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2194,10 +2194,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1041,
+                    "id": 2425,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "557:7:10",
+                    "src": "557:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2208,25 +2208,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "556:17:10"
+              "src": "556:17:21"
             },
             "returnParameters": {
-              "id": 1044,
+              "id": 2428,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "583:0:10"
+              "src": "583:0:21"
             },
-            "scope": 1101,
-            "src": "537:131:10",
+            "scope": 2485,
+            "src": "537:131:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1075,
+              "id": 2459,
               "nodeType": "Block",
-              "src": "723:90:10",
+              "src": "723:90:21",
               "statements": [
                 {
                   "expression": {
@@ -2234,12 +2234,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1066,
+                        "id": 2450,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1060,
-                        "src": "749:7:10",
+                        "referencedDeclaration": 2444,
+                        "src": "749:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2255,32 +2255,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1063,
+                        "id": 2447,
                         "name": "_burners",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1015,
-                        "src": "733:8:10",
+                        "referencedDeclaration": 2399,
+                        "src": "733:8:21",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2487_storage",
+                          "typeIdentifier": "t_struct$_Role_$36_storage",
                           "typeString": "struct Roles.Role storage ref"
                         }
                       },
-                      "id": 1065,
+                      "id": 2449,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "remove",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2536,
-                      "src": "733:15:10",
+                      "referencedDeclaration": 85,
+                      "src": "733:15:21",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$2487_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$2487_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$36_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$36_storage_ptr_$",
                         "typeString": "function (struct Roles.Role storage pointer,address)"
                       }
                     },
-                    "id": 1067,
+                    "id": 2451,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2288,15 +2288,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "733:24:10",
+                    "src": "733:24:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1068,
+                  "id": 2452,
                   "nodeType": "ExpressionStatement",
-                  "src": "733:24:10"
+                  "src": "733:24:21"
                 },
                 {
                   "eventCall": {
@@ -2304,12 +2304,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1070,
+                        "id": 2454,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1060,
-                        "src": "786:7:10",
+                        "referencedDeclaration": 2444,
+                        "src": "786:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2319,18 +2319,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1071,
+                          "id": 2455,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3380,
-                          "src": "795:3:10",
+                          "referencedDeclaration": 3849,
+                          "src": "795:3:21",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1072,
+                        "id": 2456,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2338,7 +2338,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "795:10:10",
+                        "src": "795:10:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
                           "typeString": "address payable"
@@ -2356,18 +2356,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 1069,
+                      "id": 2453,
                       "name": "BurnerRemoved",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1013,
-                      "src": "772:13:10",
+                      "referencedDeclaration": 2397,
+                      "src": "772:13:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$returns$__$",
                         "typeString": "function (address,address)"
                       }
                     },
-                    "id": 1073,
+                    "id": 2457,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2375,36 +2375,36 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "772:34:10",
+                    "src": "772:34:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1074,
+                  "id": 2458,
                   "nodeType": "EmitStatement",
-                  "src": "767:39:10"
+                  "src": "767:39:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1076,
+            "id": 2460,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_removeBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1061,
+              "id": 2445,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1060,
+                  "id": 2444,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1076,
-                  "src": "697:15:10",
+                  "scope": 2460,
+                  "src": "697:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2412,10 +2412,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1059,
+                    "id": 2443,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "697:7:10",
+                    "src": "697:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2426,25 +2426,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "696:17:10"
+              "src": "696:17:21"
             },
             "returnParameters": {
-              "id": 1062,
+              "id": 2446,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "723:0:10"
+              "src": "723:0:21"
             },
-            "scope": 1101,
-            "src": "674:139:10",
+            "scope": 2485,
+            "src": "674:139:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1087,
+              "id": 2471,
               "nodeType": "Block",
-              "src": "872:36:10",
+              "src": "872:36:21",
               "statements": [
                 {
                   "expression": {
@@ -2452,12 +2452,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1084,
+                        "id": 2468,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1078,
-                        "src": "893:7:10",
+                        "referencedDeclaration": 2462,
+                        "src": "893:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2471,18 +2471,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 1083,
+                      "id": 2467,
                       "name": "_addBurner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1058,
-                      "src": "882:10:10",
+                      "referencedDeclaration": 2442,
+                      "src": "882:10:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 1085,
+                    "id": 2469,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2490,56 +2490,56 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "882:19:10",
+                    "src": "882:19:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1086,
+                  "id": 2470,
                   "nodeType": "ExpressionStatement",
-                  "src": "882:19:10"
+                  "src": "882:19:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1088,
+            "id": 2472,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1081,
+                "id": 2465,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1080,
+                  "id": 2464,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1238,
-                  "src": "862:9:10",
+                  "referencedDeclaration": 2622,
+                  "src": "862:9:21",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "862:9:10"
+                "src": "862:9:21"
               }
             ],
             "name": "addBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1079,
+              "id": 2463,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1078,
+                  "id": 2462,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1088,
-                  "src": "838:15:10",
+                  "scope": 2472,
+                  "src": "838:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2547,10 +2547,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1077,
+                    "id": 2461,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "838:7:10",
+                    "src": "838:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2561,25 +2561,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "837:17:10"
+              "src": "837:17:21"
             },
             "returnParameters": {
-              "id": 1082,
+              "id": 2466,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "872:0:10"
+              "src": "872:0:21"
             },
-            "scope": 1101,
-            "src": "819:89:10",
+            "scope": 2485,
+            "src": "819:89:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 1099,
+              "id": 2483,
               "nodeType": "Block",
-              "src": "970:39:10",
+              "src": "970:39:21",
               "statements": [
                 {
                   "expression": {
@@ -2587,12 +2587,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1096,
+                        "id": 2480,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1090,
-                        "src": "994:7:10",
+                        "referencedDeclaration": 2474,
+                        "src": "994:7:21",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2606,18 +2606,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 1095,
+                      "id": 2479,
                       "name": "_removeBurner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1076,
-                      "src": "980:13:10",
+                      "referencedDeclaration": 2460,
+                      "src": "980:13:21",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 1097,
+                    "id": 2481,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2625,56 +2625,56 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "980:22:10",
+                    "src": "980:22:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1098,
+                  "id": 2482,
                   "nodeType": "ExpressionStatement",
-                  "src": "980:22:10"
+                  "src": "980:22:21"
                 }
               ]
             },
             "documentation": null,
-            "id": 1100,
+            "id": 2484,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1093,
+                "id": 2477,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1092,
+                  "id": 2476,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1238,
-                  "src": "960:9:10",
+                  "referencedDeclaration": 2622,
+                  "src": "960:9:21",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "960:9:10"
+                "src": "960:9:21"
               }
             ],
             "name": "removeBurner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1091,
+              "id": 2475,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1090,
+                  "id": 2474,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1100,
-                  "src": "936:15:10",
+                  "scope": 2484,
+                  "src": "936:15:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2682,10 +2682,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1089,
+                    "id": 2473,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "936:7:10",
+                    "src": "936:7:21",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2696,26 +2696,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "935:17:10"
+              "src": "935:17:21"
             },
             "returnParameters": {
-              "id": 1094,
+              "id": 2478,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "970:0:10"
+              "src": "970:0:21"
             },
-            "scope": 1101,
-            "src": "914:95:10",
+            "scope": 2485,
+            "src": "914:95:21",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1102,
-        "src": "52:960:10"
+        "scope": 2486,
+        "src": "52:960:21"
       }
     ],
-    "src": "0:1012:10"
+    "src": "0:1012:21"
   },
   "compiler": {
     "name": "solc",
@@ -2723,7 +2723,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-06-15T20:24:29.356Z",
+  "updatedAt": "2020-10-29T21:18:35.673Z",
   "devdoc": {
     "methods": {}
   },

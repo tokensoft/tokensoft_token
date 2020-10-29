@@ -1,6 +1,6 @@
 pragma solidity 0.5.16;
 
-import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
+import "../@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
 import "../roles/MinterRole.sol";
 
 contract Mintable is ERC20, MinterRole {

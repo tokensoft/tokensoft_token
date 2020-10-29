@@ -1,7 +1,7 @@
 pragma solidity 0.5.16;
 
 import "./capabilities/Proxiable.sol";
-import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
+import "./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "./ERC1404.sol";
 import "./roles/OwnerRole.sol";
 import "./capabilities/Whitelistable.sol";
@@ -9,8 +9,9 @@ import "./capabilities/Mintable.sol";
 import "./capabilities/Burnable.sol";
 import "./capabilities/Revocable.sol";
 import "./capabilities/Pausable.sol";
+import "./capabilities/Blacklistable.sol";
 
-contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whitelistable, Mintable, Burnable, Revocable, Pausable {
+contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whitelistable, Mintable, Burnable, Revocable, Pausable, Blacklistable {
 
     // ERC1404 Error codes and messages
     uint8 public constant SUCCESS_CODE = 0;
