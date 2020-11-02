@@ -1,6 +1,6 @@
 /* global artifacts contract it assert */
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
-const TokenSoftToken = artifacts.require('TokenSoftToken')
+const TokenSoftToken = artifacts.require('TokenSoftTokenV2')
 const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
 const TokenSoftTokenEscrowNotProxiable = artifacts.require('TokenSoftTokenEscrowNotProxiable')
 const Proxy = artifacts.require('Proxy')

@@ -1,6 +1,6 @@
 /* global artifacts contract it assert */
 const { expectRevert, expectEvent } = require('@openzeppelin/test-helpers')
-const TokenSoftToken = artifacts.require('TokenSoftToken')
+const TokenSoftTokenV2 = artifacts.require('TokenSoftTokenV2')
 const Proxy = artifacts.require('Proxy')
 const Constants = require('../Constants')
 
@@ -11,9 +11,9 @@ contract('BlacklisterRole', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
 
   beforeEach(async () => {
-    tokenDeploy = await TokenSoftToken.new()
+    tokenDeploy = await TokenSoftTokenV2.new()
     proxyInstance = await Proxy.new(tokenDeploy.address)
-    tokenInstance = await TokenSoftToken.at(proxyInstance.address)
+    tokenInstance = await TokenSoftTokenV2.at(proxyInstance.address)
     await tokenInstance.initialize(
       accounts[0],
       Constants.name,

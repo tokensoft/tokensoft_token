@@ -28,7 +28,7 @@ contract Blacklistable is BlacklisterRole {
      */
     function _addToBlacklist(address addressToAdd) internal {
         // Verify a valid address was passed in
-        require(addressToAdd != address(0), "Cannot add address 0x0 to a Blacklist.");
+        require(addressToAdd != address(0), "Cannot add address 0x0 to the blacklist.");
 
         // Set the address's white list ID
         addressBlacklists[addressToAdd] = true;
@@ -42,7 +42,7 @@ contract Blacklistable is BlacklisterRole {
      */
     function _removeFromBlacklist(address addressToRemove) internal {
         // Verify a valid address was passed in
-        require(addressToRemove != address(0), "Cannot remove address 0x0 from a Blacklist.");
+        require(addressToRemove != address(0), "Cannot remove address 0x0 from the blacklist.");
         
         // Zero out the previous white list
         addressBlacklists[addressToRemove] = false;

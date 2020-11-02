@@ -9,9 +9,8 @@ import "./capabilities/Mintable.sol";
 import "./capabilities/Burnable.sol";
 import "./capabilities/Revocable.sol";
 import "./capabilities/Pausable.sol";
-import "./capabilities/Blacklistable.sol";
 
-contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whitelistable, Mintable, Burnable, Revocable, Pausable, Blacklistable {
+contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whitelistable, Mintable, Burnable, Revocable, Pausable {
 
     // ERC1404 Error codes and messages
     uint8 public constant SUCCESS_CODE = 0;
