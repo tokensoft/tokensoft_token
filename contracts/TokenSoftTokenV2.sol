@@ -2,8 +2,9 @@ pragma solidity 0.5.16;
 
 import "./TokenSoftToken.sol";
 import "./capabilities/Blacklistable.sol";
+import "./capabilities/RevocableToAddress.sol";
 
-contract TokenSoftTokenV2 is TokenSoftToken, Blacklistable {
+contract TokenSoftTokenV2 is TokenSoftToken, Blacklistable, RevocableToAddress {
 
   // ERC1404 Error codes and messages
   uint8 public constant FAILURE_BLACKLIST = 3;

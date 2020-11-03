@@ -223,7 +223,6 @@ contract('Blacklistable', (accounts) => {
       tokenInstance.addToBlacklist(accounts[3], {from: accounts[1]}),
       "Address specified already on the black list."
     )
-
       
   })
 })
