@@ -207,7 +207,7 @@ contract('Blacklistable', (accounts) => {
     )
   })
 
-  it('should not allow removing an address that is not blacklisted', async () => {
+  it('should not allow removing an address that is not blacklisted or adding already blacklisted', async () => {
     // First allow acct 1 be blacklister
     await tokenInstance.addBlacklister(accounts[1], { from: accounts[0] })
 
@@ -215,5 +215,15 @@ contract('Blacklistable', (accounts) => {
       tokenInstance.removeFromBlacklist(accounts[2], {from: accounts[1]}), 
       "Address specified is not on the black list."
     )
+
+    // Blacklist acct 3
+    await tokenInstance.addToBlacklist(accounts[3], {from: accounts[1]})
+    // Second time should fail
+    await expectRevert(
+      tokenInstance.addToBlacklist(accounts[3], {from: accounts[1]}),
+      "Address specified already on the black list."
+    )
+
+      
   })
 })

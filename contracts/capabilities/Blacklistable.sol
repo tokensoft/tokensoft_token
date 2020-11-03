@@ -30,6 +30,9 @@ contract Blacklistable is BlacklisterRole {
         // Verify a valid address was passed in
         require(addressToAdd != address(0), "Cannot add address 0x0 to the blacklist.");
 
+        // Verify the address is on the blacklist before it can be removed
+        require(!addressBlacklists[addressToAdd], "Address specified already on the black list.");
+
         // Set the address's white list ID
         addressBlacklists[addressToAdd] = true;
 
