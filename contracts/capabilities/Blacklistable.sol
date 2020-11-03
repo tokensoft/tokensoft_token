@@ -43,6 +43,9 @@ contract Blacklistable is BlacklisterRole {
     function _removeFromBlacklist(address addressToRemove) internal {
         // Verify a valid address was passed in
         require(addressToRemove != address(0), "Cannot remove address 0x0 from the blacklist.");
+
+        // Verify the address is on the blacklist before it can be removed
+        require(addressBlacklists[addressToRemove], "Address specified is not on the black list.");
         
         // Zero out the previous white list
         addressBlacklists[addressToRemove] = false;

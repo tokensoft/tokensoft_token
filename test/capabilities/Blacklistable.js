@@ -206,4 +206,14 @@ contract('Blacklistable', (accounts) => {
         "OwnerRole: caller does not have the Owner role"
     )
   })
+
+  it('should not allow removing an address that is not blacklisted', async () => {
+    // First allow acct 1 be blacklister
+    await tokenInstance.addBlacklister(accounts[1], { from: accounts[0] })
+
+    await expectRevert(
+      tokenInstance.removeFromBlacklist(accounts[2], {from: accounts[1]}), 
+      "Address specified is not on the black list."
+    )
+  })
 })
