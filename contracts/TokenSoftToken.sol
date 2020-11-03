@@ -1,7 +1,7 @@
 pragma solidity 0.5.16;
 
 import "./capabilities/Proxiable.sol";
-import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
+import "./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "./ERC1404.sol";
 import "./roles/OwnerRole.sol";
 import "./capabilities/Whitelistable.sol";

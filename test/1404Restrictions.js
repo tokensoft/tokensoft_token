@@ -1,5 +1,5 @@
 /* global artifacts contract it assert */
-const TokenSoftToken = artifacts.require('TokenSoftToken')
+const TokenSoftToken = artifacts.require('TokenSoftTokenV2')
 const Proxy = artifacts.require('Proxy')
 
 const SUCCESS_CODE = 0

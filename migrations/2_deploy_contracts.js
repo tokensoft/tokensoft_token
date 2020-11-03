@@ -1,5 +1,5 @@
 /* global artifacts */
-const TokenSoftToken = artifacts.require('TokenSoftToken')
+const TokenSoftToken = artifacts.require('TokenSoftTokenV2')
 const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
 const Proxy = artifacts.require("Proxy");
 

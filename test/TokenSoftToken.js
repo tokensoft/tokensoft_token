@@ -2,12 +2,12 @@
 const BigNumber = require('bignumber.js')
 const { expectRevert } = require('@openzeppelin/test-helpers')
 
-const TokenSoftToken = artifacts.require('TokenSoftToken')
+const TokenSoftToken = artifacts.require('TokenSoftTokenV2')
 const Proxy = artifacts.require('Proxy')
 
 const Constants = require('./Constants')
 
-contract('TokenSoftToken', (accounts) => {
+contract('TokenSoftTokenV2', (accounts) => {
   let tokenInstance, tokenDeploy, proxyInstance
 
   beforeEach(async () => {
