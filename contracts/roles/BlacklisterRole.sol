@@ -1,4 +1,4 @@
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 import "./OwnerRole.sol";
 
@@ -10,7 +10,7 @@ contract BlacklisterRole is OwnerRole {
     Roles.Role private _Blacklisters;
 
     modifier onlyBlacklister() {
-        require(isBlacklister(msg.sender), "BlacklisterRole: caller does not have the Blacklister role");
+        require(isBlacklister(msg.sender), "BlacklisterRole missing");
         _;
     }
 

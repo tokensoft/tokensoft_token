@@ -1,4 +1,4 @@
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 import "../roles/BlacklisterRole.sol";
 
@@ -28,10 +28,10 @@ contract Blacklistable is BlacklisterRole {
      */
     function _addToBlacklist(address addressToAdd) internal {
         // Verify a valid address was passed in
-        require(addressToAdd != address(0), "Cannot add address 0x0 to the blacklist.");
+        require(addressToAdd != address(0), "Cannot add 0x0");
 
         // Verify the address is on the blacklist before it can be removed
-        require(!addressBlacklists[addressToAdd], "Address specified already on the black list.");
+        require(!addressBlacklists[addressToAdd], "Already on list");
 
         // Set the address's white list ID
         addressBlacklists[addressToAdd] = true;
@@ -45,10 +45,10 @@ contract Blacklistable is BlacklisterRole {
      */
     function _removeFromBlacklist(address addressToRemove) internal {
         // Verify a valid address was passed in
-        require(addressToRemove != address(0), "Cannot remove address 0x0 from the blacklist.");
+        require(addressToRemove != address(0), "Cannot remove 0x0");
 
         // Verify the address is on the blacklist before it can be removed
-        require(addressBlacklists[addressToRemove], "Address specified is not on the black list.");
+        require(addressBlacklists[addressToRemove], "Not on list");
         
         // Zero out the previous white list
         addressBlacklists[addressToRemove] = false;

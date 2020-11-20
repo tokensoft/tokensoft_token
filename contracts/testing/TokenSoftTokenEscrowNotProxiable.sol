@@ -1,4 +1,4 @@
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 import "../@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "../roles/OwnerRole.sol";
@@ -53,6 +53,7 @@ contract TokenSoftTokenEscrowNotProxiable is ERC20Detailed, OwnerRole, Whitelist
      */
     function transfer (address to, uint256 value)
         public
+        override(IERC20, ERC20)
         returns (bool success)
     {
         success = Escrowable._createTransferProposal(to, value);
@@ -65,6 +66,7 @@ contract TokenSoftTokenEscrowNotProxiable is ERC20Detailed, OwnerRole, Whitelist
      */
     function transferFrom (address from, address to, uint256 value)
         public
+        override(IERC20, ERC20)
         returns (bool success)
     {
         success = Escrowable._createTransferFromProposal(from, to, value);
