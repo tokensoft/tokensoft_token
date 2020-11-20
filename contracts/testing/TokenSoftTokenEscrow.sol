@@ -1,4 +1,4 @@
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 import "../capabilities/Proxiable.sol";
 import "../@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
@@ -61,6 +61,7 @@ contract TokenSoftTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Whitelista
      */
     function transfer (address to, uint256 value)
         public
+        override(IERC20, ERC20)
         returns (bool success)
     {
         success = Escrowable._createTransferProposal(to, value);
@@ -73,6 +74,7 @@ contract TokenSoftTokenEscrow is Proxiable, ERC20Detailed, OwnerRole, Whitelista
      */
     function transferFrom (address from, address to, uint256 value)
         public
+        override(IERC20, ERC20)
         returns (bool success)
     {
         success = Escrowable._createTransferFromProposal(from, to, value);

@@ -1,4 +1,4 @@
-pragma solidity ^0.5.5;
+pragma solidity 0.6.12;
 
 /**
  * @dev Collection of functions related to the address type
@@ -64,7 +64,7 @@ library Address {
         require(address(this).balance >= amount, "Address: insufficient balance");
 
         // solhint-disable-next-line avoid-call-value
-        (bool success, ) = recipient.call.value(amount)("");
+        (bool success, ) = recipient.call{value:amount}("");
         require(success, "Address: unable to send value, recipient may have reverted");
     }
 }

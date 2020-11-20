@@ -52,7 +52,7 @@ contract('Blacklistable', (accounts) => {
     // Non admin should fail adding to blacklist
     await expectRevert(
       tokenInstance.addToBlacklist(accounts[2], { from: accounts[4] }),
-      "BlacklisterRole: caller does not have the Blacklister role")
+      "BlacklisterRole missing")
 
     // Now allow acct 4 be an administrator
     await tokenInstance.addBlacklister(accounts[4], { from: accounts[0] })
@@ -63,7 +63,7 @@ contract('Blacklistable', (accounts) => {
     // Removing as non-admin should fail
     await expectRevert(
       tokenInstance.removeFromBlacklist(accounts[2], { from: accounts[8] }),
-      "BlacklisterRole: caller does not have the Blacklister role")
+      "BlacklisterRole missing")
 
     // Removing as admin should work
     await tokenInstance.removeFromBlacklist(accounts[2], { from: accounts[4] })
@@ -74,7 +74,7 @@ contract('Blacklistable', (accounts) => {
     // It should fail again now that acct 4 is non-admin
     await expectRevert(
       tokenInstance.addToBlacklist(accounts[2], { from: accounts[4] }),
-      "BlacklisterRole: caller does not have the Blacklister role")
+      "BlacklisterRole missing")
   })
 
   it('should validate if addresses are not on a blacklist', async () => {
@@ -153,7 +153,7 @@ contract('Blacklistable', (accounts) => {
         "0x0000000000000000000000000000000000000000",
         { from: accounts[0] }
       ), 
-      "Cannot add address 0x0 to the blacklist."
+      "Cannot add 0x0"
     )
 
     await expectRevert(
@@ -161,7 +161,7 @@ contract('Blacklistable', (accounts) => {
         "0x0000000000000000000000000000000000000000",
         { from: accounts[0] }
       ), 
-      "Cannot remove address 0x0 from the blacklist."
+      "Cannot remove 0x0"
     )
   })
 
@@ -181,7 +181,7 @@ contract('Blacklistable', (accounts) => {
     // Verify transfer fails
     await expectRevert(
       tokenInstance.transfer(accounts[3], 100, { from: accounts[2] }), 
-      "The transfer was restricted due to blacklist configuration."
+      "Restricted due to blacklist"
     )
     
     // Turn it off
@@ -196,7 +196,7 @@ contract('Blacklistable', (accounts) => {
     // Verify accounts can't transfer
     await expectRevert(
       tokenInstance.transfer(accounts[3], 100, { from: accounts[2] }), 
-      "The transfer was restricted due to blacklist configuration."
+      "Restricted due to blacklist"
     )
   })
 
@@ -213,7 +213,7 @@ contract('Blacklistable', (accounts) => {
 
     await expectRevert(
       tokenInstance.removeFromBlacklist(accounts[2], {from: accounts[1]}), 
-      "Address specified is not on the black list."
+      "Not on list"
     )
 
     // Blacklist acct 3
@@ -221,7 +221,7 @@ contract('Blacklistable', (accounts) => {
     // Second time should fail
     await expectRevert(
       tokenInstance.addToBlacklist(accounts[3], {from: accounts[1]}),
-      "Address specified already on the black list."
+      "Already on list"
     )
       
   })

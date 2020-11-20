@@ -3,7 +3,7 @@
 
 // File: contracts/capabilities/Proxiable.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 contract Proxiable {
     // Code position in storage is keccak256("PROXIABLE") = "0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7"
@@ -100,7 +100,7 @@ contract Initializable {
 
 // File: @openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol
 
-pragma solidity ^0.5.0;
+pragma solidity 0.6.12;
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP. Does not include
@@ -179,7 +179,7 @@ interface IERC20 {
 
 // File: @openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol
 
-pragma solidity ^0.5.0;
+pragma solidity 0.6.12;
 
 
 
@@ -238,7 +238,7 @@ contract ERC20Detailed is Initializable, IERC20 {
 
 // File: contracts/ERC1404.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 contract ERC1404 is IERC20 {
@@ -259,7 +259,7 @@ contract ERC1404 is IERC20 {
 
 // File: @openzeppelin/contracts-ethereum-package/contracts/access/Roles.sol
 
-pragma solidity ^0.5.0;
+pragma solidity 0.6.12;
 
 /**
  * @title Roles
@@ -298,7 +298,7 @@ library Roles {
 
 // File: contracts/roles/OwnerRole.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 contract OwnerRole {
@@ -339,7 +339,7 @@ contract OwnerRole {
 
 // File: contracts/roles/WhitelisterRole.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 contract WhitelisterRole is OwnerRole {
@@ -379,7 +379,7 @@ contract WhitelisterRole is OwnerRole {
 
 // File: contracts/capabilities/Whitelistable.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 /**
@@ -530,7 +530,7 @@ contract Whitelistable is WhitelisterRole {
 
 // File: @openzeppelin/contracts-ethereum-package/contracts/GSN/Context.sol
 
-pragma solidity ^0.5.0;
+pragma solidity 0.6.12;
 
 
 /*
@@ -561,7 +561,7 @@ contract Context is Initializable {
 
 // File: @openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol
 
-pragma solidity ^0.5.0;
+pragma solidity 0.6.12;
 
 /**
  * @dev Wrappers over Solidity's arithmetic operations with added overflow
@@ -720,7 +720,7 @@ library SafeMath {
 
 // File: @openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol
 
-pragma solidity ^0.5.0;
+pragma solidity 0.6.12;
 
 
 
@@ -955,7 +955,7 @@ contract ERC20 is Initializable, Context, IERC20 {
 
 // File: contracts/roles/MinterRole.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 contract MinterRole is OwnerRole {
@@ -996,7 +996,7 @@ contract MinterRole is OwnerRole {
 
 // File: contracts/capabilities/Mintable.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 
@@ -1019,7 +1019,7 @@ contract Mintable is ERC20, MinterRole {
 
 // File: contracts/roles/BurnerRole.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 contract BurnerRole is OwnerRole {
@@ -1060,7 +1060,7 @@ contract BurnerRole is OwnerRole {
 
 // File: contracts/capabilities/Burnable.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 
@@ -1083,7 +1083,7 @@ contract Burnable is ERC20, BurnerRole {
 
 // File: contracts/roles/RevokerRole.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 contract RevokerRole is OwnerRole {
@@ -1123,7 +1123,7 @@ contract RevokerRole is OwnerRole {
 
 // File: contracts/capabilities/Revocable.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 
@@ -1153,7 +1153,7 @@ contract Revocable is ERC20, RevokerRole {
 
 // File: contracts/roles/PauserRole.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 contract PauserRole is OwnerRole {
@@ -1193,7 +1193,7 @@ contract PauserRole is OwnerRole {
 
 // File: contracts/capabilities/Pausable.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 /**
@@ -1274,7 +1274,7 @@ contract Pausable is PauserRole {
 
 // File: contracts/TokenSoftToken.sol
 
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 
 

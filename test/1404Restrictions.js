@@ -134,7 +134,7 @@ contract('1404 Restrictions', (accounts) => {
 
   it('should handle unknown error codes', async () => {
 
-    const failureMessage = await tokenInstance.messageForTransferRestriction(1001)
+    const failureMessage = await tokenInstance.messageForTransferRestriction(200)
     assert.equal(failureMessage, UNKNOWN_ERROR, 'Should be unknown error code for restriction')
   })
 })

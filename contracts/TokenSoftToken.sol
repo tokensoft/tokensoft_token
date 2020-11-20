@@ -1,4 +1,4 @@
-pragma solidity 0.5.16;
+pragma solidity 0.6.12;
 
 import "./capabilities/Proxiable.sol";
 import "./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
@@ -50,6 +50,8 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whiteli
     function detectTransferRestriction (address from, address to, uint256)
         public
         view
+        virtual
+        override
         returns (uint8)
     {
         // Check the paused status of the contract
@@ -80,6 +82,8 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whiteli
     function messageForTransferRestriction (uint8 restrictionCode)
         public
         view
+        virtual
+        override
         returns (string memory)
     {
         if (restrictionCode == SUCCESS_CODE) {
@@ -112,6 +116,8 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whiteli
      */
     function transfer (address to, uint256 value)
         public
+        virtual
+        override(ERC20, IERC20)
         notRestricted(msg.sender, to, value)
         returns (bool success)
     {
@@ -123,6 +129,8 @@ contract TokenSoftToken is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Whiteli
      */
     function transferFrom (address from, address to, uint256 value)
         public
+        virtual
+        override(ERC20, IERC20)
         notRestricted(from, to, value)
         returns (bool success)
     {
