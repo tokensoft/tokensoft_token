@@ -13,6 +13,7 @@ library Roles {
      * @dev Give an account access to this role.
      */
     function add(Role storage role, address account) internal {
+        require(account != address(0x0), "Invalid 0x0 address");
         require(!has(role, account), "Roles: account already has role");
         role.bearer[account] = true;
     }

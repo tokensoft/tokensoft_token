@@ -45,6 +45,9 @@ contract('OwnerRole', (accounts) => {
   it('should not allow a non owner to add/remove owners', async () => {
     // Prove it can't be added by account 3
     await expectRevert(tokenInstance.addOwner(accounts[4], { from: accounts[3] }), "OwnerRole: caller does not have the Owner role")
+
+    // Verify a 0x0 address can't be added
+    await expectRevert(tokenInstance.addOwner("0x0000000000000000000000000000000000000000"), "Invalid 0x0 address")
     
     // Add it with owner
     await tokenInstance.addOwner(accounts[4])
