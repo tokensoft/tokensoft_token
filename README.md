@@ -24,12 +24,13 @@ If a token transfer is restricted, the code will follow the ERC1404 spec and rev
 ## Roles
 All accounts need to be granted a role by an admin in order to be able to interact with the contract's administrative functions:
 
- - Owner: Onwers are responsible for managing permissions of all roles.
+ - Owner: Owners are responsible for managing permissions of all roles.
  - BurnerRole: These accounts can burn tokens from accounts.
  - MinterRole: These accounts can mint new tokens to other accounts.
  - PauserRole: These accounts can halt all transfers on the contract.
  - RevokerRole: These accounts can revoke tokens from other accounts into their own.
  - WhitelisterRole: These accounts can configure whitelist rules and add/remove accounts from whitelists.
+ - BlacklisterRole: These accounts can add or remove addresses to or from the blacklist
 
 ## Owners
 
@@ -42,7 +43,7 @@ Before tokens can be transferred to a new address, it must be validated that the
 
 Owner accounts will have the ability to transfer tokens to any valid address, regardless of the whitelist configuration state.
 
-An Owner can enable and disable the whitelist functionality to remove the whitelist restrictions on transfers.  The default state is set as enabled/disabled in the initialiation of the token contract.
+An Owner can enable and disable the whitelist functionality to remove the whitelist restrictions on transfers.  The default state is set as enabled/disabled in the initialization of the token contract.
 
 An address can only be a member of one whitelist at any point in time. If an admin adds any address to a new whitelist, it will no longer be a member of the previous whitelist it was on (if any). Adding an address to a whitelist of ID 0 will remove it from all whitelists, as whitelist ID 0 is invalid. Removing an address from the existing whitelist will set it to belong to whitelist 0. An address with whitelist 0 will be prevented from transferring or receiving tokens. Any tokens on a whitelist 0 account are frozen. All addresses belong to whitelist 0 by default.
 
@@ -65,9 +66,16 @@ By default, all whitelists will **NOT** be allowed to transfer between source an
 
 Administrators will have the ability modify a whitelist beyond the default configuration to add or remove outbound whitelists.
 
+## Blacklists
+Before tokens can be transferred to or from an address, if the blacklisting feature is enabled, it will check to ensure both the source and destination are not blacklisted.  If either account is blacklisted the transfer will fail.
+
+An Owner can enable and disable the blacklist functionality to add or remove restrictions on transfers.  The default state is set as disabled.
+
+Accounts with the BlacklisterRole can add or remove accounts to or from the blacklist.
+
 ## Pausing
 
-The Pauser accounts may pause/unpause the contract. When the contract is paused all transfers will be blocked. When deployed the contract is initially unpaused.
+The Pauser accounts may pause/un-pause the contract. When the contract is paused all transfers will be blocked. When deployed the contract is initially un-paused.
 
 ## Minting
 Minter accounts can mint tokens to other accounts. Minting tokens increases the total supply of tokens and the balance of the account the tokens are minted to.
@@ -83,7 +91,7 @@ Revoker accounts can revoke tokens from any account. Revoking tokens has no effe
 The contract is upgradeable and allows for Owners to update the contract logic while maintaining contract state. Contracts can be upgraded to have more or less restrictive transfer logic or new transfer paradigms including escrow. Upgrading can be a **potentially destructive** operation if the new contract is incompatible with the existing contract due to broken upgrade methods or memory layout issues.
 
 To update the contract logic:
->**1:** Deploy the new contract to the ethereum mainnet, this contract must impliment the Proxiable contract as defined https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md
+>**1:** Deploy the new contract to the ethereum mainnet, this contract must implement the Proxiable contract as defined https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md
 
 >**2:** An Owner  must then call the updateCodeAddress method on the existing token contract with the address of the contract deployed in step 1
 
@@ -104,7 +112,7 @@ $ npm run coverage
 # General Warnings
 
 ### Proxy Deployment 
-The intial deployment logic will not guarantee you are setting the logic address to a valid contract address.  If you set this to an external address, or a contract that is not "Proxiable" then the deployment will result in an invalid state.  This should just be a normal check after deployment and initialization that contract state is valid.
+The initial deployment logic will not guarantee you are setting the logic address to a valid contract address.  If you set this to an external address, or a contract that is not "Proxiable" then the deployment will result in an invalid state.  This should just be a normal check after deployment and initialization that contract state is valid.
 
 ### Approve/TransferFrom ERC20 "Double Spend"
 It is a known issue with ERC20 that incorrectly using approve could allow a spending to transfer more tokens than is desired.  To prevent this, ALWAYS set the approval amount to 0 before setting it to a new value.
