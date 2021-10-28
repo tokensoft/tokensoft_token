@@ -3,14 +3,15 @@ pragma solidity 0.6.12;
 import "./TokenSoftToken.sol";
 import "./capabilities/Blacklistable.sol";
 import "./capabilities/RevocableToAddress.sol";
+import "./capabilities/BurnAndMintInPlace.sol";
 
 /**
- @title Tokensoft Token V2
+ @title Tokensoft Token V3
  @notice This contract implements the ERC1404 Interface to add transfer restrictions to a standard ER20 token.
  The role based access controls allow the Owner accounts to determine which permissions are granted to admin accounts.
  Admin accounts can enable, disable, and configure the token restrictions built into the contract.
  */
-contract TokenSoftTokenV2 is TokenSoftToken, Blacklistable, RevocableToAddress {
+contract TokenSoftTokenV2 is TokenSoftToken, Blacklistable, RevocableToAddress,  {
 
   /// @notice The from/to account has been explicitly denied the ability to send/receive
   uint8 public constant FAILURE_BLACKLIST = 3;

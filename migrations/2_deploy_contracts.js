@@ -1,11 +1,9 @@
 /* global artifacts */
-const TokenSoftToken = artifacts.require('TokenSoftTokenV2')
-const TokenSoftTokenEscrow = artifacts.require('TokenSoftTokenEscrow')
-const Proxy = artifacts.require("Proxy");
+const TokenSoftToken = artifacts.require('TokenSoftTokenV3')
+const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 
-module.exports = async function (deployer, network, accounts) {
+module.exports = async function (deployer) {
   await deployer.deploy(TokenSoftToken)
-  await deployer.deploy(TokenSoftTokenEscrow)
-  await deployer.deploy(Proxy, TokenSoftToken.address);
-  await TokenSoftToken.at(Proxy.address)
-}
+  const instance = await deployProxy(TokenSoftToken, ['0x5302D2bC80477304c0512c31aD847ae62094000d', "Wrapped Kadena", "wKDA",12,0, false], { deployer });
+  console.log('Deployed', instance.address);
+};
