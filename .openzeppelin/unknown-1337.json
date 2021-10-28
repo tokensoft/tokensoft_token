@@ -1,0 +1,187 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x14801D1A3f82Ccfed5B091f2D3A35048D03724C9",
+    "txHash": "0xb20d96dd2bce11a304eb0127b07089226b8e8f9646c84266716d317b3c70f2c0"
+  },
+  "proxies": [
+    {
+      "address": "0x840979468614446fd5904432CF65C8C99f92E521",
+      "txHash": "0xd01487d86c7599aa143c9e249719ba2867601c24d0f7bafbe3ffe8eef8aa7be9",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x77E65b9Abf281B1233b19Eb970179849C040F37A",
+      "txHash": "0x53c0e58704b1d0d18d185aed5a4f07aaa4485aaf686aa3c4f2dd2083b975a01f",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "ae78d00c80ce6a13d696173ca0202e59b84b11bea1035cf40c2031733b10a8e8": {
+      "address": "0xa4E33e762130685bb16F462bb4fF881a7A766a92",
+      "txHash": "0x0feffcbe8d5322d5b067dad072a66312a65f0352d285b7940371eb3c222c7739",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin/upgrades/contracts/Initializable.sol:21"
+          },
+          {
+            "contract": "Initializable",
+            "label": "initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin/upgrades/contracts/Initializable.sol:26"
+          },
+          {
+            "contract": "Initializable",
+            "label": "______gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin/upgrades/contracts/Initializable.sol:61"
+          },
+          {
+            "contract": "ERC20Detailed",
+            "label": "_name",
+            "type": "t_string_storage",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:10"
+          },
+          {
+            "contract": "ERC20Detailed",
+            "label": "_symbol",
+            "type": "t_string_storage",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:11"
+          },
+          {
+            "contract": "ERC20Detailed",
+            "label": "_decimals",
+            "type": "t_uint8",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:12"
+          },
+          {
+            "contract": "ERC20Detailed",
+            "label": "______gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol:56"
+          },
+          {
+            "contract": "ERC20",
+            "label": "_balances",
+            "type": "t_mapping(t_address,t_uint256)",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:36"
+          },
+          {
+            "contract": "ERC20",
+            "label": "_allowances",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:38"
+          },
+          {
+            "contract": "ERC20",
+            "label": "_totalSupply",
+            "type": "t_uint256",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:40"
+          },
+          {
+            "contract": "ERC20",
+            "label": "______gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol:233"
+          },
+          {
+            "contract": "OwnerRole",
+            "label": "_owners",
+            "type": "t_struct(Role)37_storage",
+            "src": "roles/OwnerRole.sol:11"
+          },
+          {
+            "contract": "MinterRole",
+            "label": "_minters",
+            "type": "t_struct(Role)37_storage",
+            "src": "roles/MinterRole.sol:10"
+          },
+          {
+            "contract": "BurnerRole",
+            "label": "_burners",
+            "type": "t_struct(Role)37_storage",
+            "src": "roles/BurnerRole.sol:10"
+          },
+          {
+            "contract": "RevokerRole",
+            "label": "_revokers",
+            "type": "t_struct(Role)37_storage",
+            "src": "roles/RevokerRole.sol:10"
+          },
+          {
+            "contract": "PauserRole",
+            "label": "_pausers",
+            "type": "t_struct(Role)37_storage",
+            "src": "roles/PauserRole.sol:10"
+          },
+          {
+            "contract": "Pausable",
+            "label": "_paused",
+            "type": "t_bool",
+            "src": "capabilities/Pausable.sol:25"
+          },
+          {
+            "contract": "BlacklisterRole",
+            "label": "_Blacklisters",
+            "type": "t_struct(Role)37_storage",
+            "src": "roles/BlacklisterRole.sol:10"
+          },
+          {
+            "contract": "Blacklistable",
+            "label": "isBlacklistEnabled",
+            "type": "t_bool",
+            "src": "capabilities/Blacklistable.sol:11"
+          },
+          {
+            "contract": "Blacklistable",
+            "label": "addressBlacklists",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "capabilities/Blacklistable.sol:14"
+          }
+        ],
+        "types": {
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_struct(Role)37_storage": {
+            "label": "struct Roles.Role",
+            "members": [
+              {
+                "label": "bearer",
+                "type": "t_mapping(t_address,t_bool)"
+              }
+            ]
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_uint8": {
+            "label": "uint8"
+          }
+        }
+      }
+    }
+  }
+}

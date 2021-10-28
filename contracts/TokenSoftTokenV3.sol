@@ -1,80 +1,148 @@
 pragma solidity 0.6.12;
 
-import "./TokenSoftToken.sol";
-import "./capabilities/Blacklistable.sol";
-import "./capabilities/RevocableToAddress.sol";
-import "./capabilities/BurnAndMintInPlace.sol";
-
 /**
  @title Tokensoft Token V3
  @notice This contract implements the ERC1404 Interface to add transfer restrictions to a standard ER20 token.
  The role based access controls allow the Owner accounts to determine which permissions are granted to admin accounts.
  Admin accounts can enable, disable, and configure the token restrictions built into the contract.
  */
-contract TokenSoftTokenV2 is TokenSoftToken, Blacklistable, RevocableToAddress,  {
 
-  /// @notice The from/to account has been explicitly denied the ability to send/receive
-  uint8 public constant FAILURE_BLACKLIST = 3;
-  string public constant FAILURE_BLACKLIST_MESSAGE = "Restricted due to blacklist";
+import "./capabilities/Proxiable.sol";
+import "./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
+import "./ERC1404.sol";
+import "./roles/OwnerRole.sol";
+import "./capabilities/Mintable.sol";
+import "./capabilities/Burnable.sol";
+import "./capabilities/Revocable.sol";
+import "./capabilities/Pausable.sol";
+import "./capabilities/Blacklistable.sol";
+import "./capabilities/RevocableToAddress.sol";
+import "./capabilities/BurnAndMintInPlace.sol";
 
-   /**
-   @notice Used to detect if a proposed transfer will be allowed
-   @dev A 0 return value is success - all other codes should be displayed to user via messageForTransferRestriction
-    */
-  function detectTransferRestriction (address from, address to, uint256 amt)
+contract TokenSoftTokenV3 is Proxiable, ERC20Detailed, ERC1404, OwnerRole, Mintable, Burnable, Revocable, Pausable, Blacklistable, RevocableToAddress, BurnAndMintInPlace  {
+
+    // ERC1404 Error codes and messages
+    /// @notice The from/to account has been explicitly denied the ability to send/receive
+    uint8 public constant SUCCESS_CODE = 0;
+    uint8 public constant FAILURE_PAUSED = 2;
+    string public constant SUCCESS_MESSAGE = "SUCCESS";
+    string public constant FAILURE_PAUSED_MESSAGE = "The transfer was restricted due to the contract being paused.";
+    string public constant UNKNOWN_ERROR = "Unknown Error Code";
+    uint8 public constant FAILURE_BLACKLIST = 3;
+    string public constant FAILURE_BLACKLIST_MESSAGE = "Restricted due to blacklist";
+
+
+    /**
+    Constructor for the token to set readable details and mint all tokens
+    to the specified owner.
+     */
+    function initialize (address owner, string memory name, string memory symbol, uint8 decimals, uint256 initialSupply)
         public
-        override
+        initializer
+    {
+        ERC20Detailed.initialize(name, symbol, decimals);
+        Mintable._mint(msg.sender, owner, initialSupply);
+        OwnerRole._addOwner(owner);
+    }
+
+    /**
+    Public function to update the address of the code contract, retricted to owner
+     */
+    function updateCodeAddress (address newAddress) public onlyOwner {
+        Proxiable._updateCodeAddress(newAddress);
+    }
+
+    /**
+    This function detects whether a transfer should be restricted and not allowed.
+    If the function returns SUCCESS_CODE (0) then it should be allowed.
+     */
+    function detectTransferRestriction (address from, address to, uint256)
+        public
         view
+        virtual
+        override
         returns (uint8)
     {
-        // Restrictions are enabled, so verify the whitelist config allows the transfer.
+        // Check the paused status of the contract
+        if (Pausable.paused()) {
+            return FAILURE_PAUSED;
+        }
+
+        // If an owner transferring, then ignore blacklist restrictions
+        if(OwnerRole.isOwner(from)) {
+            return SUCCESS_CODE;
+        }
+
+        // Restrictions are enabled, so verify the blacklist config allows the transfer.
         // Logic defined in Blacklistable parent class
         if(!checkBlacklistAllowed(from, to)) {
             return FAILURE_BLACKLIST;
         }
 
-        return TokenSoftToken.detectTransferRestriction(from, to, amt);
+        // If no restrictions were triggered return success
+        return SUCCESS_CODE;
     }
 
-  /** 
-  @notice Returns a human readable string for the error returned via detectTransferRestriction
-  */ 
-  function messageForTransferRestriction (uint8 restrictionCode)
+    /**
+    This function allows a wallet or other client to get a human readable string to show
+    a user if a transfer was restricted.  It should return enough information for the user
+    to know why it failed.
+     */
+    function messageForTransferRestriction (uint8 restrictionCode)
         public
-        override
         view
+        virtual
+        override
         returns (string memory)
     {
+        if (restrictionCode == SUCCESS_CODE) {
+            return SUCCESS_MESSAGE;
+        }
+
         if (restrictionCode == FAILURE_BLACKLIST) {
             return FAILURE_BLACKLIST_MESSAGE;
         }
-        
-        return TokenSoftToken.messageForTransferRestriction(restrictionCode);
+
+        if (restrictionCode == FAILURE_PAUSED) {
+            return FAILURE_PAUSED_MESSAGE;
+        }
+
+        // An unknown error code was passed in.
+        return UNKNOWN_ERROR;
     }
 
     /**
-     @notice Transfers tokens if they are not restricted
-     @dev Overrides the parent class token transfer function to enforce restrictions.
+    Evaluates whether a transfer should be allowed or not.
+     */
+    modifier notRestricted (address from, address to, uint256 value) {
+        uint8 restrictionCode = detectTransferRestriction(from, to, value);
+        require(restrictionCode == SUCCESS_CODE, messageForTransferRestriction(restrictionCode));
+        _;
+    }
+
+    /**
+    Overrides the parent class token transfer function to enforce restrictions.
      */
     function transfer (address to, uint256 value)
         public
-        override(TokenSoftToken, ERC20)
+        virtual
+        override(ERC20, IERC20)
         notRestricted(msg.sender, to, value)
         returns (bool success)
     {
-        return TokenSoftToken.transfer(to, value);
+        success = ERC20.transfer(to, value);
     }
 
     /**
-    @notice Transfers from a specified address if they are not restricted
-    @dev Overrides the parent class token transferFrom function to enforce restrictions.
+    Overrides the parent class token transferFrom function to enforce restrictions.
      */
     function transferFrom (address from, address to, uint256 value)
         public
-        override(TokenSoftToken, ERC20)
+        virtual
+        override(ERC20, IERC20)
         notRestricted(from, to, value)
         returns (bool success)
     {
-        return TokenSoftToken.transferFrom(from, to, value);
+        success = ERC20.transferFrom(from, to, value);
     }
 }

@@ -233,16 +233,16 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"detectTransferRestriction\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"restrictionCode\",\"type\":\"uint8\"}],\"name\":\"messageForTransferRestriction\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"allowance(address,address)\":{\"details\":\"Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner` through {transferFrom}. This is zero by default. This value changes when {approve} or {transferFrom} are called.\"},\"approve(address,uint256)\":{\"details\":\"Sets `amount` as the allowance of `spender` over the caller's tokens. Returns a boolean value indicating whether the operation succeeded. IMPORTANT: Beware that changing an allowance with this method brings the risk that someone may use both the old and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729 Emits an {Approval} event.\"},\"balanceOf(address)\":{\"details\":\"Returns the amount of tokens owned by `account`.\"},\"detectTransferRestriction(address,address,uint256)\":{\"details\":\"Overwrite with your custom transfer restriction logic\",\"params\":{\"from\":\"Sending address\",\"to\":\"Receiving address\",\"value\":\"Amount of tokens being transferred\"},\"returns\":{\"_0\":\"Code by which to reference message for rejection reasoning\"}},\"messageForTransferRestriction(uint8)\":{\"details\":\"Overwrite with your custom message and restrictionCode handling\",\"params\":{\"restrictionCode\":\"Identifier for looking up a message\"},\"returns\":{\"_0\":\"Text showing the restriction's reasoning\"}},\"totalSupply()\":{\"details\":\"Returns the amount of tokens in existence.\"},\"transfer(address,uint256)\":{\"details\":\"Moves `amount` tokens from the caller's account to `recipient`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Moves `amount` tokens from `sender` to `recipient` using the allowance mechanism. `amount` is then deducted from the caller's allowance. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"detectTransferRestriction(address,address,uint256)\":{\"notice\":\"Detects if a transfer will be reverted and if so returns an appropriate reference code\"},\"messageForTransferRestriction(uint8)\":{\"notice\":\"Returns a human-readable message for a given restriction code\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/ERC1404.sol\":\"ERC1404\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/james/Source/tokensoft/tokensoft_token/contracts/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x063a73b3249b35f89d0ee9bb2b3e7d1f02996a9db85d422ae9b8b191a632aefa\",\"urls\":[\"bzz-raw://cce2b97aae23af66631d23906bc7df6fd1432cc0dc22d165a34e24f145728db5\",\"dweb:/ipfs/QmVM3c3Xmq5m6X5XUKcSdziUGtmQMwft7y2w2LBU6CG8C8\"]},\"/Users/james/Source/tokensoft/tokensoft_token/contracts/ERC1404.sol\":{\"keccak256\":\"0xb4d1ad2792f40ba77fc3f851ca2d8f550284d233b91b477d374887e7289665a7\",\"urls\":[\"bzz-raw://54e03f5476ff877973216b7d190b8dfeab1c7d0e0323e90491b79ef36f50bfc7\",\"dweb:/ipfs/QmRAT5JmAzd1VDnWqombUvEUd6Eb54h9pKNhnMi32yQ7V6\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"detectTransferRestriction\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"restrictionCode\",\"type\":\"uint8\"}],\"name\":\"messageForTransferRestriction\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"allowance(address,address)\":{\"details\":\"Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner` through {transferFrom}. This is zero by default. This value changes when {approve} or {transferFrom} are called.\"},\"approve(address,uint256)\":{\"details\":\"Sets `amount` as the allowance of `spender` over the caller's tokens. Returns a boolean value indicating whether the operation succeeded. IMPORTANT: Beware that changing an allowance with this method brings the risk that someone may use both the old and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729 Emits an {Approval} event.\"},\"balanceOf(address)\":{\"details\":\"Returns the amount of tokens owned by `account`.\"},\"detectTransferRestriction(address,address,uint256)\":{\"details\":\"Overwrite with your custom transfer restriction logic\",\"params\":{\"from\":\"Sending address\",\"to\":\"Receiving address\",\"value\":\"Amount of tokens being transferred\"},\"returns\":{\"_0\":\"Code by which to reference message for rejection reasoning\"}},\"messageForTransferRestriction(uint8)\":{\"details\":\"Overwrite with your custom message and restrictionCode handling\",\"params\":{\"restrictionCode\":\"Identifier for looking up a message\"},\"returns\":{\"_0\":\"Text showing the restriction's reasoning\"}},\"totalSupply()\":{\"details\":\"Returns the amount of tokens in existence.\"},\"transfer(address,uint256)\":{\"details\":\"Moves `amount` tokens from the caller's account to `recipient`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Moves `amount` tokens from `sender` to `recipient` using the allowance mechanism. `amount` is then deducted from the caller's allowance. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"detectTransferRestriction(address,address,uint256)\":{\"notice\":\"Detects if a transfer will be reverted and if so returns an appropriate reference code\"},\"messageForTransferRestriction(uint8)\":{\"notice\":\"Returns a human-readable message for a given restriction code\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/thomasmcinerney/dev/tokensoft_token/contracts/ERC1404.sol\":\"ERC1404\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/thomasmcinerney/dev/tokensoft_token/contracts/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x063a73b3249b35f89d0ee9bb2b3e7d1f02996a9db85d422ae9b8b191a632aefa\",\"urls\":[\"bzz-raw://cce2b97aae23af66631d23906bc7df6fd1432cc0dc22d165a34e24f145728db5\",\"dweb:/ipfs/QmVM3c3Xmq5m6X5XUKcSdziUGtmQMwft7y2w2LBU6CG8C8\"]},\"/Users/thomasmcinerney/dev/tokensoft_token/contracts/ERC1404.sol\":{\"keccak256\":\"0xb4d1ad2792f40ba77fc3f851ca2d8f550284d233b91b477d374887e7289665a7\",\"urls\":[\"bzz-raw://54e03f5476ff877973216b7d190b8dfeab1c7d0e0323e90491b79ef36f50bfc7\",\"dweb:/ipfs/QmRAT5JmAzd1VDnWqombUvEUd6Eb54h9pKNhnMi32yQ7V6\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.6.12;\n\nimport \"./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol\";\n\nabstract contract ERC1404 is IERC20 {\n    /// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code\n    /// @param from Sending address\n    /// @param to Receiving address\n    /// @param value Amount of tokens being transferred\n    /// @return Code by which to reference message for rejection reasoning\n    /// @dev Overwrite with your custom transfer restriction logic\n    function detectTransferRestriction (address from, address to, uint256 value) public virtual view returns (uint8);\n\n    /// @notice Returns a human-readable message for a given restriction code\n    /// @param restrictionCode Identifier for looking up a message\n    /// @return Text showing the restriction's reasoning\n    /// @dev Overwrite with your custom message and restrictionCode handling\n    function messageForTransferRestriction (uint8 restrictionCode) public virtual view returns (string memory);\n}",
-  "sourcePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/ERC1404.sol",
+  "sourcePath": "/Users/thomasmcinerney/dev/tokensoft_token/contracts/ERC1404.sol",
   "ast": {
-    "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/ERC1404.sol",
+    "absolutePath": "/Users/thomasmcinerney/dev/tokensoft_token/contracts/ERC1404.sol",
     "exportedSymbols": {
       "ERC1404": [
         1394
@@ -263,7 +263,7 @@
         "src": "0:23:10"
       },
       {
-        "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+        "absolutePath": "/Users/thomasmcinerney/dev/tokensoft_token/contracts/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
         "file": "./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
         "id": 1371,
         "nodeType": "ImportDirective",
@@ -559,320 +559,349 @@
     "src": "0:1034:10"
   },
   "legacyAST": {
-    "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/ERC1404.sol",
-    "exportedSymbols": {
-      "ERC1404": [
-        1394
-      ]
+    "attributes": {
+      "absolutePath": "/Users/thomasmcinerney/dev/tokensoft_token/contracts/ERC1404.sol",
+      "exportedSymbols": {
+        "ERC1404": [
+          1394
+        ]
+      },
+      "license": null
     },
-    "id": 1395,
-    "license": null,
-    "nodeType": "SourceUnit",
-    "nodes": [
+    "children": [
       {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
         "id": 1370,
-        "literals": [
-          "solidity",
-          "0.6",
-          ".12"
-        ],
-        "nodeType": "PragmaDirective",
+        "name": "PragmaDirective",
         "src": "0:23:10"
       },
       {
-        "absolutePath": "/Users/james/Source/tokensoft/tokensoft_token/contracts/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
-        "file": "./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+        "attributes": {
+          "SourceUnit": 985,
+          "absolutePath": "/Users/thomasmcinerney/dev/tokensoft_token/contracts/@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+          "file": "./@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol",
+          "scope": 1395,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
         "id": 1371,
-        "nodeType": "ImportDirective",
-        "scope": 1395,
-        "sourceUnit": 985,
-        "src": "25:85:10",
-        "symbolAliases": [],
-        "unitAlias": ""
+        "name": "ImportDirective",
+        "src": "25:85:10"
       },
       {
-        "abstract": true,
-        "baseContracts": [
+        "attributes": {
+          "abstract": true,
+          "contractDependencies": [
+            984
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            1394,
+            984
+          ],
+          "name": "ERC1404",
+          "scope": 1395
+        },
+        "children": [
           {
-            "arguments": null,
-            "baseName": {
-              "contractScope": null,
-              "id": 1372,
-              "name": "IERC20",
-              "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 984,
-              "src": "141:6:10",
-              "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC20_$984",
-                "typeString": "contract IERC20"
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IERC20",
+                  "referencedDeclaration": 984,
+                  "type": "contract IERC20"
+                },
+                "id": 1372,
+                "name": "UserDefinedTypeName",
+                "src": "141:6:10"
               }
-            },
+            ],
             "id": 1373,
-            "nodeType": "InheritanceSpecifier",
+            "name": "InheritanceSpecifier",
             "src": "141:6:10"
-          }
-        ],
-        "contractDependencies": [
-          984
-        ],
-        "contractKind": "contract",
-        "documentation": null,
-        "fullyImplemented": false,
-        "id": 1394,
-        "linearizedBaseContracts": [
-          1394,
-          984
-        ],
-        "name": "ERC1404",
-        "nodeType": "ContractDefinition",
-        "nodes": [
-          {
-            "body": null,
-            "documentation": {
-              "id": 1374,
-              "nodeType": "StructuredDocumentation",
-              "src": "154:368:10",
-              "text": "@notice Detects if a transfer will be reverted and if so returns an appropriate reference code\n @param from Sending address\n @param to Receiving address\n @param value Amount of tokens being transferred\n @return Code by which to reference message for rejection reasoning\n @dev Overwrite with your custom transfer restriction logic"
-            },
-            "functionSelector": "d4ce1415",
-            "id": 1385,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "detectTransferRestriction",
-            "nodeType": "FunctionDefinition",
-            "overrides": null,
-            "parameters": {
-              "id": 1381,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1376,
-                  "mutability": "mutable",
-                  "name": "from",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1385,
-                  "src": "563:12:10",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 1375,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "563:7:10",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 1378,
-                  "mutability": "mutable",
-                  "name": "to",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1385,
-                  "src": "577:10:10",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 1377,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "577:7:10",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 1380,
-                  "mutability": "mutable",
-                  "name": "value",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1385,
-                  "src": "589:13:10",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 1379,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "589:7:10",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "562:41:10"
-            },
-            "returnParameters": {
-              "id": 1384,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1383,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1385,
-                  "src": "633:5:10",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 1382,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "633:5:10",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "632:7:10"
-            },
-            "scope": 1394,
-            "src": "527:113:10",
-            "stateMutability": "view",
-            "virtual": true,
-            "visibility": "public"
           },
           {
-            "body": null,
-            "documentation": {
-              "id": 1386,
-              "nodeType": "StructuredDocumentation",
-              "src": "646:274:10",
-              "text": "@notice Returns a human-readable message for a given restriction code\n @param restrictionCode Identifier for looking up a message\n @return Text showing the restriction's reasoning\n @dev Overwrite with your custom message and restrictionCode handling"
+            "attributes": {
+              "body": null,
+              "functionSelector": "d4ce1415",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "detectTransferRestriction",
+              "overrides": null,
+              "scope": 1394,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "public"
             },
-            "functionSelector": "7f4ab1dd",
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Detects if a transfer will be reverted and if so returns an appropriate reference code\n @param from Sending address\n @param to Receiving address\n @param value Amount of tokens being transferred\n @return Code by which to reference message for rejection reasoning\n @dev Overwrite with your custom transfer restriction logic"
+                },
+                "id": 1374,
+                "name": "StructuredDocumentation",
+                "src": "154:368:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "from",
+                      "overrides": null,
+                      "scope": 1385,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1375,
+                        "name": "ElementaryTypeName",
+                        "src": "563:7:10"
+                      }
+                    ],
+                    "id": 1376,
+                    "name": "VariableDeclaration",
+                    "src": "563:12:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "to",
+                      "overrides": null,
+                      "scope": 1385,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1377,
+                        "name": "ElementaryTypeName",
+                        "src": "577:7:10"
+                      }
+                    ],
+                    "id": 1378,
+                    "name": "VariableDeclaration",
+                    "src": "577:10:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "value",
+                      "overrides": null,
+                      "scope": 1385,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1379,
+                        "name": "ElementaryTypeName",
+                        "src": "589:7:10"
+                      }
+                    ],
+                    "id": 1380,
+                    "name": "VariableDeclaration",
+                    "src": "589:13:10"
+                  }
+                ],
+                "id": 1381,
+                "name": "ParameterList",
+                "src": "562:41:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1385,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 1382,
+                        "name": "ElementaryTypeName",
+                        "src": "633:5:10"
+                      }
+                    ],
+                    "id": 1383,
+                    "name": "VariableDeclaration",
+                    "src": "633:5:10"
+                  }
+                ],
+                "id": 1384,
+                "name": "ParameterList",
+                "src": "632:7:10"
+              }
+            ],
+            "id": 1385,
+            "name": "FunctionDefinition",
+            "src": "527:113:10"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "7f4ab1dd",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "messageForTransferRestriction",
+              "overrides": null,
+              "scope": 1394,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Returns a human-readable message for a given restriction code\n @param restrictionCode Identifier for looking up a message\n @return Text showing the restriction's reasoning\n @dev Overwrite with your custom message and restrictionCode handling"
+                },
+                "id": 1386,
+                "name": "StructuredDocumentation",
+                "src": "646:274:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "restrictionCode",
+                      "overrides": null,
+                      "scope": 1393,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 1387,
+                        "name": "ElementaryTypeName",
+                        "src": "965:5:10"
+                      }
+                    ],
+                    "id": 1388,
+                    "name": "VariableDeclaration",
+                    "src": "965:21:10"
+                  }
+                ],
+                "id": 1389,
+                "name": "ParameterList",
+                "src": "964:23:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1393,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 1390,
+                        "name": "ElementaryTypeName",
+                        "src": "1017:6:10"
+                      }
+                    ],
+                    "id": 1391,
+                    "name": "VariableDeclaration",
+                    "src": "1017:13:10"
+                  }
+                ],
+                "id": 1392,
+                "name": "ParameterList",
+                "src": "1016:15:10"
+              }
+            ],
             "id": 1393,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "messageForTransferRestriction",
-            "nodeType": "FunctionDefinition",
-            "overrides": null,
-            "parameters": {
-              "id": 1389,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1388,
-                  "mutability": "mutable",
-                  "name": "restrictionCode",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1393,
-                  "src": "965:21:10",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
-                  },
-                  "typeName": {
-                    "id": 1387,
-                    "name": "uint8",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "965:5:10",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint8",
-                      "typeString": "uint8"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "964:23:10"
-            },
-            "returnParameters": {
-              "id": 1392,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1391,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 1393,
-                  "src": "1017:13:10",
-                  "stateVariable": false,
-                  "storageLocation": "memory",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_memory_ptr",
-                    "typeString": "string"
-                  },
-                  "typeName": {
-                    "id": 1390,
-                    "name": "string",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1017:6:10",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_string_storage_ptr",
-                      "typeString": "string"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1016:15:10"
-            },
-            "scope": 1394,
-            "src": "925:107:10",
-            "stateMutability": "view",
-            "virtual": true,
-            "visibility": "public"
+            "name": "FunctionDefinition",
+            "src": "925:107:10"
           }
         ],
-        "scope": 1395,
+        "id": 1394,
+        "name": "ContractDefinition",
         "src": "112:922:10"
       }
     ],
+    "id": 1395,
+    "name": "SourceUnit",
     "src": "0:1034:10"
   },
   "compiler": {
@@ -880,8 +909,8 @@
     "version": "0.6.12+commit.27d51765.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.3.1",
-  "updatedAt": "2020-12-07T21:35:30.173Z",
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-10-28T23:00:53.232Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
