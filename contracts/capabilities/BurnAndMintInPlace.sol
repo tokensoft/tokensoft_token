@@ -2,7 +2,6 @@ pragma solidity 0.6.12;
 
 import "../@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
 import "../roles/BurnerRole.sol";
-import "../roles/MinterRole.sol";
 
 contract BurnAndMintInPlace is ERC20, BurnerRole {
 
